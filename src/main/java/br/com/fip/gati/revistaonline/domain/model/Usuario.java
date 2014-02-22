@@ -3,13 +3,15 @@ package br.com.fip.gati.revistaonline.domain.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.br.CPF;
 
-@javax.persistence.Entity(name="usuario")
+@javax.persistence.Entity
+@Table(name="usuario")
 public class Usuario extends Entity {
 
 	private Integer tentativasLogon;
@@ -30,6 +32,8 @@ public class Usuario extends Entity {
 	@Column(unique=true)
 	private String email;
 	
+	@NotNull(message="{usuario.senha.nulo}")
+	@Size(min=5, max=14, message="{usuario.senha.tamanho}")
 	private String senha;
 	
 	@NotNull(message="{usuario.nome.nulo}")
