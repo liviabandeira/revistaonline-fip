@@ -1,4 +1,4 @@
-package br.com.fip.gati.revistaonline.domain.model;
+package br.com.fip.gati.revistaonline.dao;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,12 +12,12 @@ import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.Component;
 
 @Component
-public class Arquivo {
+public class ArquivoDAO {
 	
 	private File pastaArquivo;
 	static int nome = 0;
 	
-	public Arquivo (ServletContext context){
+	public ArquivoDAO (ServletContext context){
 		
 		String caminhoArquivo = context.getRealPath("WEB-INF/artigo");
 		pastaArquivo = new File(caminhoArquivo);
