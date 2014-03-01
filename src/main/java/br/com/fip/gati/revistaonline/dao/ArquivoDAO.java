@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 
@@ -12,12 +13,19 @@ import br.com.caelum.vraptor.ioc.Component;
 
 @Component
 public class ArquivoDAO {
-
-	static int nome = 0;
-
+	
+	private ServletContext cont;
+	
+	public ArquivoDAO(ServletContext context){
+		super();
+		this.cont = context;
+	}
+	
 	public void salva(UploadedFile arq) {
-		nome++;
-		File destino = new File(nome + ".txt");
+		String path = cont.getRealPath("/WEB-INF/arquivos");
+		File folder = new File(path);
+		folder.mkdir(); 
+		File destino = new File(path, arq.getFileName());
 		try {
 			IOUtils.copyLarge(arq.getFile(), new FileOutputStream(destino));
 		} catch (IOException e) {

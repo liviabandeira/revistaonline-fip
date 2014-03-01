@@ -9,24 +9,25 @@ import br.com.fip.gati.revistaonline.dao.ArquivoDAO;
 
 @Resource
 public class ArquivoController {
-	
-	private final ArquivoDAO arquivo;
+
+
+	private ArquivoDAO arquivoDAO;
 	private final Result result;
-	
-	public ArquivoController (Result result, ArquivoDAO arquivo ){
-		this.arquivo = arquivo;
+
+	public ArquivoController(Result result, ArquivoDAO arq) {
 		this.result = result;
+		this.arquivoDAO = arq;
 	}
-	
-	@Get("/upload") 
-	public void formulario(){
+
+	@Get("/upload")
+	public void formulario() {
 	}
-	
-	@Post("/upload")
-	public void upload (final UploadedFile arquivo){
-		
-		this.arquivo.salva(arquivo);
-		result.redirectTo(LoginController.class).login();
+
+	@Post("/upload/file")
+	public void upload(UploadedFile file) {
+		this.arquivoDAO.salva(file);
+        result.redirectTo(IndexController.class).index();
+
 	}
 
 }
