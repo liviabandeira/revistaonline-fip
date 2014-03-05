@@ -26,10 +26,10 @@
 		filter configuration 
 	-->
 		
-	<!-- <context-param>
+	<context-param>
         	<param-name>br.com.caelum.vraptor.provider</param-name>
-	        <param-value>br.com.caelum.vraptor.ioc.guice.GuiceProvider</param-value>
-    </context-param>-->
+	        <param-value>br.com.caelum.vraptor.ioc.spring.SpringProvider</param-value>
+    </context-param>
     
     <!-- i18n -->
     <context-param>
