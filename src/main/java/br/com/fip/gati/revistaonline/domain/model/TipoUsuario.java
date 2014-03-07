@@ -5,12 +5,13 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 @javax.persistence.Entity
 @Table(name="pesquisador")
 @Inheritance(strategy=InheritanceType.JOINED)
-public class TipoPesquisador extends Entity {
+public abstract class TipoUsuario extends Entity {
 
 	@NotNull
 	private String instituicao;
@@ -19,6 +20,9 @@ public class TipoPesquisador extends Entity {
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
+	@Transient
+	public abstract boolean hasTipo(Class<? extends TipoUsuario> tipo);
+	
 	public String getInstituicao() {
 		return instituicao;
 	}
@@ -34,7 +38,5 @@ public class TipoPesquisador extends Entity {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
 	
 }

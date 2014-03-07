@@ -53,7 +53,7 @@ public class Usuario extends Entity {
 	private String login;
 	
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="usuario")
-	private Set<TipoPesquisador> tipo = new HashSet<TipoPesquisador>();
+	private Set<TipoUsuario> tipos = new HashSet<TipoUsuario>();
 	
 	public Usuario() { }
 
@@ -137,16 +137,33 @@ public class Usuario extends Entity {
 		this.status = status;
 	}
 
-	public Set<TipoPesquisador> getTipo() {
-		return tipo;
+	public Set<TipoUsuario> getTipo() {
+		return tipos;
 	}
 
-	public void setTipo(Set<TipoPesquisador> tipo) {
-		this.tipo = tipo;
+	public void setTipo(Set<TipoUsuario> tipo) {
+		this.tipos = tipo;
 	}
 	
-	public void addTipo(TipoPesquisador tipo) {
-		this.tipo.add(tipo);
+	public void addTipo(TipoUsuario tipo) {
+		this.tipos.add(tipo);
+	}
+	
+	public void removeTipo(TipoUsuario tipo) {
+		this.tipos.add(tipo);
+	}
+	
+	public boolean hasTipo(TipoUsuario tipo) {
+		return getTipo(tipo.getClass()) != null;
+	}
+	
+	public <T extends TipoUsuario> T getTipo(Class<? extends TipoUsuario> tipo) {
+		for(TipoUsuario tp : this.tipos) {
+			if(tp.hasTipo(tipo)) {
+				return (T) tp;
+			}
+		}
+		return null;
 	}
 	
 }
