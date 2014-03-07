@@ -1,8 +1,13 @@
 package br.com.fip.gati.revistaonline.domain.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -46,6 +51,9 @@ public class Usuario extends Entity {
 	@Size(min=3, max=20, message="{usuario.login.tamanho}")
 	@Column(unique=true)
 	private String login;
+	
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="usuario")
+	private Set<TipoPesquisador> tipo = new HashSet<TipoPesquisador>();
 	
 	public Usuario() { }
 
@@ -127,6 +135,18 @@ public class Usuario extends Entity {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Set<TipoPesquisador> getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Set<TipoPesquisador> tipo) {
+		this.tipo = tipo;
+	}
+	
+	public void addTipo(TipoPesquisador tipo) {
+		this.tipo.add(tipo);
 	}
 	
 }

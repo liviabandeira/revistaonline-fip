@@ -7,5 +7,7 @@
 		<mapping class="br.com.fip.gati.revistaonline.domain.model.Edicao"/>
 		<mapping class="br.com.fip.gati.revistaonline.domain.model.Revista"/>
 		<mapping class="br.com.fip.gati.revistaonline.domain.model.Artigo"/>
+		<mapping class="br.com.fip.gati.revistaonline.domain.model.TipoPesquisador"/>
+		<mapping class="br.com.fip.gati.revistaonline.domain.model.Autor"/>
 	</session-factory>
 </hibernate-configuration>
