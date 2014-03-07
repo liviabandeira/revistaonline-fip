@@ -146,15 +146,19 @@ public class Usuario extends Entity {
 	}
 	
 	public void addTipo(TipoUsuario tipo) {
-		this.tipos.add(tipo);
+		if(!hasTipo(tipo.getClass())) {
+			this.tipos.add(tipo);
+		}
 	}
 	
 	public void removeTipo(TipoUsuario tipo) {
-		this.tipos.add(tipo);
+		if(hasTipo(tipo.getClass())) {
+			this.tipos.remove(tipo);
+		}
 	}
 	
-	public boolean hasTipo(TipoUsuario tipo) {
-		return getTipo(tipo.getClass()) != null;
+	public boolean hasTipo(Class<? extends TipoUsuario> tipo) {
+		return getTipo(tipo) != null;
 	}
 	
 	public <T extends TipoUsuario> T getTipo(Class<? extends TipoUsuario> tipo) {
@@ -164,6 +168,18 @@ public class Usuario extends Entity {
 			}
 		}
 		return null;
+	}
+	
+	public boolean isAutor() {
+		return hasTipo(Autor.class);
+	}
+	
+	public boolean isAvaliador() {
+		return hasTipo(Avaliador.class);
+	}
+	
+	public boolean isEditor() {
+		return hasTipo(Editor.class);
 	}
 	
 }
