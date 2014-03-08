@@ -3,23 +3,27 @@ package br.com.fip.gati.revistaonline.infrastructure.mail;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.SimpleEmail;
 
+import br.com.caelum.vraptor.environment.Environment;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.simplemail.Mailer;
 
 
 @Component
 public class RevistaMailer {
+	private Environment env;
 	private Mailer mailer;
 	
-	public RevistaMailer(Mailer mail) {
+	public RevistaMailer(Environment env, Mailer mail) {
+		this.env = env;
 		this.mailer = mail;
 	}
 
-	public void send(String assunto, String msg, String... para) throws EmailException {
+	public void send(String assunto, String corpo, String... para) throws EmailException {
 		try {
 			Email email = new SimpleEmail();
+			email.setFrom(this.env.get("vraptor.simplemail.main.from"));
 			email.setSubject(assunto);
-			email.setMsg(msg);
+			email.setMsg(corpo);
 			for(String dest : para) {
 				email.addTo(dest);
 			}
