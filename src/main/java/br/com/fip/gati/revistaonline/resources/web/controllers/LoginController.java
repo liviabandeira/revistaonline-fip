@@ -44,23 +44,23 @@ public class LoginController {
 					|| usuario.getSenha() == null || usuario.getSenha().trim().isEmpty()) {
 				validator.add(new ValidationMessage(localization.getMessage("autenticacao.credencial.vazio"), localization.getMessage("autenticacao.credencial")));
 			}
-			validator.onErrorRedirectTo(this).login();
+			validator.onErrorRedirectTo(IndexController.class).index();
 			
 			if (autenticador.autenticar(usuario)) {
 				usuarioLogado.setUsuario(usuario);
 				result.redirectTo(IndexController.class).index();
 			} else {
-				result.include("errors", Arrays.asList(new ValidationMessage(localization.getMessage("autenticacao.credencial.erro"), localization.getMessage("autenticacao.credencial")))).redirectTo(this).login();
+				result.include("errors", Arrays.asList(new ValidationMessage(localization.getMessage("autenticacao.credencial.erro"), localization.getMessage("autenticacao.credencial")))).redirectTo(IndexController.class).index();
 			}
 			
 		} catch (ValidationException vex) {
 			throw vex;
 		} catch (AuthException authex) {
 			authex.printStackTrace();
-			result.include("errors", Arrays.asList(new ValidationMessage(authex.getMessage(), localization.getMessage("autenticacao.credencial")))).redirectTo(this).login();
+			result.include("errors", Arrays.asList(new ValidationMessage(authex.getMessage(), localization.getMessage("autenticacao.credencial")))).redirectTo(IndexController.class).index();
 		} catch (Exception e) {
 			e.printStackTrace();
-			result.include("errors", Arrays.asList(new ValidationMessage(localization.getMessage("autenticacao.credencial.erro"), localization.getMessage("autenticacao.credencial")))).redirectTo(this).login();
+			result.include("errors", Arrays.asList(new ValidationMessage(localization.getMessage("autenticacao.credencial.erro"), localization.getMessage("autenticacao.credencial")))).redirectTo(IndexController.class).index();
 		}
 	}
 	

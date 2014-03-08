@@ -72,6 +72,29 @@
                             </li>
                         </ul>
                     </li>
+                    
+                    <li><a href="/users/sign_up">Sign Up</a></li>
+		          	<li class="dropdown">
+		            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+		            <div class="dropdown-menu" style="padding: 15px; width: 200px; padding-bottom: 0px;">
+		            	<form action="${linkTo[LoginController].auth}" method="post">
+		            		
+		            		<div class="form-group">
+							  	<input id="user_username" class="form-control" 
+							  	type="text" placeholder="<fmt:message key="app.login" />" name="usuario.login" />
+		            		</div>
+		            		
+		            		<div class="form-group">
+							  	<input id="user_password" class="form-control" 
+							  	type="password" placeholder="<fmt:message key="app.senha"/>" name="usuario.senha"/>
+		            		</div>
+		            		
+						 	<div class="form-group">
+								<input class="btn btn-primary" style="width: 100%;" type="submit" name="commit" value="Entrar" />
+						 	</div>
+						</form> 
+		            </div>
+		          </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
