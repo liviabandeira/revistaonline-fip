@@ -7,22 +7,22 @@ import br.com.fip.gati.revistaonline.domain.model.Usuario;
 @Component
 @SessionScoped
 public class UsuarioLogado {
-	private Usuario user;
+	private Usuario usuario;
 
 	public Usuario getUsuario() {
-		return user;
+		return usuario;
 	}
 	
 	public void setUsuario(Usuario usuario) {
-		this.user = usuario;
+		this.usuario = usuario;
 	}
 
 	public boolean isLogado() {
-		return user != null;
+		return usuario != null;
 	}
 	
 	public void logout() {
-		user = null;
+		usuario = null;
 	}
 	
 }

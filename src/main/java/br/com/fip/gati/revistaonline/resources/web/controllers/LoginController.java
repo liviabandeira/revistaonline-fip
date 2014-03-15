@@ -67,7 +67,7 @@ public class LoginController {
 	@Get("/logout")
     public void logout() {
 		this.usuarioLogado.logout();
-		result.redirectTo(this).login();
+		result.redirectTo(IndexController.class).index();
     }
 	
 }
