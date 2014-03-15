@@ -1,4 +1,4 @@
-package br.com.fip.gati.revistaonline.dao;
+package br.com.fip.gati.revistaonline.infrastructure.persistence.hibernate;
 
 import java.io.File;
 import java.io.FileOutputStream;

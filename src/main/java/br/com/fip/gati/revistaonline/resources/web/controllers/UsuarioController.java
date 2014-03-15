@@ -12,7 +12,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
-import br.com.fip.gati.revistaonline.repositorio.UsuarioRepositorio;
+import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
 @Resource
 public class UsuarioController {

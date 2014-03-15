@@ -1,9 +1,9 @@
-package br.com.fip.gati.revistaonline.dao;
+package br.com.fip.gati.revistaonline.infrastructure.persistence.hibernate;
 
 import org.hibernate.Session;
 
 import br.com.fip.gati.revistaonline.domain.model.Revista;
-import br.com.fip.gati.revistaonline.repositorio.RevistaRepositorio;
+import br.com.fip.gati.revistaonline.domain.repositorio.RevistaRepositorio;
 
 public class RevistaDAO extends GenericDAO<Revista> implements RevistaRepositorio {
 

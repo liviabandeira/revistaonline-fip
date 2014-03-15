@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import br.com.fip.gati.revistaonline.application.usuario.Autenticador;
 import br.com.fip.gati.revistaonline.application.usuario.AuthException;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
-import br.com.fip.gati.revistaonline.repositorio.UsuarioRepositorio;
+import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
 public class AutenticadorTest {
 	private Autenticador autenticador;

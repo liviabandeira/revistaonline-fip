@@ -1,4 +1,4 @@
-package br.com.fip.gati.revistaonline.repositorio;
+package br.com.fip.gati.revistaonline.domain.repositorio;
 
 import java.util.List;
 
