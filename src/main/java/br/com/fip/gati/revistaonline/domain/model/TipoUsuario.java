@@ -6,14 +6,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
 
 @javax.persistence.Entity
 @Table(name="pesquisador")
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class TipoUsuario extends Entity {
 
-	@NotNull
 	private String instituicao;
 	
 	@ManyToOne

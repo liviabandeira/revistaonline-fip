@@ -1,23 +1,34 @@
 package br.com.fip.gati.revistaonline.autenticador;
 
+import static org.junit.Assert.*;
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.*;
+
 import org.junit.Before;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
 
-import br.com.fip.gati.revistaonline.application.usuario.Autenticador;
-import br.com.fip.gati.revistaonline.application.usuario.AuthException;
+import com.mchange.util.AssertException;
+
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
+import br.com.fip.gati.revistaonline.domain.service.autenticacao.Autenticador;
+import br.com.fip.gati.revistaonline.domain.service.autenticacao.AuthException;
+import br.com.fip.gati.revistaonline.domain.service.autenticacao.UsuarioInfo;
 import br.com.fip.gati.revistaonline.repositorio.UsuarioRepositorio;
 
 public class AutenticadorTest {
 	private Autenticador autenticador;
 	private UsuarioRepositorio repositorio;
+	private Usuario usuarioArmazenado;
 	
 	@Before
 	public void init() {
 		this.repositorio = mock(UsuarioRepositorio.class);
 		this.autenticador = new Autenticador(this.repositorio);
+		
+		usuarioArmazenado = new Usuario();
+		usuarioArmazenado.setAdmin(true);
+		usuarioArmazenado.setEmail("admin@admin.com");
+		usuarioArmazenado.setLogin("admin");
 	}
 	
 	
@@ -36,12 +47,17 @@ public class AutenticadorTest {
 	
 	@Test
 	public void deveAutenticarSeCredenciaisCorretas() throws AuthException {
-		when(repositorio.getUsuario("admin", "admin")).thenReturn(new Usuario());
+		when(repositorio.getUsuario("admin", "admin")).thenReturn(this.usuarioArmazenado);
 
 		Usuario usuario = new Usuario();
 		usuario.setLogin("admin");
 		usuario.setSenha("admin");
-		assertTrue(this.autenticador.autenticar(usuario));
+		
+		UsuarioInfo credencial = this.autenticador.autenticar(usuario);
+		assertNotNull(credencial);
+		assertEquals("admin", credencial.getLogin());
+		assertEquals("admin@admin.com", credencial.getEmail());
+		assertTrue(credencial.isAdmin());
 	}
 	
 	@Test
@@ -51,7 +67,17 @@ public class AutenticadorTest {
 		Usuario usuario = new Usuario();
 		usuario.setLogin("admin");
 		usuario.setSenha("1234");
-		assertFalse(this.autenticador.autenticar(usuario));
+		assertNull(this.autenticador.autenticar(usuario));
+		
+		Usuario usuario2 = new Usuario();
+		usuario2.setLogin("admin");
+		usuario2.setSenha("ADMIN");
+		assertNull(this.autenticador.autenticar(usuario));
+		
+		Usuario usuario3 = new Usuario();
+		usuario3.setLogin("ADMIN");
+		usuario3.setSenha("admin");
+		assertNull(this.autenticador.autenticar(usuario));
 	}
 	
 	@Test
@@ -61,7 +87,7 @@ public class AutenticadorTest {
 		Usuario usuario = new Usuario();
 		usuario.setLogin("admin");
 		usuario.setSenha("admin");
-		assertFalse(this.autenticador.autenticar(usuario));
+		assertNull(this.autenticador.autenticar(usuario));
 	}
 	
 }

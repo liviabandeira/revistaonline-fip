@@ -1,4 +1,4 @@
-package br.com.fip.gati.revistaonline.application.usuario;
+package br.com.fip.gati.revistaonline.domain.service.autenticacao;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
@@ -12,7 +12,7 @@ public class Autenticador {
 		this.usuarios = usuarios;
 	}
 	
-	public boolean autenticar(Usuario usuario) throws AuthException {
+	public UsuarioInfo autenticar(Usuario usuario) throws AuthException {
 		if(usuario == null) {
 			throw new NullPointerException("Usuario null");
 		}
@@ -21,7 +21,11 @@ public class Autenticador {
 			throw new IllegalArgumentException("Login ou senha nulos");
 		}
 		
-		return usuarios.getUsuario(usuario.getLogin(), usuario.getSenha()) != null;
+		Usuario usuarioBD = usuarios.getUsuario(usuario.getLogin(), usuario.getSenha());
+		if(usuarioBD != null) {
+			return usuarioBD.getUsuarioInfo();
+		}
+		return null;
 	}
 	
 }

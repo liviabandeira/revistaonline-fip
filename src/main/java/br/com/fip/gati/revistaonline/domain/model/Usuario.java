@@ -15,6 +15,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.br.CPF;
 
+import br.com.fip.gati.revistaonline.domain.service.autenticacao.UsuarioInfo;
+
 @javax.persistence.Entity
 @Table(name="usuario")
 public class Usuario extends Entity {
@@ -51,6 +53,8 @@ public class Usuario extends Entity {
 	@Size(min=3, max=20, message="{usuario.login.tamanho}")
 	@Column(unique=true)
 	private String login;
+	
+	private boolean admin = false;
 	
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="usuario")
 	private Set<TipoUsuario> tipos = new HashSet<TipoUsuario>();
@@ -145,6 +149,14 @@ public class Usuario extends Entity {
 		this.tipos = tipo;
 	}
 	
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
 	public void addTipo(TipoUsuario tipo) {
 		if(!hasTipo(tipo.getClass())) {
 			this.tipos.add(tipo);
@@ -180,6 +192,14 @@ public class Usuario extends Entity {
 	
 	public boolean isEditor() {
 		return hasTipo(Editor.class);
+	}
+	
+	public void setAtivo() {
+		this.status = "A";
+	}
+	
+	public UsuarioInfo getUsuarioInfo() {
+		return new UsuarioInfo(getId(), getEmail(), getLogin(), isAdmin());
 	}
 	
 }

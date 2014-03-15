@@ -23,7 +23,7 @@ public class EdicaoController {
 		this.result = result;
 	}
 	
-	@Get("/edicao")
+	@Get("/edicoes")
 	public void index() {
 		result.include("edicaoList", repository.listAll());
 	}
