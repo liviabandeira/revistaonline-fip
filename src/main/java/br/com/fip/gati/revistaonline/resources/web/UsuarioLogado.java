@@ -11,26 +11,26 @@ import br.com.fip.gati.revistaonline.domain.service.autenticacao.UsuarioInfo;
 public class UsuarioLogado implements Serializable {
 	private static final long serialVersionUID = -8417478664679012367L;
 	
-	private UsuarioInfo user;
+	private UsuarioInfo usuarioInfo;
 
 	public UsuarioInfo getUsuarioInfo() {
-		return user;
+		return usuarioInfo;
 	}
 	
 	public void setUsuarioInfo(UsuarioInfo usuario) {
-		this.user = usuario;
+		this.usuarioInfo = usuario;
 	}
 
 	public boolean isLogado() {
-		return user != null;
+		return usuarioInfo != null;
 	}
 	
 	public boolean isAdmin() {
-		return isLogado() && user.isAdmin();
+		return isLogado() && usuarioInfo.isAdmin();
 	}
 	
 	public void logout() {
-		user = null;
+		usuarioInfo = null;
 	}
 	
 }

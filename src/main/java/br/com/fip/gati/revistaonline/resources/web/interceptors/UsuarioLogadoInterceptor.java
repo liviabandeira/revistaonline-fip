@@ -8,6 +8,7 @@ import br.com.caelum.vraptor.interceptor.Interceptor;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.resource.ResourceMethod;
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
+import br.com.fip.gati.revistaonline.resources.web.controllers.IndexController;
 import br.com.fip.gati.revistaonline.resources.web.controllers.LoginController;
 
 @Intercepts
@@ -22,11 +23,18 @@ public class UsuarioLogadoInterceptor implements Interceptor {
 	}
 
 	public boolean accepts(ResourceMethod method) {
+		if(method.getResource().getType().equals(IndexController.class)) {
+			if(method.getMethod().getName().equals("index")){
+				return false;
+			}
+		}
 		return (!usuarioLogado.isLogado() && !method.getMethod().getDeclaringClass().equals(LoginController.class));
+//		return (!usuarioLogado.isLogado());
 	}
 
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object obj) throws InterceptionException {
-		result.redirectTo(LoginController.class).login();
+//		result.redirectTo(LoginController.class).login();
+		result.redirectTo(IndexController.class).index();
 		stack.next(method, obj);
 	}
 	

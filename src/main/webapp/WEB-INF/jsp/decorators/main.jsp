@@ -22,7 +22,6 @@
     <decorator:head/>    
   </head>
   <body>
-  <c:if test="${usuarioLogado.logado}"> <a href="${linkTo[LoginController].logout}"> - Sair</a> </c:if>
 	<div id="erros">
 		<ul>
 			<c:forEach items="${errors}" var="error">
