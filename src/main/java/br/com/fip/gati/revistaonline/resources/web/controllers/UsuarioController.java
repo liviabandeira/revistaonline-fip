@@ -17,11 +17,13 @@ import br.com.caelum.vraptor.view.Results;
 import br.com.fip.gati.revistaonline.domain.model.Autor;
 import br.com.fip.gati.revistaonline.domain.model.TipoUsuario;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
+import br.com.fip.gati.revistaonline.domain.service.autenticacao.Auth;
 import br.com.fip.gati.revistaonline.domain.service.roles.AdminManager;
 import br.com.fip.gati.revistaonline.domain.service.roles.ZeroAdministradoresException;
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
 import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
+@Auth
 @Resource
 public class UsuarioController {
 	private AdminManager roles;
