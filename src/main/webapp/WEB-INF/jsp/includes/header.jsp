@@ -13,19 +13,10 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                    	<a href="#" class="dropdown-toggle" data-toggle="dropdown">CRUD Usuario <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                            	<a href="${linkTo[UsuarioController].formulario}">Cadastro</a>
-                            </li>
-                            <li>
-                            	<a href="${linkTo[UsuarioController].listar}">Listar</a>
-                            </li>
-                        </ul>
-                    </li>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">	
+            
+                <ul class="nav navbar-nav">
+                
                     <li><a href="#">Sobre</a></li>
                     <li><a href="#">Services</a>
                     </li>
@@ -72,7 +63,50 @@
                             </li>
                         </ul>
                     </li>
+                    <c:if test="${!usuarioLogado.logado}">
+	                    <li><a href="${linkTo[UsuarioController].formulario}">Sign Up</a></li>
+			          	<li class="dropdown">
+			            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+			            <div class="dropdown-menu" style="padding: 15px; width: 200px; padding-bottom: 0px;">
+			            	<form action="${linkTo[LoginController].auth}" method="post">
+			            		
+			            		<div class="form-group">
+								  	<input id="user_username" class="form-control" 
+								  	type="text" placeholder="<fmt:message key="app.login" />" name="usuario.login" />
+			            		</div>
+			            		
+			            		<div class="form-group">
+								  	<input id="user_password" class="form-control" 
+								  	type="password" placeholder="<fmt:message key="app.senha"/>" name="usuario.senha"/>
+			            		</div>
+			            		
+							 	<div class="form-group">
+									<input class="btn btn-primary" style="width: 100%;" type="submit" name="commit" value="Entrar" />
+							 	</div>
+							</form> 
+			            </div>
+			          </li>
+		          </c:if>
                 </ul>
+                
+                <c:if test="${usuarioLogado.logado}">
+	                <ul class="nav navbar-nav pull-right">
+	                	<li class="dropdown">
+					    	<a class="active" role="button" data-toggle="dropdown" href="#" style="color: #243EAA;">
+						    	<span class="glyphicon glyphicon-user"></span>
+						    	${usuarioLogado.usuarioInfo.login}
+						    	<b class="caret"></b>
+					    	</a>
+					        <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+<!-- 					          <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Action</a></li> -->
+<!-- 					          <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Another action</a></li> -->
+<!-- 					          <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Something else here</a></li> -->
+<!-- 					          <li role="presentation" class="divider"></li> -->
+					          <li role="presentation"><a role="menuitem" tabindex="-1" href="${linkTo[LoginController].logout}">Sair</a></li>
+					        </ul>
+						</li>	
+	                </ul>
+                </c:if>
             </div>
             <!-- /.navbar-collapse -->
         </div>
