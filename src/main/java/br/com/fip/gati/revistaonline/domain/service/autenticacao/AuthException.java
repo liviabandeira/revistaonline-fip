@@ -1,4 +1,4 @@
-package br.com.fip.gati.revistaonline.application.usuario;
+package br.com.fip.gati.revistaonline.domain.service.autenticacao;
 
 public class AuthException extends Exception {
 	

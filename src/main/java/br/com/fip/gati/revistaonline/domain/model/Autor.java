@@ -2,13 +2,12 @@ package br.com.fip.gati.revistaonline.domain.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 @Entity
 @Table(name="autor")
 public class Autor extends TipoUsuario {
 
-	@NotNull
 	private String lattes;
 
 	@Override
