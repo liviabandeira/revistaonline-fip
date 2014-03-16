@@ -2,7 +2,7 @@ package br.com.fip.gati.revistaonline.domain.service.autenticacao;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
-import br.com.fip.gati.revistaonline.repositorio.UsuarioRepositorio;
+import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
 @Component
 public class Autenticador {

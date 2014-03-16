@@ -7,13 +7,11 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.mchange.util.AssertException;
-
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.service.autenticacao.Autenticador;
 import br.com.fip.gati.revistaonline.domain.service.autenticacao.AuthException;
 import br.com.fip.gati.revistaonline.domain.service.autenticacao.UsuarioInfo;
-import br.com.fip.gati.revistaonline.repositorio.UsuarioRepositorio;
+import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
 public class AutenticadorTest {
 	private Autenticador autenticador;

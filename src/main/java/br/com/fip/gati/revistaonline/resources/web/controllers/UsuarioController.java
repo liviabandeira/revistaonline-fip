@@ -19,8 +19,8 @@ import br.com.fip.gati.revistaonline.domain.model.TipoUsuario;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.service.roles.AdminManager;
 import br.com.fip.gati.revistaonline.domain.service.roles.ZeroAdministradoresException;
-import br.com.fip.gati.revistaonline.repositorio.UsuarioRepositorio;
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
+import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
 @Resource
 public class UsuarioController {

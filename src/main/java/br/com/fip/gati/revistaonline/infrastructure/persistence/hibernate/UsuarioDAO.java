@@ -1,4 +1,4 @@
-package br.com.fip.gati.revistaonline.dao;
+package br.com.fip.gati.revistaonline.infrastructure.persistence.hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
@@ -6,7 +6,7 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
-import br.com.fip.gati.revistaonline.repositorio.UsuarioRepositorio;
+import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
 @Component
 public class UsuarioDAO extends GenericDAO<Usuario> implements UsuarioRepositorio {
