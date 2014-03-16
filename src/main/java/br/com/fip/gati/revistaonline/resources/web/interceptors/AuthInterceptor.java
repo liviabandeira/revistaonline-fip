@@ -38,7 +38,7 @@ public class AuthInterceptor implements Interceptor {
 
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object obj) throws InterceptionException {
 		if(!usuarioLogado.isLogado()) {
-			result.redirectTo(LoginController.class).login();			
+			result.redirectTo(IndexController.class).index();			
 		} else {
 			stack.next(method, obj);			
 		}
