@@ -1,4 +1,4 @@
-package br.com.fip.gati.revistaonline.dao;
+package br.com.fip.gati.revistaonline.infrastructure.persistence.hibernate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import br.com.fip.gati.revistaonline.repositorio.Repositorio;
+import br.com.fip.gati.revistaonline.domain.repositorio.Repositorio;
 
 public abstract class GenericDAO<T> implements Repositorio<T> {
 	

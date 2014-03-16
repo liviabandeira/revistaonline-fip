@@ -8,7 +8,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.fip.gati.revistaonline.domain.model.Edicao;
-import br.com.fip.gati.revistaonline.repositorio.EdicaoRepositorio;
+import br.com.fip.gati.revistaonline.domain.repositorio.EdicaoRepositorio;
 
 @Resource
 public class EdicaoController {

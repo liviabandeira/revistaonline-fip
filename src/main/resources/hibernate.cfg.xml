@@ -5,5 +5,11 @@
 	<session-factory>	    
 		<mapping class="br.com.fip.gati.revistaonline.domain.model.Usuario"/>
 		<mapping class="br.com.fip.gati.revistaonline.domain.model.Edicao"/>
+		<mapping class="br.com.fip.gati.revistaonline.domain.model.Revista"/>
+		<mapping class="br.com.fip.gati.revistaonline.domain.model.Artigo"/>
+		<mapping class="br.com.fip.gati.revistaonline.domain.model.TipoUsuario"/>
+		<mapping class="br.com.fip.gati.revistaonline.domain.model.Autor"/>
+		<mapping class="br.com.fip.gati.revistaonline.domain.model.Editor"/>
+		<mapping class="br.com.fip.gati.revistaonline.domain.model.Avaliador"/>
 	</session-factory>
 </hibernate-configuration>

@@ -4,52 +4,47 @@
 	id="WebApp_ID" version="2.5">
 	<display-name>Revista Online FIP</display-name>
 
-	<!--
-		VRaptor will scan classpath for all @Component and 
-		@Resource inside WEB-INF/classes
+	<!-- VRaptor will scan classpath for all @Component and @Resource inside 
+		WEB-INF/classes If you want to load them also from WEB-INF/lib/ jars, you 
+		need to specify from which packages they will be loaded, comma separated: -->
 
-		If you want to load them also from WEB-INF/lib/ jars, 
-		you need to specify from which packages they will
-		be loaded, comma separated:
-	-->
-	
-	<!-- 
+	<!-- <context-param> <param-name>br.com.caelum.vraptor.packages</param-name> 
+		<param-value>br.com.caelum.vraptor.blank</param-value> </context-param> -->
+
+	<!-- if you are using a servlet 3.0 container as glassfish 3 or jetty 8, 
+		you dont need this filter configuration -->
+
+	<!-- VRaptor Environment -->
 	<context-param>
-        	<param-name>br.com.caelum.vraptor.packages</param-name>
-	        <param-value>br.com.caelum.vraptor.blank</param-value>
-    </context-param>
-     -->
-    
-	<!--  
-	   if you are using a servlet 3.0 container 
-		as glassfish 3 or jetty 8, you dont need this
-		filter configuration 
-	-->
-		
+		<param-name>br.com.caelum.vraptor.environment</param-name>
+		<param-value>development</param-value>
+	</context-param>
+
+	<!-- Dependency Injection Framework -->
 	<context-param>
-        	<param-name>br.com.caelum.vraptor.provider</param-name>
-	        <param-value>br.com.caelum.vraptor.ioc.spring.SpringProvider</param-value>
-    </context-param>
-    
-    <!-- i18n -->
-    <context-param>
-        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
-        <param-value>messages</param-value>
-    </context-param>
-    <context-param>  
-        <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>  
-        <param-value>pt_BR</param-value>  
-    </context-param>  
-    
-    <filter>
+		<param-name>br.com.caelum.vraptor.provider</param-name>
+		<param-value>br.com.caelum.vraptor.ioc.spring.SpringProvider</param-value>
+	</context-param>
+
+	<!-- i18n -->
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+		<param-value>messages</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
+		<param-value>pt_BR</param-value>
+	</context-param>
+
+	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
 	</filter>
-  	<filter-mapping>
+	<filter-mapping>
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-		
+
 	<filter>
 		<filter-name>vraptor</filter-name>
 		<filter-class>br.com.caelum.vraptor.VRaptor</filter-class>
@@ -61,7 +56,7 @@
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
-	
+
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>

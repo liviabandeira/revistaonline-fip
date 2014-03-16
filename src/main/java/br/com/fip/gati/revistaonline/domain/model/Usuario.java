@@ -1,8 +1,13 @@
 package br.com.fip.gati.revistaonline.domain.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -46,6 +51,9 @@ public class Usuario extends Entity {
 	@Size(min=3, max=20, message="{usuario.login.tamanho}")
 	@Column(unique=true)
 	private String login;
+	
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="usuario")
+	private Set<TipoUsuario> tipos = new HashSet<TipoUsuario>();
 	
 	public Usuario() { }
 
@@ -127,6 +135,51 @@ public class Usuario extends Entity {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Set<TipoUsuario> getTipo() {
+		return tipos;
+	}
+
+	public void setTipo(Set<TipoUsuario> tipo) {
+		this.tipos = tipo;
+	}
+	
+	public void addTipo(TipoUsuario tipo) {
+		if(!hasTipo(tipo.getClass())) {
+			this.tipos.add(tipo);
+		}
+	}
+	
+	public void removeTipo(TipoUsuario tipo) {
+		if(hasTipo(tipo.getClass())) {
+			this.tipos.remove(tipo);
+		}
+	}
+	
+	public boolean hasTipo(Class<? extends TipoUsuario> tipo) {
+		return getTipo(tipo) != null;
+	}
+	
+	public <T extends TipoUsuario> T getTipo(Class<? extends TipoUsuario> tipo) {
+		for(TipoUsuario tp : this.tipos) {
+			if(tp.hasTipo(tipo)) {
+				return (T) tp;
+			}
+		}
+		return null;
+	}
+	
+	public boolean isAutor() {
+		return hasTipo(Autor.class);
+	}
+	
+	public boolean isAvaliador() {
+		return hasTipo(Avaliador.class);
+	}
+	
+	public boolean isEditor() {
+		return hasTipo(Editor.class);
 	}
 	
 }
