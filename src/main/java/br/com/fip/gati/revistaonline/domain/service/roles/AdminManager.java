@@ -5,10 +5,10 @@ import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.repositorio.UsuarioRepositorio;
 
 @Component
-public class RoleManager {
+public class AdminManager {
 	private UsuarioRepositorio usuarios;
 	
-	public RoleManager(UsuarioRepositorio usuarios) {
+	public AdminManager(UsuarioRepositorio usuarios) {
 		this.usuarios = usuarios;
 	}
 	

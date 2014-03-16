@@ -17,20 +17,20 @@ import br.com.caelum.vraptor.view.Results;
 import br.com.fip.gati.revistaonline.domain.model.Autor;
 import br.com.fip.gati.revistaonline.domain.model.TipoUsuario;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
-import br.com.fip.gati.revistaonline.domain.service.roles.RoleManager;
+import br.com.fip.gati.revistaonline.domain.service.roles.AdminManager;
 import br.com.fip.gati.revistaonline.domain.service.roles.ZeroAdministradoresException;
 import br.com.fip.gati.revistaonline.repositorio.UsuarioRepositorio;
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
 
 @Resource
 public class UsuarioController {
-	private RoleManager roles;
+	private AdminManager roles;
 	private UsuarioRepositorio usuarioRepositorio;
 	private UsuarioLogado usuarioLogado;
 	private final Result result;
 	private final Validator valitador;
 
-	public UsuarioController(RoleManager roles, UsuarioRepositorio usuarioRepositorio, UsuarioLogado usuarioLogado,
+	public UsuarioController(AdminManager roles, UsuarioRepositorio usuarioRepositorio, UsuarioLogado usuarioLogado,
 			Result result, Validator validator) {
 		this.roles = roles;
 		this.usuarioRepositorio = usuarioRepositorio;
