@@ -54,6 +54,11 @@
 					</button>
 				</form>
 			</td>
+			<td>
+				<a class="btn btn-default" href="${linkTo[UsuarioController].alterarSenha[usuario]}">
+					<span class="glyphicon glyphicon-edit"></span>
+				</a>
+			</td>
 		</tr>
 	</c:forEach>
 	</tbody>

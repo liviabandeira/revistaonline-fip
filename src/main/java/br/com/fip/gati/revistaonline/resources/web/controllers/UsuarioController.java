@@ -23,7 +23,7 @@ import br.com.fip.gati.revistaonline.domain.service.roles.ZeroAdministradoresExc
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
 import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
-@Auth
+
 @Resource
 public class UsuarioController {
 	private AdminManager roles;
@@ -43,6 +43,11 @@ public class UsuarioController {
 	
 	@Path("/cadastro")
 	public void formulario() {
+		
+	}
+	
+	@Path("/alterarSenha")
+	public void alterarSenha() {
 		
 	}
 	
@@ -74,7 +79,7 @@ public class UsuarioController {
 	@Put("/usuario/{usuario.id}")
 	public void atualizar(Usuario usuario) {
 		this.valitador.validate(usuario);
-		this.valitador.onErrorRedirectTo(this).formulario();
+		this.valitador.onErrorRedirectTo(this).editar(usuario);
 
 		Usuario usuariodb = this.usuarioRepositorio.load(usuario.getId());
 		usuariodb.setNome(usuario.getNome());
@@ -86,6 +91,20 @@ public class UsuarioController {
 	public Usuario editar(Usuario usuario) {
 		Usuario user = this.usuarioRepositorio.load(usuario.getId());
 		return user;
+	}
+	
+	
+	@Get("/usuario/alterarSenha/{usuario.id}")
+	public Usuario alterarSenha(Usuario usuario) {
+		Usuario user = this.usuarioRepositorio.load(usuario.getId());
+		return user;
+	}
+	
+	@Put("/usuario/senha/{usuario.id}")
+	public void atualizarSenha(Usuario usuario) {
+		Usuario usuariodb = this.usuarioRepositorio.load(usuario.getId());
+		this.usuarioRepositorio.update(usuariodb);
+		result.redirectTo(this).listar();
 	}
 	
 	@Delete("/usuario/{usuario.id}")
