@@ -21,7 +21,7 @@
 <div class="row" >
 	<div class="form-group col-lg-3" >
 		<label>Senha:</label>
-		<input type="password" class="form-control" name="usuario.senha" placeholder="Senha" value="" />
+		<input type="password" class="form-control" name="usuario.senha" placeholder="Senha" value="${usuario.senha}" />
 	</div>	
 </div>
 
