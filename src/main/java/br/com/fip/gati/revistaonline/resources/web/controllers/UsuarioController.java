@@ -20,6 +20,7 @@ import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.service.autenticacao.Auth;
 import br.com.fip.gati.revistaonline.domain.service.roles.AdminManager;
 import br.com.fip.gati.revistaonline.domain.service.roles.ZeroAdministradoresException;
+import br.com.fip.gati.revistaonline.domain.util.ShaEncrypt;
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
 import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
@@ -51,6 +52,7 @@ public class UsuarioController {
 		this.valitador.validate(usuario);
 		this.valitador.onErrorRedirectTo(this).formulario();
 
+		usuario.setSenha(ShaEncrypt.hash(usuario.getSenha()));
 		usuario.setAlterarSenhaProximoAcesso(false);
 		usuario.setDtaCadastro(new Date());
 		usuario.setDtaUltimoAcesso(new Date());
@@ -78,6 +80,7 @@ public class UsuarioController {
 
 		Usuario usuariodb = this.usuarioRepositorio.load(usuario.getId());
 		usuariodb.setNome(usuario.getNome());
+		usuariodb.setSenha(ShaEncrypt.hash(usuario.getSenha()));
 		this.usuarioRepositorio.update(usuariodb);
 		result.include("success", "Cadastrou").redirectTo(IndexController.class).index();
 	}

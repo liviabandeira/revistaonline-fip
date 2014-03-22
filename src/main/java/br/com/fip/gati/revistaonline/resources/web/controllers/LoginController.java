@@ -14,6 +14,7 @@ import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.service.autenticacao.Autenticador;
 import br.com.fip.gati.revistaonline.domain.service.autenticacao.AuthException;
 import br.com.fip.gati.revistaonline.domain.service.autenticacao.UsuarioInfo;
+import br.com.fip.gati.revistaonline.domain.util.ShaEncrypt;
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
 
 
@@ -41,14 +42,13 @@ public class LoginController {
 	@Post("/auth")
 	public void auth(Usuario usuario) {
 		try {
-			
 			if(usuario.getLogin() == null || usuario.getLogin().trim().isEmpty()
 					|| usuario.getSenha() == null || usuario.getSenha().trim().isEmpty()) {
 				validator.add(new ValidationMessage(localization.getMessage("autenticacao.credencial.vazio"), localization.getMessage("autenticacao.credencial")));
 			}
 
 			validator.onErrorRedirectTo(IndexController.class).index();
-			
+			usuario.setSenha(ShaEncrypt.hash(usuario.getSenha()));
 			UsuarioInfo credencial = autenticador.autenticar(usuario);
 			if (credencial != null) {
 				usuarioLogado.setUsuarioInfo(credencial);
