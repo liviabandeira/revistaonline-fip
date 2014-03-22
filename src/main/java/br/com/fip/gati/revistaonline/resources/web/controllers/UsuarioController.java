@@ -117,18 +117,17 @@ public class UsuarioController {
 			this.valitador.add(new ValidationMessage(
 					"A senha atual e a anterior não conferem!", "Error"));
 
-		} else if (novaSenha.length() < 5) {
+		} else if (novaSenha.length() < 8) {
 			this.valitador.add(new ValidationMessage(
-					"A senha precisa ter no mínimo 5 caracteres", "Error"));
-		}else 
-			if(!novaSenha.matches("[a-zA-Z][0-9]")){
-				this.valitador.add(new ValidationMessage(
-						"A senha precisa ter numeros,letras minusculas e letras maiusculas", "Error"));
+					"A senha precisa ter no mínimo 8 caracteres", "Error"));
 		}else if (!novaSenha.equals(confirmacao)) {
 			this.valitador
-					.add(new ValidationMessage(
-							"Os valores da nova senha e da confirmação da nova senha precisam ser iguais.",
-							"Error"));
+			.add(new ValidationMessage(
+					"Os valores da nova senha e da confirmação da nova senha precisam ser iguais.",
+					"Error"));
+		}else if(!novaSenha.matches("[a-zA-Z][0-9]")){
+				this.valitador.add(new ValidationMessage(
+						"A senha precisa ter numeros,letras minusculas e letras maiusculas", "Error"));
 		}
 
 		this.valitador.onErrorRedirectTo(this).alterarSenha(usuario);
