@@ -13,6 +13,7 @@
 			</c:if>
 			<th>Editar</th>
 			<th>Excluir</th>
+			<th>Alterar Senha</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -53,6 +54,11 @@
 						<span class="glyphicon glyphicon-remove-circle"></span>
 					</button>
 				</form>
+			</td>
+			<td>
+				<a class="btn btn-default" href="${linkTo[UsuarioController].alterarSenha[usuario]}">
+					<span class="glyphicon glyphicon-edit"></span>
+				</a>
 			</td>
 		</tr>
 	</c:forEach>
