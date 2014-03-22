@@ -2,21 +2,27 @@ package br.com.fip.gati.revistaonline.domain.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
-@Entity
+@javax.persistence.Entity
 @Table(name="avaliador")
-public class Avaliador extends TipoUsuario {
+public class Avaliador extends Entity {
+	
+	@OneToOne(fetch=FetchType.LAZY)
+	private Autor autor;
 	
 	@ManyToMany(mappedBy="avaliadores")
 	private List<Revista> revista;
-
-	@Override
-	public boolean hasTipo(Class<? extends TipoUsuario> tipo) {
-		return tipo.equals(Avaliador.class);
+	
+	public Avaliador() {
+	}
+	
+	public Avaliador(Autor autor) {
+		this.autor = autor;
 	}
 
 	public List<Revista> getRevista() {
@@ -26,7 +32,14 @@ public class Avaliador extends TipoUsuario {
 	public void setRevista(List<Revista> revista) {
 		this.revista = revista;
 	}
-	
+
+	public Autor getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
 	
 
 }

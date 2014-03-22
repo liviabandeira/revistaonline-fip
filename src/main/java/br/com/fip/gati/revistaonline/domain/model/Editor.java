@@ -1,15 +1,22 @@
 package br.com.fip.gati.revistaonline.domain.model;
 
-import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity
+@javax.persistence.Entity
 @Table(name="editor")
-public class Editor extends TipoUsuario {
+public class Editor extends Entity {
 
-	@Override
-	public boolean hasTipo(Class<? extends TipoUsuario> tipo) {
-		return tipo.equals(Editor.class);
+	@OneToOne(fetch=FetchType.LAZY)
+	private Autor autor;
+
+	public Autor getAutor() {
+		return autor;
 	}
 
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
+	
 }

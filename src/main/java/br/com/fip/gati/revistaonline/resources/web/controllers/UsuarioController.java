@@ -15,13 +15,12 @@ import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 import br.com.fip.gati.revistaonline.domain.model.Autor;
-import br.com.fip.gati.revistaonline.domain.model.TipoUsuario;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
+import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 import br.com.fip.gati.revistaonline.domain.service.autenticacao.Auth;
 import br.com.fip.gati.revistaonline.domain.service.roles.AdminManager;
 import br.com.fip.gati.revistaonline.domain.service.roles.ZeroAdministradoresException;
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
-import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
 @Auth
 @Resource
@@ -57,9 +56,10 @@ public class UsuarioController {
 		usuario.setAtivo();
 		usuario.setTentativasLogon(0);
 		
-		TipoUsuario autor = new Autor();
+		Autor autor = new Autor();
+		autor.setNome(usuario.getNome());
 		autor.setUsuario(usuario);
-		usuario.addTipo(autor);
+		usuario.setAutor(autor);
 
 		this.usuarioRepositorio.save(usuario);
 		result.redirectTo(this).formulario();

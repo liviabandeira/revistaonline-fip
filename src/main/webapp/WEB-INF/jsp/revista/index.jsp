@@ -11,21 +11,24 @@
 			<th></th>
 			<th></th>
 			<th></th>
+			<th></th>
 		</tr>
 
 		<c:forEach items="${revistaList}" var="revista">
 			<tr>
 				<td>${revista.id}</td>
-				<td>${revista.issn}</td>
-				<td><a href="${linkTo[RevistaController].show[revista]}">show</a> |</td>
+				<td>${revista.issn} </td>
+				<td>| <a href="${linkTo[RevistaController].show[revista]}">show</a> |</td>
 				<td><a href="${linkTo[RevistaController].edit[revista]}">edit</a> |</td>
 				
 				<td>
 					<form action="${linkTo[RevistaController].destroy[revista]}" method="post">
 						<input type="hidden" name="_method" value="delete"/>
 						<button type="submit" onclick="return confirm('Are you sure?')">destroy</button>
+						|
 					</form>
 				</td>
+				<td><a href="${linkTo[RevistaController].avaliadores[revista]}"> avaliadores</a></td>
 			</tr>
 		</c:forEach>
 	</table>

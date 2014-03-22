@@ -56,4 +56,16 @@ public class Revista extends Entity {
 		this.avaliadores = avaliadores;
 	}
 	
+	public void addAvaliador(Avaliador avaliador) {
+		this.avaliadores.add(avaliador);
+	}
+	
+	public void removeAvaliador(Avaliador avaliador) {
+		this.avaliadores.remove(avaliador);
+	}
+	
+	public boolean hasAvaliador(Avaliador avaliador) {
+		return this.avaliadores.contains(avaliador);
+	}
+	
 }

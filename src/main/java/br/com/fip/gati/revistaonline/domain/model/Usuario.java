@@ -1,14 +1,14 @@
 package br.com.fip.gati.revistaonline.domain.model;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -43,8 +43,9 @@ public class Usuario extends Entity {
 	@Size(min=5, max=14, message="{usuario.senha.tamanho}")
 	private String senha;
 	
-	@NotNull(message="{usuario.nome.nulo}")
-	@Size(min=5, message="{usuario.nome.tamanho}")
+	//@NotNull(message="{usuario.nome.nulo}")
+	//@Size(min=5, message="{usuario.nome.tamanho}")
+	@Transient
 	private String nome;
 	
 	private boolean alterarSenhaProximoAcesso;
@@ -54,10 +55,10 @@ public class Usuario extends Entity {
 	@Column(unique=true)
 	private String login;
 	
-	private boolean admin = false;
+	@OneToOne(mappedBy="usuario", cascade=CascadeType.ALL)
+	private Autor autor;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="usuario")
-	private Set<TipoUsuario> tipos = new HashSet<TipoUsuario>();
+	private boolean admin = false;
 	
 	public Usuario() { }
 
@@ -142,11 +143,10 @@ public class Usuario extends Entity {
 	}
 
 	public Set<TipoUsuario> getTipo() {
-		return tipos;
+		return null;
 	}
 
 	public void setTipo(Set<TipoUsuario> tipo) {
-		this.tipos = tipo;
 	}
 	
 	public boolean isAdmin() {
@@ -157,41 +157,16 @@ public class Usuario extends Entity {
 		this.admin = admin;
 	}
 
-	public void addTipo(TipoUsuario tipo) {
-		if(!hasTipo(tipo.getClass())) {
-			this.tipos.add(tipo);
-		}
-	}
-	
-	public void removeTipo(TipoUsuario tipo) {
-		if(hasTipo(tipo.getClass())) {
-			this.tipos.remove(tipo);
-		}
-	}
-	
-	public boolean hasTipo(Class<? extends TipoUsuario> tipo) {
-		return getTipo(tipo) != null;
-	}
-	
-	public <T extends TipoUsuario> T getTipo(Class<? extends TipoUsuario> tipo) {
-		for(TipoUsuario tp : this.tipos) {
-			if(tp.hasTipo(tipo)) {
-				return (T) tp;
-			}
-		}
-		return null;
-	}
-	
 	public boolean isAutor() {
-		return hasTipo(Autor.class);
+		return autor != null;
 	}
 	
 	public boolean isAvaliador() {
-		return hasTipo(Avaliador.class);
+		return isAutor() && autor.isAvaliador();
 	}
 	
 	public boolean isEditor() {
-		return hasTipo(Editor.class);
+		return isAutor() && autor.isEditor();
 	}
 	
 	public void setAtivo() {
@@ -201,5 +176,12 @@ public class Usuario extends Entity {
 	public UsuarioInfo getUsuarioInfo() {
 		return new UsuarioInfo(getId(), getEmail(), getLogin(), isAdmin());
 	}
-	
+
+	public Autor getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
 }
