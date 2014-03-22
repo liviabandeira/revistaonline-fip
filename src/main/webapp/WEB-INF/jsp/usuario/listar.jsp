@@ -13,6 +13,7 @@
 			</c:if>
 			<th>Editar</th>
 			<th>Excluir</th>
+			<th>Alterar Senha</th>
 		</tr>
 	</thead>
 	<tbody>

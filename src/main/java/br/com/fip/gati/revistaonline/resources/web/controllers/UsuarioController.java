@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.ejb.criteria.predicate.IsEmptyPredicate;
+
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -100,13 +102,43 @@ public class UsuarioController {
 		return user;
 	}
 	
-	@Put("/usuario/senha/{usuario.id}")
-	public void atualizarSenha(Usuario usuario) {
+	@Post
+	public void atualizarSenha(Usuario usuario,String senhaAtual, String novaSenha,String confirmacao) {
 		Usuario usuariodb = this.usuarioRepositorio.load(usuario.getId());
+		String senhaAnterior = usuariodb.getSenha();
+		senhaAtual.trim();
+		novaSenha.trim();
+		confirmacao.trim();
+		if(senhaAtual.equals("") || novaSenha.equals("") || confirmacao.equals("")){
+			this.valitador.add(new ValidationMessage("Todos os campos devem ser preenchidos",
+					"Error"));
+		}else if (!senhaAtual.equals(senhaAnterior)) {
+
+			this.valitador.add(new ValidationMessage(
+					"A senha atual e a anterior não conferem!", "Error"));
+
+		} else if (novaSenha.length() < 5) {
+			this.valitador.add(new ValidationMessage(
+					"A senha precisa ter no mínimo 5 caracteres", "Error"));
+		}else 
+			if(!novaSenha.matches("[a-zA-Z][0-9]")){
+				this.valitador.add(new ValidationMessage(
+						"A senha precisa ter numeros,letras minusculas e letras maiusculas", "Error"));
+		}else if (!novaSenha.equals(confirmacao)) {
+			this.valitador
+					.add(new ValidationMessage(
+							"Os valores da nova senha e da confirmação da nova senha precisam ser iguais.",
+							"Error"));
+		}
+
+		this.valitador.onErrorRedirectTo(this).alterarSenha(usuario);
+		usuariodb.setSenha(novaSenha);
 		this.usuarioRepositorio.update(usuariodb);
-		result.redirectTo(this).listar();
+		result.include("message", "Senha alterada com sucesso.")
+				.redirectTo(IndexController.class).index();
+		;
 	}
-	
+
 	@Delete("/usuario/{usuario.id}")
 	public void excluir(Usuario usuario) {
 		Usuario user = this.usuarioRepositorio.load(usuario.getId());
