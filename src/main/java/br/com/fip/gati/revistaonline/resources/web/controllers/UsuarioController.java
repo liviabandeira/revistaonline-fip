@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.ejb.criteria.predicate.IsEmptyPredicate;
+
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -23,7 +25,7 @@ import br.com.fip.gati.revistaonline.domain.service.roles.ZeroAdministradoresExc
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
 import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
-@Auth
+
 @Resource
 public class UsuarioController {
 	private AdminManager roles;
@@ -43,6 +45,11 @@ public class UsuarioController {
 	
 	@Path("/cadastro")
 	public void formulario() {
+		
+	}
+	
+	@Path("/alterarSenha")
+	public void alterarSenha() {
 		
 	}
 	
@@ -74,7 +81,7 @@ public class UsuarioController {
 	@Put("/usuario/{usuario.id}")
 	public void atualizar(Usuario usuario) {
 		this.valitador.validate(usuario);
-		this.valitador.onErrorRedirectTo(this).formulario();
+		this.valitador.onErrorRedirectTo(this).editar(usuario);
 
 		Usuario usuariodb = this.usuarioRepositorio.load(usuario.getId());
 		usuariodb.setNome(usuario.getNome());
@@ -88,6 +95,49 @@ public class UsuarioController {
 		return user;
 	}
 	
+	
+	@Get("/usuario/alterarSenha/{usuario.id}")
+	public Usuario alterarSenha(Usuario usuario) {
+		Usuario user = this.usuarioRepositorio.load(usuario.getId());
+		return user;
+	}
+	
+	@Post
+	public void atualizarSenha(Usuario usuario,String senhaAtual, String novaSenha,String confirmacao) {
+		Usuario usuariodb = this.usuarioRepositorio.load(usuario.getId());
+		String senhaAnterior = usuariodb.getSenha();
+		senhaAtual.trim();
+		novaSenha.trim();
+		confirmacao.trim();
+		if(senhaAtual.equals("") || novaSenha.equals("") || confirmacao.equals("")){
+			this.valitador.add(new ValidationMessage("Todos os campos devem ser preenchidos",
+					"Error"));
+		}else if (!senhaAtual.equals(senhaAnterior)) {
+
+			this.valitador.add(new ValidationMessage(
+					"A senha atual e a anterior não conferem!", "Error"));
+
+		} else if (novaSenha.length() < 8) {
+			this.valitador.add(new ValidationMessage(
+					"A senha precisa ter no mínimo 8 caracteres", "Error"));
+		}else if (!novaSenha.equals(confirmacao)) {
+			this.valitador
+			.add(new ValidationMessage(
+					"Os valores da nova senha e da confirmação da nova senha precisam ser iguais.",
+					"Error"));
+		}else if(!novaSenha.matches("[a-zA-Z][0-9]")){
+				this.valitador.add(new ValidationMessage(
+						"A senha precisa ter numeros,letras minusculas e letras maiusculas", "Error"));
+		}
+
+		this.valitador.onErrorRedirectTo(this).alterarSenha(usuario);
+		usuariodb.setSenha(novaSenha);
+		this.usuarioRepositorio.update(usuariodb);
+		result.include("message", "Senha alterada com sucesso.")
+				.redirectTo(IndexController.class).index();
+		;
+	}
+
 	@Delete("/usuario/{usuario.id}")
 	public void excluir(Usuario usuario) {
 		Usuario user = this.usuarioRepositorio.load(usuario.getId());
