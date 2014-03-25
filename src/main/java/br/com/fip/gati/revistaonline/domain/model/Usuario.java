@@ -181,7 +181,7 @@ public class Usuario extends Entity {
 		}
 		return null;
 	}
-	
+
 	public boolean isAutor() {
 		return hasTipo(Autor.class);
 	}
