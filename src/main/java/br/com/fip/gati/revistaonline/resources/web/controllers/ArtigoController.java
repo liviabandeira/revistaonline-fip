@@ -1,18 +1,15 @@
 package br.com.fip.gati.revistaonline.resources.web.controllers;
 
-import java.util.Date;
 import java.util.List;
 
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.fip.gati.revistaonline.domain.model.Artigo;
-import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.repositorio.ArtigoRepositorio;
 
 
@@ -29,10 +26,11 @@ public class ArtigoController {
 		this.valitador = validator;
 	}
 	
-	@Path("/submissao")
+	@Get("/submissao")
 	public void formulario() {
 		
 	}
+	
 	@Post
 	public void salvar(Artigo artigo) {
 		//EFETUAR VALIDAÇÕES
