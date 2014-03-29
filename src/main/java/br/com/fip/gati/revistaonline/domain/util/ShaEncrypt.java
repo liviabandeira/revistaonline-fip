@@ -1,19 +1,18 @@
 package br.com.fip.gati.revistaonline.domain.util;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-import com.google.common.base.Charsets;
-import com.google.common.hash.Hashing;
+import java.util.ResourceBundle;
 
 public class ShaEncrypt {
-	private static String salt = "Y0b1tchm4k3m34s4ndw1ch!@#$%^&*()";
+	private final static String NAME_OF_PROPERTIES = "hash";
+
 
 	public static String hash(String passwordToHash) {
 		String generatedPassword = null;
+		ResourceBundle build = ResourceBundle.getBundle(NAME_OF_PROPERTIES);
 		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			md.update(salt.getBytes());
+			MessageDigest md = MessageDigest.getInstance(String.valueOf(build.getObject("encryption.type")));
+			md.update(String.valueOf(build.getObject("encryption.salt")).getBytes());
 			byte[] bytes = md.digest(passwordToHash.getBytes());
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < bytes.length; i++) {
@@ -21,9 +20,9 @@ public class ShaEncrypt {
 						.substring(1));
 			}
 			generatedPassword = sb.toString();
-		} catch (NoSuchAlgorithmException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} 
 		return generatedPassword;
 	}
 }

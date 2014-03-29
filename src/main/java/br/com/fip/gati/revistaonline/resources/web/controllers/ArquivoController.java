@@ -1,5 +1,7 @@
 package br.com.fip.gati.revistaonline.resources.web.controllers;
 
+import java.util.ResourceBundle;
+
 import javax.servlet.ServletContext;
 
 import br.com.caelum.vraptor.Get;
@@ -28,7 +30,7 @@ public class ArquivoController {
 
 	@Post("/upload/file")
 	public void upload(UploadedFile file) {
-		this.fileUtil.salva(file,context.getRealPath("/WEB-INF/arquivos"));
+		this.fileUtil.salva(file,context);
         result.redirectTo(IndexController.class).index();
 
 	}
