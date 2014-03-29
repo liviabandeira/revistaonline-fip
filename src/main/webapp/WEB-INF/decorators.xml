@@ -17,4 +17,8 @@
     <decorator name="onlyindex" page="onlyindex.jsp">
     	<pattern>/</pattern>
   	</decorator>
+  	
+    <decorator name="office" page="office.jsp">
+    	<pattern>/office/*</pattern>
+  	</decorator>
 </decorators>

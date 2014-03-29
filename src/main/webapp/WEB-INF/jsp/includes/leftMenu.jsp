@@ -1,6 +1,22 @@
+<script>
+$(function () {
+	$('#side-menu').metisMenu({
+	toggle: false // disable the auto collapse. Default: true.
+	});
+	});
+</script>
+
 <div class="sidebar-collapse">
 	<ul class="nav" id="side-menu">
-		<li class="sidebar-search">
+		<!-- <li class="sidebar-search">
+			<div class="input-group">
+	          <input type="text" class="form-control" />
+	         	<span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                    	<i class="fa fa-search"></i>
+					</button>
+				</span>
+	        </div>
 			<div class="input-group custom-search-form">
 				<input type="text" class="form-control" placeholder="Search...">
 				<span class="input-group-btn">
@@ -8,8 +24,8 @@
 						<i class="fa fa-search"></i>
 					</button>
 				</span>
-			</div> <!-- /input-group -->
-		</li>
+			</div> /input-group
+		</li> -->
 		<li><a href="index.html"><i class="fa fa-dashboard fa-fw"></i>
 				Dashboard</a></li>
 		<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>

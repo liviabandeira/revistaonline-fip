@@ -31,13 +31,15 @@
 			<!-- Paginas com os messages -->
 			<%-- <jsp:include page="../includes/messages.jsp" /> --%>
 			
-			<div class="row row-offcanvas row-offcanvas-right">
-				<div class="navbar-default col-xs-6 col-sm-3" role="navigation">
+			<div class="row row-offcanvas row-offcanvas-right" style="margin-top: 20px;">
+				<div class="navbar-default col-xs-6 col-sm-3" 
+				style="padding-left: 25px; padding-top: 10px;" 
+				role="navigation">
 					<!-- MENU LATERAL -->
 					<jsp:include page="../includes/leftMenu.jsp" />
 				</div>
 				
-				<div class="col-xs-12 col-sm-9">
+				<div class="col-xs-6 col-sm-9">
                     <!-- CONTEUDO -->
 					<decorator:body />
                 </div>
