@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.util.ResourceBundle;
 
 public class ShaEncrypt {
-	private final static String NAME_OF_PROPERTIES = "hash";
+	private final static String NAME_OF_PROPERTIES = "development";
 
 
 	public static String hash(String passwordToHash) {

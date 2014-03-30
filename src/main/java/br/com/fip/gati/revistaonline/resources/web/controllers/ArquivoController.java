@@ -17,6 +17,7 @@ public class ArquivoController {
 	private FileUtil fileUtil;
 	private final Result result;
 	private ServletContext context;
+	private final static String NAME_OF_PROPERTIES = "development";
 
 	public ArquivoController(Result result, FileUtil arq, ServletContext context) {
 		this.result = result;
@@ -30,7 +31,8 @@ public class ArquivoController {
 
 	@Post("/upload/file")
 	public void upload(UploadedFile file) {
-		this.fileUtil.salva(file,context);
+		ResourceBundle build = ResourceBundle.getBundle(NAME_OF_PROPERTIES);
+		this.fileUtil.salva(file,context.getRealPath(String.valueOf(build.getObject("upload.target.dir"))));
         result.redirectTo(IndexController.class).index();
 
 	}
