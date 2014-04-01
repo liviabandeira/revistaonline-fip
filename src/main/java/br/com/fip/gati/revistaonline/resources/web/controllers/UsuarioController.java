@@ -126,7 +126,7 @@ public class UsuarioController {
 		}else if (!novaSenha.equals(confirmacao)) {
 			this.valitador
 			.add(new ValidationMessage(
-					"Os valores da nova senha e da confirma��o da nova senha precisam ser iguais.",
+					"Os valores da nova senha e da confirmação da nova senha precisam ser iguais.",
 					"Error"));
 		}else if(!novaSenha.matches("[a-zA-Z][0-9]")){
 				this.valitador.add(new ValidationMessage(
