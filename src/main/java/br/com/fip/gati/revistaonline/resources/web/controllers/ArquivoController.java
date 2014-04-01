@@ -8,6 +8,7 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.environment.Environment;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.fip.gati.revistaonline.domain.util.FileUtil;
 
@@ -17,12 +18,13 @@ public class ArquivoController {
 	private FileUtil fileUtil;
 	private final Result result;
 	private ServletContext context;
-	private final static String NAME_OF_PROPERTIES = "development";
+	private Environment environment;
 
-	public ArquivoController(Result result, FileUtil arq, ServletContext context) {
+	public ArquivoController(Result result, FileUtil arq, ServletContext context, Environment environment) {
 		this.result = result;
 		this.fileUtil = arq;
 		this.context = context;
+		this.environment = environment;
 	}
 
 	@Get("/upload")
@@ -31,8 +33,7 @@ public class ArquivoController {
 
 	@Post("/upload/file")
 	public void upload(UploadedFile file) {
-		ResourceBundle build = ResourceBundle.getBundle(NAME_OF_PROPERTIES);
-		this.fileUtil.salva(file,context.getRealPath(String.valueOf(build.getObject("upload.target.dir"))));
+		this.fileUtil.salva(file,context.getRealPath(this.environment.get("upload.target.dir")));
         result.redirectTo(IndexController.class).index();
 
 	}

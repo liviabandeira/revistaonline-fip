@@ -8,6 +8,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.core.Localization;
+import br.com.caelum.vraptor.environment.Environment;
 import br.com.caelum.vraptor.validator.ValidationException;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
@@ -25,13 +26,15 @@ public class LoginController {
 	private Validator validator;
 	private Localization localization;
 	private Result result;
+	private Environment environment;
 	
-	public LoginController(Autenticador autenticador, UsuarioLogado usuarioLogado, Validator validator, Localization localization, Result result) {
+	public LoginController(Autenticador autenticador,Environment environment, UsuarioLogado usuarioLogado, Validator validator, Localization localization, Result result) {
 		this.result = result;
 		this.usuarioLogado = usuarioLogado;
 		this.autenticador = autenticador;
 		this.validator = validator;
 		this.localization = localization;
+		this.environment = environment;
 	}
 	
 	@Get("/login")
@@ -48,7 +51,7 @@ public class LoginController {
 			}
 
 			validator.onErrorRedirectTo(IndexController.class).index();
-			usuario.setSenha(ShaEncrypt.hash(usuario.getSenha()));
+			usuario.setSenha(ShaEncrypt.hash(usuario.getSenha(), this.environment.get("encryption.salt")));
 			UsuarioInfo credencial = autenticador.autenticar(usuario);
 			if (credencial != null) {
 				usuarioLogado.setUsuarioInfo(credencial);

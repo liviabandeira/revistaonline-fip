@@ -3,16 +3,16 @@ package br.com.fip.gati.revistaonline.domain.util;
 import java.security.MessageDigest;
 import java.util.ResourceBundle;
 
+import br.com.caelum.vraptor.environment.Environment;
+
 public class ShaEncrypt {
-	private final static String NAME_OF_PROPERTIES = "development";
 
 
-	public static String hash(String passwordToHash) {
+	public static String hash(String passwordToHash, String salt) {
 		String generatedPassword = null;
-		ResourceBundle build = ResourceBundle.getBundle(NAME_OF_PROPERTIES);
 		try {
-			MessageDigest md = MessageDigest.getInstance(String.valueOf(build.getObject("encryption.type")));
-			md.update(String.valueOf(build.getObject("encryption.salt")).getBytes());
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			md.update(salt.getBytes());
 			byte[] bytes = md.digest(passwordToHash.getBytes());
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < bytes.length; i++) {
