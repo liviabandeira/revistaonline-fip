@@ -50,7 +50,7 @@ public class RevistaController {
 	}
 
 	@Get("/assinantedestarevista")
-	public void assinateLogado() {
+	public void errorAssinatura() {
 
 	}
 
@@ -119,7 +119,7 @@ public class RevistaController {
 		for (int i = 0; i < idRevista.getNewsletters().size(); i++) {
 			Newsletter n = idRevista.getNewsletters().get(i);
 			if (n.getEmail().equals(mailLogado)) {
-				result.redirectTo(this).assinateLogado();
+				result.redirectTo(this).errorAssinatura();
 				return;
 			}
 		}
@@ -155,7 +155,7 @@ public class RevistaController {
 		for (int i = 0; i < idRevista.getNewsletters().size(); i++) {
 			Newsletter n = idRevista.getNewsletters().get(i);
 			if (n.getEmail().equals(email)) {
-				result.redirectTo(this).assinateLogado();
+				result.redirectTo(this).errorAssinatura();
 				return;
 			}
 		}
