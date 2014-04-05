@@ -199,7 +199,7 @@ public class Usuario extends Entity {
 	}
 	
 	public UsuarioInfo getUsuarioInfo() {
-		return new UsuarioInfo(getId(), getEmail(), getLogin(), isAdmin());
+		return new UsuarioInfo(getId(), getEmail(), getNome(),getLogin(), isAdmin());
 	}
 	
 }

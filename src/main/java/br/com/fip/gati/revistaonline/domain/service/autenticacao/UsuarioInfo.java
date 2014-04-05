@@ -9,13 +9,19 @@ public class UsuarioInfo implements Serializable {
 	private Long id;
 	private String email;
 	private String login;
+	private String nome;
 	private boolean admin;
 	
-	public UsuarioInfo(Long id, String email, String login, boolean admin) {
+	public UsuarioInfo(Long id, String email, String nome, String login, boolean admin) {
 		this.id = id;
 		this.email = email;
 		this.login = login;
 		this.admin = admin;
+		this.nome = nome;
+	}
+
+	public String getNome() {
+		return nome;
 	}
 
 	public Long getID() {
