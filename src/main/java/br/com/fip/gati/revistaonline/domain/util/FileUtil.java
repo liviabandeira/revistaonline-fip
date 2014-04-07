@@ -7,7 +7,6 @@ import java.util.Properties;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 
-import br.com.caelum.vraptor.core.Localization;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.Component;
 
@@ -15,7 +14,6 @@ import br.com.caelum.vraptor.ioc.Component;
 public class FileUtil {
 	
 	Properties prop = new Properties();
-	private Localization localization;
 	
 	public void salva(UploadedFile arq, String path) {
 		File folder = new File(path);

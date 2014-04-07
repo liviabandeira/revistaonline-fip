@@ -100,8 +100,8 @@
 					        <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
 <!-- 					          <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Action</a></li> -->
 <!-- 					          <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Another action</a></li> -->
-<!-- 					          <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Something else here</a></li> -->
-<!-- 					          <li role="presentation" class="divider"></li> -->
+					          <li role="presentation"><a role="menuitem" tabindex="-1" href="${linkTo[OfficeController].index}">Office</a></li>
+					          <li role="presentation" class="divider"></li>
 					          <li role="presentation"><a role="menuitem" tabindex="-1" href="${linkTo[LoginController].logout}">Sair</a></li>
 					        </ul>
 						</li>	
