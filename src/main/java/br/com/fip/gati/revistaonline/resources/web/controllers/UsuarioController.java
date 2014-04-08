@@ -58,7 +58,6 @@ public class UsuarioController {
 		
 		Autor autor = new Autor();
 		autor.setNome(usuario.getNome());
-		autor.setUsuario(usuario);
 		usuario.setAutor(autor);
 
 		this.usuarioRepositorio.save(usuario);

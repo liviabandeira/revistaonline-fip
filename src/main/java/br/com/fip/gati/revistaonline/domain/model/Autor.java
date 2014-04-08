@@ -12,9 +12,6 @@ public class Autor extends Entity {
 	private String instituicao;
 	private String lattes;
 	
-	@OneToOne(fetch=FetchType.LAZY)
-	private Usuario usuario;
-	
 	@OneToOne(mappedBy="autor")
 	private Avaliador avaliador;
 	
@@ -44,14 +41,6 @@ public class Autor extends Entity {
 
 	public void setInstituicao(String instituicao) {
 		this.instituicao = instituicao;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	public Avaliador getAvaliador() {

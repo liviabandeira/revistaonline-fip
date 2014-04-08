@@ -1,11 +1,9 @@
 package br.com.fip.gati.revistaonline.domain.model;
 
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -55,12 +53,16 @@ public class Usuario extends Entity {
 	@Column(unique=true)
 	private String login;
 	
-	@OneToOne(mappedBy="usuario", cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL)
 	private Autor autor;
 	
 	private boolean admin = false;
 	
 	public Usuario() { }
+	
+	public UsuarioInfo getUsuarioInfo() {
+		return new UsuarioInfo(getId(), getEmail(), getLogin(), isAdmin());
+	}
 
 	public void setTentativasLogon(Integer tentativasLogon) {
 		this.tentativasLogon = tentativasLogon;
@@ -142,13 +144,6 @@ public class Usuario extends Entity {
 		this.status = status;
 	}
 
-	public Set<TipoUsuario> getTipo() {
-		return null;
-	}
-
-	public void setTipo(Set<TipoUsuario> tipo) {
-	}
-	
 	public boolean isAdmin() {
 		return admin;
 	}
@@ -161,22 +156,10 @@ public class Usuario extends Entity {
 		return autor != null;
 	}
 	
-	public boolean isAvaliador() {
-		return isAutor() && autor.isAvaliador();
-	}
-	
-	public boolean isEditor() {
-		return isAutor() && autor.isEditor();
-	}
-	
 	public void setAtivo() {
 		this.status = "A";
 	}
 	
-	public UsuarioInfo getUsuarioInfo() {
-		return new UsuarioInfo(getId(), getEmail(), getLogin(), isAdmin());
-	}
-
 	public Autor getAutor() {
 		return autor;
 	}
@@ -184,4 +167,5 @@ public class Usuario extends Entity {
 	public void setAutor(Autor autor) {
 		this.autor = autor;
 	}
+
 }
