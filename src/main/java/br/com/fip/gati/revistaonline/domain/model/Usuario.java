@@ -38,7 +38,7 @@ public class Usuario extends Entity {
 	private String email;
 	
 	@NotNull(message="{usuario.senha.nulo}")
-	@Size(min=5, max=14, message="{usuario.senha.tamanho}")
+	@Size(min=5, max=64, message="{usuario.senha.tamanho}")
 	private String senha;
 	
 	//@NotNull(message="{usuario.nome.nulo}")
