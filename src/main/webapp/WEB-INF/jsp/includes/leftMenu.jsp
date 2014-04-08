@@ -26,14 +26,46 @@ $(function () {
 				</span>
 			</div> /input-group
 		</li> -->
-		<li><a href="index.html"><i class="fa fa-dashboard fa-fw"></i>
-				Dashboard</a></li>
-		<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
-				Charts<span class="fa arrow"></span></a>
+		<li>
+			<a href="#">
+				<i class="fa fa-upload fa-fw"></i>
+				Novo Artigo
+			</a>
+		</li>
+		
+		<li>
+			<a href="#">
+				<i class="fa fa-file-text-o fa-fw"></i>
+				Artigos
+			</a>
+		</li>
+		
+		<li>
+			<a href="#">
+				<i class="fa fa-pencil fa-fw"></i>
+				Revisões
+			</a>
+		</li>
+		
+		<li>
+			<a href="#">
+				<i class="fa fa-font fa-fw"></i>
+				Revistas
+			</a>
+		</li>
+		
+		<li>
+			<a href="#">
+				<i class="fa fa-bar-chart-o fa-fw"></i>
+				BLABLA
+				<span class="fa arrow"></span>
+			</a>
 			<ul class="nav nav-second-level collapse">
-				<li><a href="flot.html">Flot Charts</a></li>
-				<li><a href="morris.html">Morris.js Charts</a></li>
-			</ul> <!-- /.nav-second-level --></li>
+				<li><a href="#">Pendentes</a></li>
+				<li><a href="#">Em Avaliação</a></li>
+			</ul> <!-- /.nav-second-level -->
+		</li>
+		
 		<li><a href="tables.html"><i class="fa fa-table fa-fw"></i>
 				Tables</a></li>
 		<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i>
