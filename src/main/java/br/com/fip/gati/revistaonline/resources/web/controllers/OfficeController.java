@@ -12,4 +12,12 @@ public class OfficeController {
 	public void index() {
 		
 	}
+	
+	public void submissoes() {
+		
+	}
+	
+	public void revistas() {
+
+	}
 }

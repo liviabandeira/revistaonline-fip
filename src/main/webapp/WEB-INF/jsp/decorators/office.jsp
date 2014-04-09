@@ -14,6 +14,8 @@
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap-theme.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/resources/css/sb-admin.css" rel="stylesheet" />
+    
 
     <!-- Add custom CSS here -->
     <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" />
