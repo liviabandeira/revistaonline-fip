@@ -23,17 +23,17 @@
 								<td>Otto</td>
 								<td>@mdo</td>
 								<td>
-									<button type="button" class="btn btn-default btn-sm" title="Nova Edição">
-										<span class="glyphicon glyphicon-plus"></span>
-									</button>
-									<button type="button" class="btn btn-default btn-sm" title="Editar Revista">
+									<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/revista/1/edit" title="Editar Revista">
 										<span class="glyphicon glyphicon-pencil"></span>
-									</button>
-									<button type="button" class="btn btn-default btn-sm" title="Gerenciar Revisores">
+									</a>
+									<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/edicao/new" title="Nova Edição">
+										<span class="glyphicon glyphicon-file"></span>
+									</a>
+									<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/revista/1/avaliadores" title="Gerenciar Revisores">
 										<span class="glyphicon glyphicon-user"></span>
-									</button>
-									<button type="button" class="btn btn-default btn-sm" title="Gerenciar Submissões">
-										<span class="glyphicon glyphicon-cog"></span>
+									</a>
+									<button type="button" class="btn btn-default btn-sm" title="Distribuir Artigos para Avaliação">
+										<span class="glyphicon glyphicon-share"></span>
 									</button>
 								</td>
 							</tr>
@@ -43,17 +43,19 @@
 								<td>Thornton</td>
 								<td>@fat</td>
 								<td>
+									<a href="revista/1/edit">
+										<button type="button" class="btn btn-default btn-sm" title="Editar Revista">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</button>
+									</a>
 									<button type="button" class="btn btn-default btn-sm" title="Nova Edição">
-										<span class="glyphicon glyphicon-plus"></span>
-									</button>
-									<button type="button" class="btn btn-default btn-sm" title="Editar Revista">
-										<span class="glyphicon glyphicon-pencil"></span>
+										<span class="glyphicon glyphicon-file"></span>
 									</button>
 									<button type="button" class="btn btn-default btn-sm" title="Gerenciar Revisores">
 										<span class="glyphicon glyphicon-user"></span>
 									</button>
-									<button type="button" class="btn btn-default btn-sm" title="Gerenciar Submissões">
-										<span class="glyphicon glyphicon-cog"></span>
+									<button type="button" class="btn btn-default btn-sm" title="Distribuir Artigos para Avaliação">
+										<span class="glyphicon glyphicon-share"></span>
 									</button>
 								</td>
 							</tr>
@@ -63,17 +65,17 @@
 								<td>the Bird</td>
 								<td>@twitter</td>
 								<td>
-									<button type="button" class="btn btn-default btn-sm" title="Nova Edição">
-										<span class="glyphicon glyphicon-plus"></span>
-									</button>
 									<button type="button" class="btn btn-default btn-sm" title="Editar Revista">
 										<span class="glyphicon glyphicon-pencil"></span>
+									</button>
+									<button type="button" class="btn btn-default btn-sm" title="Nova Edição">
+										<span class="glyphicon glyphicon-file"></span>
 									</button>
 									<button type="button" class="btn btn-default btn-sm" title="Gerenciar Revisores">
 										<span class="glyphicon glyphicon-user"></span>
 									</button>
-									<button type="button" class="btn btn-default btn-sm" title="Gerenciar Submissões">
-										<span class="glyphicon glyphicon-cog"></span>
+									<button type="button" class="btn btn-default btn-sm" title="Distribuir Artigos para Avaliação">
+										<span class="glyphicon glyphicon-share"></span>
 									</button>
 								</td>
 							</tr>
@@ -100,5 +102,11 @@
 			<li><a href="#">5</a></li>
 			<li><a href="#">&raquo;</a></li>
 		</ul>
+	</div>
+	<div class="col-xs-12" align="right">
+		<a class="btn btn-default" href="${pageContext.request.contextPath}/revista/new" title="Nova Revista">
+			<span class="glyphicon glyphicon-plus"></span>
+			Revista
+		</a>
 	</div>
 </div>
