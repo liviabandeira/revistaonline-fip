@@ -37,13 +37,13 @@ public class RevistaController {
 		result.include("revistaList", revistas.listAll());
 	}
 	
-	@Get("/revista/new")
+	@Get("/office/revista/new")
 	public Revista newRevista() {
 		result.include("action", "new");
 		return new Revista();
 	}
 	
-	@Post("/revista")
+	@Post("/office/revista")
 	public void create(Revista revista) {
 		result.include("action", "new");
 		
@@ -55,7 +55,7 @@ public class RevistaController {
 	}
 
 	
-	@Put("/revista")
+	@Put("/office/revista")
 	public void update(Revista revista) {
 		Revista dbRevista = revistas.load(revista.getId());
 		
@@ -68,7 +68,7 @@ public class RevistaController {
 		result.redirectTo(this).index();
 	}
 	
-	@Get("/revista/{revista.id}/edit")
+	@Get("/office/revista/{revista.id}/edit")
 	public Revista edit(Revista revista) {
 		result.include("action", "edit");
 		return revistas.load(revista.getId());
@@ -79,26 +79,26 @@ public class RevistaController {
 		return revistas.load(revista.getId());
 	}
 
-	@Delete("/revista/{revista.id}")
+	@Delete("/office/revista/{revista.id}")
 	public void destroy(Revista revista) {
 		revistas.delete(revistas.load(revista.getId()));
 		result.redirectTo(this).index();
 	}
 	
-	@Get("/revista/{revista.id}/avaliadores")
+	@Get("/office/revista/{revista.id}/avaliadores")
 	public void avaliadores(Revista revista) {
 		Revista revistadb = revistas.load(revista.getId());
 		result.include("revista", revistadb);
 		result.include("avaliadorList", revistadb.getAvaliadores());
 	}
 	
-	@Get("/revista/{revista.id}/avaliador/new")
+	@Get("/office/revista/{revista.id}/avaliador/new")
 	public void newAvaliador(Revista revista) {
 		Revista revistadb = revistas.load(revista.getId());
 		result.include("revista", revistadb);
 	}
 
-	@Post("/revista/{revista.id}/avaliador")
+	@Post("/office/revista/{revista.id}/avaliador")
 	public void createAvaliador(Revista revista, Autor autor) {
 		Revista revistadb = revistas.load(revista.getId());
 		Autor autordb = autores.load(autor.getId());
@@ -121,7 +121,7 @@ public class RevistaController {
 		}
 	}
 	
-	@Delete("/revista/{revista.id}/avaliador/{avaliador.id}")
+	@Delete("/office/revista/{revista.id}/avaliador/{avaliador.id}")
 	public void removerAvaliador(Revista revista, Avaliador avaliador) {
 		Revista revistadb = revistas.load(revista.getId());
 		Avaliador avaliadordb = avaliadores.load(avaliador.getId());
@@ -134,7 +134,7 @@ public class RevistaController {
 		}
 	}
 	
-	@Get("/revista/{revista.id}/avaliador/buscar")
+	@Get("/office/revista/{revista.id}/avaliador/buscar")
 	public void buscarAvaliador(Revista revista, String nome) {
 		result.include("autorList", autores.getPorNome(nome)).redirectTo(this).newAvaliador(revista);
 	}

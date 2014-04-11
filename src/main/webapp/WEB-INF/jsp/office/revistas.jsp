@@ -23,13 +23,13 @@
 								<td>Otto</td>
 								<td>@mdo</td>
 								<td>
-									<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/revista/1/edit" title="Editar Revista">
+									<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/office/revista/1/edit" title="Editar Revista">
 										<span class="glyphicon glyphicon-pencil"></span>
 									</a>
-									<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/edicao/new" title="Nova Edição">
+									<a class="btn btn-default btn-sm" href="${linkTo[EdicaoController].newEdicao}" title="Nova Edição">
 										<span class="glyphicon glyphicon-file"></span>
 									</a>
-									<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/revista/1/avaliadores" title="Gerenciar Revisores">
+									<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/office/revista/1/avaliadores" title="Gerenciar Revisores">
 										<span class="glyphicon glyphicon-user"></span>
 									</a>
 									<button type="button" class="btn btn-default btn-sm" title="Distribuir Artigos para Avaliação">
@@ -89,6 +89,12 @@
 		<!-- /.panel -->
 	</div>
 	<!-- /.col-lg-6 -->
+	<div class="col-xs-12" align="left">
+		<a class="btn btn-default" href="${linkTo[RevistaController].newRevista}" title="Nova Revista">
+			<span class="glyphicon glyphicon-plus"></span>
+			Revista
+		</a>
+	</div>
 </div>
 <!-- /.row -->
 <div class="row">
@@ -102,11 +108,5 @@
 			<li><a href="#">5</a></li>
 			<li><a href="#">&raquo;</a></li>
 		</ul>
-	</div>
-	<div class="col-xs-12" align="right">
-		<a class="btn btn-default" href="${pageContext.request.contextPath}/revista/new" title="Nova Revista">
-			<span class="glyphicon glyphicon-plus"></span>
-			Revista
-		</a>
 	</div>
 </div>

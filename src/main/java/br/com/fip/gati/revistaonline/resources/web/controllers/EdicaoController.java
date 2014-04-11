@@ -28,13 +28,13 @@ public class EdicaoController {
 		result.include("edicaoList", repository.listAll());
 	}
 	
-	@Get("/edicao/new")
+	@Get("/office/edicao/new")
 	public Edicao newEdicao() {
 		result.include("action", "new");
 		return new Edicao();
 	}
 	
-	@Post("/edicao")
+	@Post("/office/edicao")
 	public void create(Edicao edicao) {
 		result.include("action", "new");
 		
