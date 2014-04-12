@@ -47,8 +47,8 @@ $(function () {
 				<span class="fa arrow"></span>
 			</a>
 			<ul class="nav nav-second-level collapse">
-				<li><a href="#">Pendentes</a></li>
-				<li><a href="#">Concluídas</a></li>
+				<li><a href="${linkTo[OfficeController].revisoesPendentes}">Pendentes</a></li>
+				<li><a href="${linkTo[OfficeController].revisoesConcluidas}">Concluídas</a></li>
 			</ul> <!-- /.nav-second-level -->
 		</li>
 		

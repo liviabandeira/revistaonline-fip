@@ -20,4 +20,12 @@ public class OfficeController {
 	public void revistas() {
 
 	}
+	
+	public void revisoesPendentes() {
+		
+	}
+	
+	public void revisoesConcluidas() {
+		
+	}
 }

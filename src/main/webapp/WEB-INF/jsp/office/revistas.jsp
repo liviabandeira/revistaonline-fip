@@ -12,7 +12,7 @@
 								<th>#</th>
 								<th>Título</th>
 								<th>Edição Atual</th>
-								<th>Título</th>
+								<th>Alguma coisa</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -97,6 +97,7 @@
 	</div>
 </div>
 <!-- /.row -->
+<!-- 
 <div class="row">
 	<div class="col-sm-12" align="center">
 		<ul class="pagination">
@@ -109,4 +110,4 @@
 			<li><a href="#">&raquo;</a></li>
 		</ul>
 	</div>
-</div>
+</div> -->

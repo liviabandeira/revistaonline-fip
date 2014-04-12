@@ -2,7 +2,7 @@
 	<!-- /.col-lg-12 -->
 	<div class="col-lg-12">
 		<div class="panel panel-default">
-			<div class="panel-heading">Submissões</div>
+			<div class="panel-heading">Revisões Concluídas</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<div class="table-responsive">
@@ -10,10 +10,10 @@
 						<thead>
 							<tr>
 								<th>#</th>
+								<th>Artigo</th>
 								<th>Revista</th>
-								<th>Autores</th>
-								<th>Título</th>
-								<th>Status</th>
+								<th>Data da Revisão</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -21,22 +21,34 @@
 								<td>1</td>
 								<td>Mark</td>
 								<td>Otto</td>
-								<td>@mdo</td>
-								<td><span class="label label-success">Aceito</span></td>
+								<td>10/01/2014</td>
+								<td>
+									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
+										<span class="glyphicon glyphicon-file"></span>
+									</a>
+								</td>
 							</tr>
 							<tr>
 								<td>2</td>
 								<td>Jacob</td>
 								<td>Thornton</td>
-								<td>@fat</td>
-								<td><span class="label label-danger">Rejeitado</span></td>
+								<td>10/01/2014</td>
+								<td>
+									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
+										<span class="glyphicon glyphicon-file"></span>
+									</a>
+								</td>
 							</tr>
 							<tr>
 								<td>3</td>
 								<td>Larry</td>
 								<td>the Bird</td>
-								<td>@twitter</td>
-								<td><span class="label label-warning">Em Avaliação</span></td>
+								<td>10/01/2014</td>
+								<td>
+									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
+										<span class="glyphicon glyphicon-file"></span>
+									</a>
+								</td>
 							</tr>
 						</tbody>
 					</table>
