@@ -60,10 +60,6 @@ public class Usuario extends Entity {
 	
 	public Usuario() { }
 	
-	public UsuarioInfo getUsuarioInfo() {
-		return new UsuarioInfo(getId(), getEmail(), getLogin(), isAdmin());
-	}
-
 	public void setTentativasLogon(Integer tentativasLogon) {
 		this.tentativasLogon = tentativasLogon;
 	}
@@ -163,9 +159,12 @@ public class Usuario extends Entity {
 	public Autor getAutor() {
 		return autor;
 	}
-
+	
 	public void setAutor(Autor autor) {
 		this.autor = autor;
 	}
 
+	public UsuarioInfo getUsuarioInfo() {
+		return new UsuarioInfo(getId(), getEmail(), getNome(),getLogin(), isAdmin());
+	}
 }

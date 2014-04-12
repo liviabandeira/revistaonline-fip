@@ -21,6 +21,9 @@
 				<td>| <a href="${linkTo[RevistaController].show[revista]}">show</a> |</td>
 				<td><a href="${linkTo[RevistaController].edit[revista]}">edit</a> |</td>
 				
+				<td><a href="${linkTo[RevistaController].assinar[revista]}">Assinar revista</a> |</td>
+				<td><a href="${linkTo[RevistaController].deletarAssinatura[revista]}">Deletar Assinatura</a> |</td>		
+												
 				<td>
 					<form action="${linkTo[RevistaController].destroy[revista]}" method="post">
 						<input type="hidden" name="_method" value="delete"/>

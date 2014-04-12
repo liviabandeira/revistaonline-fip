@@ -1,0 +1,1 @@
+<p>Você já é assinante desta revista!!</p>

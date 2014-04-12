@@ -10,5 +10,6 @@
 		<mapping class="br.com.fip.gati.revistaonline.domain.model.Autor"/>
 		<mapping class="br.com.fip.gati.revistaonline.domain.model.Editor"/>
 		<mapping class="br.com.fip.gati.revistaonline.domain.model.Avaliador"/>
+		<mapping class="br.com.fip.gati.revistaonline.domain.model.Newsletter"/>
 	</session-factory>
 </hibernate-configuration>
