@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -14,8 +13,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.IndexColumn;
-
 @javax.persistence.Entity
 @Table(name="revista")
 public class Revista extends Entity {
@@ -24,6 +21,9 @@ public class Revista extends Entity {
 	@Size(max=15)
 	@Column(unique=true)
 	private String issn;
+	
+	@NotNull
+	private String descricao;
 	
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="revista")
 	private List<Edicao> edicoes;

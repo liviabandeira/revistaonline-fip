@@ -13,11 +13,14 @@ public class Edicao extends Entity {
 
 	@NotNull
 	@Min(value=1)
-	private Integer volume;
+	private String volume;
 	
 	@NotNull
 	@Min(value=1)
-	private Integer numero;
+	private String numero;
+	
+	@NotNull
+	private Integer ano;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="revista_id", nullable=false)
@@ -25,23 +28,7 @@ public class Edicao extends Entity {
 	
 	//private List<Artigo> artigos = null;
 	
-	public Edicao() {	}
-
-	public Integer getVolume() {
-		return volume;
-	}
-
-	public void setVolume(Integer volume) {
-		this.volume = volume;
-	}
-
-	public Integer getNumero() {
-		return numero;
-	}
-
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
+	public Edicao() {}
 
 	public Revista getRevista() {
 		return revista;
@@ -49,6 +36,30 @@ public class Edicao extends Entity {
 
 	public void setRevista(Revista revista) {
 		this.revista = revista;
+	}
+
+	public String getVolume() {
+		return volume;
+	}
+
+	public void setVolume(String volume) {
+		this.volume = volume;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public Integer getAno() {
+		return ano;
+	}
+
+	public void setAno(Integer ano) {
+		this.ano = ano;
 	}
 	
 }

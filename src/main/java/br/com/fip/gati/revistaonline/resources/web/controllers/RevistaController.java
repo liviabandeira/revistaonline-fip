@@ -1,6 +1,6 @@
 package br.com.fip.gati.revistaonline.resources.web.controllers;
 
-import static br.com.fip.gati.revistaonline.resources.web.ControllerUtil.includeError;
+import static br.com.fip.gati.revistaonline.resources.web.Controllers.includeError;
 
 import java.util.List;
 

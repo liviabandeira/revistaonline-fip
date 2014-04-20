@@ -22,14 +22,20 @@
     <decorator:head/>    
   </head>
   <body>
-	<div id="erros">
-		<ul>
-			<c:forEach items="${errors}" var="error">
-				<li>${error.category } - ${error.message }</li>
-<%-- 				<li>${error.message}</li> --%>
-			</c:forEach>
-		</ul>
+  
+  	<c:if test="${not empty errors}">
+  	<div class="alert alert-danger alert-dismissable">
+  		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<div id="erros">
+			<ul>
+				<c:forEach items="${errors}" var="error">
+					<li>${error.category } - ${error.message}</li>
+	<%-- 				<li>${error.message}</li> --%>
+				</c:forEach>
+			</ul>
+		</div>
 	</div>
+	</c:if>
 	
   	<div id="tudo">
 		<jsp:include page="../includes/header.jsp" />
