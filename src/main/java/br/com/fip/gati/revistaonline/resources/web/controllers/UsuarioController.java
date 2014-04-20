@@ -21,6 +21,7 @@ import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 import br.com.fip.gati.revistaonline.domain.service.roles.AdminManager;
 import br.com.fip.gati.revistaonline.domain.service.roles.ZeroAdministradoresException;
 import br.com.fip.gati.revistaonline.domain.util.ShaEncrypt;
+import br.com.fip.gati.revistaonline.resources.web.Controllers;
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
 
 
@@ -54,8 +55,20 @@ public class UsuarioController {
 	}
 	
 	@Post
-	public void salvar(Usuario usuario) {
+	public void salvar(Usuario usuario, Autor autor) {
 		this.valitador.validate(usuario);
+		this.valitador.validate(autor);
+		
+		if(usuario != null) {
+			if(usuario.getSenha() == null || usuario.getConfirmacaoSenha() == null) {
+				Controllers.includeValidationError(this.valitador, "senha", "Senha deve ser preenchida");
+			} else {
+				if(!usuario.getSenha().equals(usuario.getConfirmacaoSenha())) {
+					Controllers.includeValidationError(this.valitador, "senha", "Senhas não conferem");
+				}
+			}
+		}
+		
 		this.valitador.onErrorRedirectTo(this).formulario();
 
 		usuario.setSenha(ShaEncrypt.hash(usuario.getSenha(), this.environment.get("encryption.salt")));
@@ -65,8 +78,6 @@ public class UsuarioController {
 		usuario.setAtivo();
 		usuario.setTentativasLogon(0);
 		
-		Autor autor = new Autor();
-		autor.setNome(usuario.getNome());
 		usuario.setAutor(autor);
 
 		this.usuarioRepositorio.save(usuario);
