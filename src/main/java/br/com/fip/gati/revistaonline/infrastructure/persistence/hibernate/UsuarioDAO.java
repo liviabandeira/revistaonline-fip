@@ -39,4 +39,13 @@ public class UsuarioDAO extends GenericDAO<Usuario> implements UsuarioRepositori
 				.setProjection(Projections.rowCount())
 				.uniqueResult()).longValue();
 	}
+
+	public Usuario getUsuarioPorEmail(String email) {
+		if (email == null) {
+			return null;
+		}
+		return (Usuario) getCurrentSession().createCriteria(Usuario.class)
+				.add(Restrictions.eq("email", email))
+				.uniqueResult();
+	}
 }

@@ -20,6 +20,10 @@ public class UsuarioLogado implements Serializable {
 	public void setUsuarioInfo(UsuarioInfo usuario) {
 		this.usuarioInfo = usuario;
 	}
+	
+	public Long getID() {
+		return usuarioInfo.getID();
+	}
 
 	public boolean isLogado() {
 		return usuarioInfo != null;

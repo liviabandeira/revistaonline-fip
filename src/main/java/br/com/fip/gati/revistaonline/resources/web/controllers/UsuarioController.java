@@ -1,7 +1,6 @@
 package br.com.fip.gati.revistaonline.resources.web.controllers;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import br.com.caelum.vraptor.Delete;
@@ -15,12 +14,13 @@ import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.environment.Environment;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
+import br.com.fip.gati.revistaonline.application.RevistaException;
+import br.com.fip.gati.revistaonline.application.UsuarioService;
 import br.com.fip.gati.revistaonline.domain.model.Autor;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 import br.com.fip.gati.revistaonline.domain.service.roles.AdminManager;
 import br.com.fip.gati.revistaonline.domain.service.roles.ZeroAdministradoresException;
-import br.com.fip.gati.revistaonline.domain.util.ShaEncrypt;
 import br.com.fip.gati.revistaonline.resources.web.Controllers;
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
 
@@ -32,21 +32,21 @@ public class UsuarioController {
 	private UsuarioLogado usuarioLogado;
 	private final Result result;
 	private final Validator valitador;
-	private Environment environment;
+	private UsuarioService usuarioService;
 
-	public UsuarioController(Environment environment, AdminManager roles, UsuarioRepositorio usuarioRepositorio, UsuarioLogado usuarioLogado,
+	public UsuarioController(AdminManager roles, UsuarioService usuarioService, UsuarioRepositorio usuarioRepositorio, UsuarioLogado usuarioLogado,
 			Result result, Validator validator) {
 		this.roles = roles;
 		this.usuarioRepositorio = usuarioRepositorio;
 		this.usuarioLogado = usuarioLogado;
 		this.result = result;
 		this.valitador = validator;
-		this.environment = environment;
+		this.usuarioService = usuarioService;
 	}
 	
 	@Path("/cadastro")
 	public void formulario() {
-		
+		result.include("action", "new");
 	}
 	
 	@Path("/alterarSenha")
@@ -71,43 +71,59 @@ public class UsuarioController {
 		
 		this.valitador.onErrorRedirectTo(this).formulario();
 
-		usuario.setSenha(ShaEncrypt.hash(usuario.getSenha(), this.environment.get("encryption.salt")));
-		usuario.setAlterarSenhaProximoAcesso(false);
-		usuario.setDtaCadastro(new Date());
-		usuario.setDtaUltimoAcesso(new Date());
-		usuario.setAtivo();
-		usuario.setTentativasLogon(0);
-		
+		result.include("usuario", usuario);
+		result.include("autor", autor);
 		usuario.setAutor(autor);
-
-		this.usuarioRepositorio.save(usuario);
-		result.redirectTo(this).formulario();
+		
+		try {
+			
+			usuarioService.cadastrarUsuario(usuario);
+			Controllers.includeSucess(result, "Usuario cadastrado com sucesso");
+			result.redirectTo(UsuarioController.class).ok();
+		
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			Controllers.includeError(result, e.getMessage());
+			result.redirectTo(this).formulario();
+		} catch (RevistaException e) {
+			e.printStackTrace();
+			Controllers.includeError(result, e.getMessage());
+			result.redirectTo(this).formulario();
+		}
 	}
 	
-	@Get("/usuario/{usuario.id}")
-	public Usuario visualizar(Usuario usuario) {
-		Usuario user = this.usuarioRepositorio.load(usuario.getId());
-		return user;
+	public void ok() {		
+	}
+	
+	@Get("/usuario/{id}/perfil")
+	public void perfil(Long id) {
+		Usuario user = this.usuarioRepositorio.load(usuarioLogado.getID());
+		result.include("action", "edit");
+		result.include("usuario", user);
+		result.include("autor", user.getAutor());
 	}
 	
 	@Put("/usuario/{usuario.id}")
-	public void atualizar(Usuario usuario) {
+	public void atualizar(Usuario usuario, Autor autor) {
+		Usuario usuariodb = usuarioRepositorio.load(usuarioLogado.getID());
+		usuario.setId(usuariodb.getId());
+		usuario.setSenha("aaaaaaaaaaaaaaaaaaaa");
+		
 		this.valitador.validate(usuario);
-		this.valitador.onErrorRedirectTo(this).editar(usuario);
-
-		Usuario usuariodb = this.usuarioRepositorio.load(usuario.getId());
-		usuariodb.setNome(usuario.getNome());
-		usuariodb.setSenha(ShaEncrypt.hash(usuario.getSenha(), this.environment.get("encryption.salt")));
-		this.usuarioRepositorio.update(usuariodb);
-		result.include("success", "Cadastrou").redirectTo(IndexController.class).index();
+		this.valitador.validate(autor);
+		this.valitador.onErrorRedirectTo(this).perfil(usuarioLogado.getID());
+		
+		result.include("usuario", usuario);
+		result.include("autor", autor);
+		
+		usuario.setAutor(autor);
+		usuarioService.atualizarUsuario(usuario);
+		usuariodb = usuarioRepositorio.load(usuarioLogado.getID());
+		usuarioLogado.setUsuarioInfo(usuariodb.getUsuarioInfo());
+		
+		Controllers.includeSucess(result, "Perfil alterado com sucesso");
+		result.redirectTo(UsuarioController.class).ok();
 	}
-	
-	@Get("/usuario/editar/{usuario.id}")
-	public Usuario editar(Usuario usuario) {
-		Usuario user = this.usuarioRepositorio.load(usuario.getId());
-		return user;
-	}
-	
 	
 	@Get("/usuario/alterarSenha/{usuario.id}")
 	public Usuario alterarSenha(Usuario usuario) {

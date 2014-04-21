@@ -38,7 +38,7 @@ public class Usuario extends Entity {
 	private String email;
 	
 	@NotNull(message="{usuario.senha.nulo}")
-	@Size(min=8, message="{usuario.senha.tamanho}")
+	@Size(min=8, max=64, message="{usuario.senha.tamanho}")
 	@Column(length=100)
 	private String senha;
 	
@@ -179,5 +179,9 @@ public class Usuario extends Entity {
 
 	public UsuarioInfo getUsuarioInfo() {
 		return new UsuarioInfo(getId(), getEmail(), getNome(),getLogin(), isAdmin());
+	}
+	
+	public boolean isSenhaConfirmada() {
+		return senha.equals(confirmacaoSenha);
 	}
 }
