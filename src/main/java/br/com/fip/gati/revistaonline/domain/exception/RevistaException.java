@@ -1,4 +1,4 @@
-package br.com.fip.gati.revistaonline.application;
+package br.com.fip.gati.revistaonline.domain.exception;
 
 public class RevistaException extends Exception {
 	
