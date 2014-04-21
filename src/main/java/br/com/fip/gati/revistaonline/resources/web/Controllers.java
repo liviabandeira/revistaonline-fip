@@ -9,7 +9,7 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 public class Controllers {
 
 	public static Validator includeValidationError(Validator validator, String categoria, String msg) {
-		validator.add(new ValidationMessage(msg, "error"));
+		validator.add(new ValidationMessage(msg, categoria));
 		return validator;
 	}
 	
@@ -19,7 +19,7 @@ public class Controllers {
 	}
 	
 	public static Result includeSucess(Result result, String msg) {
-		result.include("sucess", Arrays.asList(new ValidationMessage(msg, "ok")));
+		result.include("success", Arrays.asList(new ValidationMessage(msg, "ok")));
 		return result;
 	}
 	

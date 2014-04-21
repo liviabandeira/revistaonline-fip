@@ -100,7 +100,7 @@
 					        <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
 <!-- 					          <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Action</a></li> -->
 <!-- 					          <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Another action</a></li> -->
-					          <li role="presentation"><a role="menuitem" tabindex="-1" href="${linkTo[OfficeController].index}">Meu Perfil</a></li>
+					          <li role="presentation"><a role="menuitem" tabindex="-1" href="${linkTo[UsuarioController].perfil[usuarioLogado.ID]}">Meu Perfil</a></li>
 					          <li role="presentation"><a role="menuitem" tabindex="-1" href="${linkTo[OfficeController].index}">Alterar Senha</a></li>
 					          <li role="presentation" class="divider"></li>
 					          <li role="presentation"><a role="menuitem" tabindex="-1" href="${linkTo[OfficeController].index}">Office</a></li>
