@@ -4,6 +4,7 @@ import java.util.Date;
 
 import br.com.caelum.vraptor.environment.Environment;
 import br.com.caelum.vraptor.ioc.Component;
+import br.com.fip.gati.revistaonline.domain.exception.RevistaException;
 import br.com.fip.gati.revistaonline.domain.model.Autor;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
