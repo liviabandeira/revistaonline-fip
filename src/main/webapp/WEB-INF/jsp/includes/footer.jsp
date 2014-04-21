@@ -1,12 +1,9 @@
 <div class="container footer">
-	<hr>
-
 	<footer>
 		<div class="row">
-			<div class="col-lg-12">
-				<p>Copyright &copy; GATI 2014</p>
+			<div class="text-right col-lg-12">
+				Copyright &copy; GATI 2014
 			</div>
 		</div>
 	</footer>
-
 </div>

@@ -27,7 +27,7 @@
 										<span class="glyphicon glyphicon-pencil"></span>
 									</a>
 									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
-										<span class="glyphicon glyphicon-file"></span>
+										<span class="glyphicon glyphicon-cloud-download"></span>
 									</a>
 								</td>
 							</tr>
@@ -41,7 +41,7 @@
 										<span class="glyphicon glyphicon-pencil"></span>
 									</a>
 									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
-										<span class="glyphicon glyphicon-file"></span>
+										<span class="glyphicon glyphicon-cloud-download"></span>
 									</a>
 								</td>
 							</tr>
@@ -55,7 +55,7 @@
 										<span class="glyphicon glyphicon-pencil"></span>
 									</a>
 									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
-										<span class="glyphicon glyphicon-file"></span>
+										<span class="glyphicon glyphicon-cloud-download"></span>
 									</a>
 								</td>
 							</tr>

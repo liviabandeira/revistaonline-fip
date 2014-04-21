@@ -19,10 +19,10 @@ public class AutorDAO extends GenericDAO<Autor> implements AutorRepositorio {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Autor> getPorNome(String nome) {
-		if(nome == null || nome.equals("")) return new ArrayList<Autor>();
+	public List<Autor> getPorPreNome(String prenome) {
+		if(prenome == null || prenome.equals("")) return new ArrayList<Autor>();
 		return getCurrentSession().createCriteria(Autor.class)
-				.add(Restrictions.like("nome", nome, MatchMode.START))
+				.add(Restrictions.like("prenome", prenome, MatchMode.START))
 				.setMaxResults(50)
 				.list();
 	}

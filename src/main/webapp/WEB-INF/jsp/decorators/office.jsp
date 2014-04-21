@@ -31,7 +31,6 @@
 			<jsp:include page="../includes/scripts.jsp" />
 
 			<!-- Paginas com os messages -->
-			<%-- <jsp:include page="../includes/messages.jsp" /> --%>
 			
 			<div class="row row-offcanvas row-offcanvas-right" style="margin-top: 20px;">
 				<div class="navbar-default col-xs-6 col-sm-3" 
@@ -41,10 +40,12 @@
 					<jsp:include page="../includes/leftMenu.jsp" />
 				</div>
 				
-				<div class="col-xs-6 col-sm-9">
-                    <!-- CONTEUDO -->
-					<decorator:body />
-                </div>
+                   
+					<div class="col-xs-6 col-sm-9">
+	                    <!-- CONTEUDO -->
+	                	<jsp:include page="../includes/flash.jsp" />
+						<decorator:body />
+	                </div>
 			</div>
 
 			<jsp:include page="../includes/footer.jsp" />
