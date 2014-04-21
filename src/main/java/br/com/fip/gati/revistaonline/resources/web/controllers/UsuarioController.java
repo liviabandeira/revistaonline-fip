@@ -21,6 +21,7 @@ import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 import br.com.fip.gati.revistaonline.domain.service.roles.AdminManager;
 import br.com.fip.gati.revistaonline.domain.service.roles.ZeroAdministradoresException;
+import br.com.fip.gati.revistaonline.domain.util.ShaEncrypt;
 import br.com.fip.gati.revistaonline.resources.web.Controllers;
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
 
@@ -33,8 +34,9 @@ public class UsuarioController {
 	private final Result result;
 	private final Validator valitador;
 	private UsuarioService usuarioService;
+	private Environment environment;
 
-	public UsuarioController(AdminManager roles, UsuarioService usuarioService, UsuarioRepositorio usuarioRepositorio, UsuarioLogado usuarioLogado,
+	public UsuarioController(Environment env, AdminManager roles, UsuarioService usuarioService, UsuarioRepositorio usuarioRepositorio, UsuarioLogado usuarioLogado,
 			Result result, Validator validator) {
 		this.roles = roles;
 		this.usuarioRepositorio = usuarioRepositorio;
@@ -42,6 +44,7 @@ public class UsuarioController {
 		this.result = result;
 		this.valitador = validator;
 		this.usuarioService = usuarioService;
+		this.environment = env;
 	}
 	
 	@Path("/cadastro")

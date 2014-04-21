@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -23,9 +24,15 @@ public class Revista extends Entity {
 	private String issn;
 	
 	@NotNull
+	@Size(min=5, max=150)
+	private String titulo;
+	
+	@NotNull
+	@Size(max=255)
 	private String descricao;
-
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "revista")
+	
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="revista")
+	@OrderBy("id DESC")
 	private List<Edicao> edicoes;
 	
 	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
@@ -34,9 +41,25 @@ public class Revista extends Entity {
 		inverseJoinColumns={@JoinColumn(name="avaliador_id")}
 	)
 	private List<Avaliador> avaliadores;
+	
+	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<Newsletter> newsletters; 
+	
+	public String getIssn() {
+		return issn;
+	}
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Newsletter> newsletters;
+	public void setIssn(String issn) {
+		this.issn = issn;
+	}
+	
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
 	public String getDescricao() {
 		return descricao;
@@ -44,14 +67,6 @@ public class Revista extends Entity {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public String getIssn() {
-		return issn;
-	}
-
-	public void setIssn(String issn) {
-		this.issn = issn;
 	}
 
 	public List<Edicao> getEdicoes() {

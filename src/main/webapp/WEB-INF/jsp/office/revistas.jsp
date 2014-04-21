@@ -12,73 +12,34 @@
 								<th>#</th>
 								<th>Título</th>
 								<th>Edição Atual</th>
-								<th>Alguma coisa</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-								<td>
-									<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/office/revista/1/edit" title="Editar Revista">
-										<span class="glyphicon glyphicon-pencil"></span>
-									</a>
-									<a class="btn btn-default btn-sm" href="${linkTo[EdicaoController].newEdicao}" title="Nova Edição">
-										<span class="glyphicon glyphicon-file"></span>
-									</a>
-									<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/office/revista/1/avaliadores" title="Gerenciar Revisores">
-										<span class="glyphicon glyphicon-user"></span>
-									</a>
-									<button type="button" class="btn btn-default btn-sm" title="Distribuir Artigos para Avaliação">
-										<span class="glyphicon glyphicon-share"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-								<td>
-									<a href="revista/1/edit">
-										<button type="button" class="btn btn-default btn-sm" title="Editar Revista">
-											<span class="glyphicon glyphicon-pencil"></span>
+							<c:forEach items="${revistaList}" var="revista">
+								<tr>
+									<td>${revista.id}</td>
+									<td>${revista.titulo}</td>
+									<td>
+										<c:if test="${not empty revista.edicoes}">${revista.edicoes[0].volume}/${revista.edicoes[0].numero}</c:if>
+										<c:if test="${empty revista.edicoes}">Nenhuma</c:if>
+									</td>
+									<td>
+										<a class="btn btn-default btn-sm" href="${linkTo[RevistaController].show[revista]}" title="Editar Revista">
+											<span class="glyphicon glyphicon-search"></span>
+										</a>
+										<a class="btn btn-default btn-sm" href="${linkTo[EdicaoController].newEdicao[revista]}" title="Nova Edição">
+											<span class="glyphicon glyphicon-file"></span>
+										</a>
+										<a class="btn btn-default btn-sm" href="${linkTo[RevistaController].avaliadores[revista]}" title="Gerenciar Revisores">
+											<span class="glyphicon glyphicon-user"></span>
+										</a>
+										<button type="button" class="btn btn-default btn-sm" title="Distribuir Artigos para Avaliação">
+											<span class="glyphicon glyphicon-share"></span>
 										</button>
-									</a>
-									<button type="button" class="btn btn-default btn-sm" title="Nova Edição">
-										<span class="glyphicon glyphicon-file"></span>
-									</button>
-									<button type="button" class="btn btn-default btn-sm" title="Gerenciar Revisores">
-										<span class="glyphicon glyphicon-user"></span>
-									</button>
-									<button type="button" class="btn btn-default btn-sm" title="Distribuir Artigos para Avaliação">
-										<span class="glyphicon glyphicon-share"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>@twitter</td>
-								<td>
-									<button type="button" class="btn btn-default btn-sm" title="Editar Revista">
-										<span class="glyphicon glyphicon-pencil"></span>
-									</button>
-									<button type="button" class="btn btn-default btn-sm" title="Nova Edição">
-										<span class="glyphicon glyphicon-file"></span>
-									</button>
-									<button type="button" class="btn btn-default btn-sm" title="Gerenciar Revisores">
-										<span class="glyphicon glyphicon-user"></span>
-									</button>
-									<button type="button" class="btn btn-default btn-sm" title="Distribuir Artigos para Avaliação">
-										<span class="glyphicon glyphicon-share"></span>
-									</button>
-								</td>
-							</tr>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

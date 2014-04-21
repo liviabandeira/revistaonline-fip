@@ -24,7 +24,7 @@
 								<td>10/01/2014</td>
 								<td>
 									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
-										<span class="glyphicon glyphicon-file"></span>
+										<span class="glyphicon glyphicon-cloud-download"></span>
 									</a>
 								</td>
 							</tr>
@@ -35,7 +35,7 @@
 								<td>10/01/2014</td>
 								<td>
 									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
-										<span class="glyphicon glyphicon-file"></span>
+										<span class="glyphicon glyphicon-cloud-download"></span>
 									</a>
 								</td>
 							</tr>
@@ -46,7 +46,7 @@
 								<td>10/01/2014</td>
 								<td>
 									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
-										<span class="glyphicon glyphicon-file"></span>
+										<span class="glyphicon glyphicon-cloud-download"></span>
 									</a>
 								</td>
 							</tr>

@@ -89,7 +89,8 @@ public class RevistaController {
 		validator.onErrorUsePageOf(this).newRevista();
 
 		revistas.save(revista);
-		result.redirectTo(this).revistas();
+		//result.redirectTo(this).revistas();
+		result.redirectTo(OfficeController.class).revistas();
 	}
 
 	@Put("/office/revista")
@@ -101,7 +102,8 @@ public class RevistaController {
 		validator.onErrorUsePageOf(this).edit(revista);
 
 		revistas.update(dbRevista);
-		result.redirectTo(this).revistas();
+		//result.redirectTo(this).revistas();
+		result.redirectTo(OfficeController.class).revistas();
 	}
 
 	@Get("/office/revista/{revista.id}/edit")
@@ -110,8 +112,10 @@ public class RevistaController {
 		return revistas.load(revista.getId());
 	}
 
-	@Get("/revista/{revista.id}")
+	//@Get("/revista/{revista.id}")
+	@Get("/office/revista/{revista.id}")
 	public Revista show(Revista revista) {
+		result.include("action", "show");
 		return revistas.load(revista.getId());
 	}
 
@@ -216,8 +220,11 @@ public class RevistaController {
 
 	@Get("/office/revista/{revista.id}/avaliador/buscar")
 	public void buscarAvaliador(Revista revista, String nome) {
-		result.include("autorList", autores.getPorNome(nome)).redirectTo(this)
-				.newAvaliador(revista);
+		//result.include("autorList", autores.getPorNome(nome)).redirectTo(this).newAvaliador(revista);
+		
+		result.include("nome", nome);
+		result.include("revista", revista);
+		result.include("autorList", autores.getPorPreNome(nome)).redirectTo(this).newAvaliador(revista);
 	}
 
 	@Post("/revista/assinatura/{revista.id}")

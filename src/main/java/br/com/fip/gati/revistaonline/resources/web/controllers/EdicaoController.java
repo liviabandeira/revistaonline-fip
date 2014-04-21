@@ -39,9 +39,10 @@ public class EdicaoController {
 		result.include("edicaoList", edicaoRepositorio.listByRevista(revista));		
 	}
 	
-	@Get("/office/edicao/new")
-	public Edicao newEdicao() {
+	@Get("/office/revista/{revista.id}/edicao/new")
+	public Edicao newEdicao(Revista revista) {
 		result.include("action", "new");
+		result.include("revista", revista);
 		return new Edicao();
 	}
 	
@@ -50,7 +51,7 @@ public class EdicaoController {
 		result.include("action", "new");
 		
 		validator.validate(edicao);
-		validator.onErrorUsePageOf(this).newEdicao();
+		//validator.onErrorUsePageOf(this).newEdicao();
 		
 		edicaoRepositorio.save(edicao);
 		result.redirectTo(this).index();

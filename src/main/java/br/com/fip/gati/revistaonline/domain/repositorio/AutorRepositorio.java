@@ -6,6 +6,6 @@ import br.com.fip.gati.revistaonline.domain.model.Autor;
 
 public interface AutorRepositorio extends Repositorio<Autor> {
 
-	public List<Autor> getPorNome(String nome);
+	public List<Autor> getPorPreNome(String nome);
 	
 }

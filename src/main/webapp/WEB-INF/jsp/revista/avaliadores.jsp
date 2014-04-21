@@ -2,26 +2,30 @@
 	<!-- /.col-lg-12 -->
 	<div class="col-lg-12">
 		<div class="panel panel-default">
-			<div class="panel-heading">Revisores da Revista ${revista.id}</div>
+			<div class="panel-heading">Avaliadores</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
 							<tr>
+								<th>#</th>
 								<th><fmt:message key="avaliador.nome"/></th>
+								<th>Instituição</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${avaliadorList}" var="avaliador">
 								<tr>
-									<td>${avaliador.autor.nome}</td>
+									<td>${avaliador.autor.id}</td>
+									<td>${avaliador.autor.titulacao} ${avaliador.autor.prenome} ${avaliador.autor.nome} ${avaliador.autor.sobrenome}</td>
+									<td>${avaliador.autor.instituicao}</td>
 									<td>
 										<form action="${linkTo[RevistaController].removerAvaliador[revista][avaliador]}" method="post">
 											<input type="hidden" name="_method" value="delete"/>
-											<button type="submit" onclick="return confirm('Tem certeza que deseja remover esse revisor?')" class="btn btn-default btn-sm" title="Remover">
-												<span class="glyphicon glyphicon-share"></span>
+											<button type="submit" onclick="return confirm('Tem certeza que deseja remover esse avaliador?')" class="btn btn-default btn-sm" title="Remover">
+												<span class="glyphicon glyphicon-remove"></span>
 											</button>
 										</form>
 									</td>
@@ -37,7 +41,12 @@
 		<!-- /.panel -->
 	</div>
 	<!-- /.col-lg-6 -->
+	
 	<div class="col-xs-12" align="left">
+		<a class="btn btn-default" href="${linkTo[OfficeController].revistas}" title="Voltar">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			Voltar
+		</a>
 		<a class="btn btn-default" href="${linkTo[RevistaController].newAvaliador[revista]}" title="Novo Revisor">
 			<span class="glyphicon glyphicon-plus"></span>
 			Revisor
