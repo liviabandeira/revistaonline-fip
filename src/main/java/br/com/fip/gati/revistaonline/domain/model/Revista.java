@@ -3,6 +3,7 @@ package br.com.fip.gati.revistaonline.domain.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.FetchType;
@@ -14,30 +15,38 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.IndexColumn;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @javax.persistence.Entity
-@Table(name="revista")
+@Table(name = "revista")
 public class Revista extends Entity {
 
 	@NotNull
-	@Size(max=15)
-	@Column(unique=true)
+	@Size(max = 15)
+	@Column(unique = true)
 	private String issn;
-	
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="revista")
+
+	private String descricao;
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "revista")
 	private List<Edicao> edicoes;
-	
-	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinTable(name="revista_avaliador", 
-		joinColumns={@JoinColumn(name="revista_id")},
-		inverseJoinColumns={@JoinColumn(name="avaliador_id")}
-	)
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "revista_avaliador", joinColumns = { @JoinColumn(name = "revista_id") }, inverseJoinColumns = { @JoinColumn(name = "avaliador_id") })
 	private List<Avaliador> avaliadores;
-	
-	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<Newsletter> newsletters; 
-	
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Newsletter> newsletters;
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 	public String getIssn() {
 		return issn;
 	}
@@ -69,19 +78,19 @@ public class Revista extends Entity {
 	public void setNewsletters(List<Newsletter> newsletters) {
 		this.newsletters = newsletters;
 	}
-	
+
 	public void addAvaliador(Avaliador avaliador) {
 		this.avaliadores.add(avaliador);
 	}
-	
+
 	public void removeAvaliador(Avaliador avaliador) {
 		this.avaliadores.remove(avaliador);
 	}
-	
+
 	public boolean hasAvaliador(Avaliador avaliador) {
 		return this.avaliadores.contains(avaliador);
 	}
-	
+
 	public void addNewsletter(Newsletter newsletter) {
 		this.newsletters.add(newsletter);
 	}

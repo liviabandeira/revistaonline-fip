@@ -17,7 +17,7 @@ public class FileUtil {
 	
 	public void salva(UploadedFile arq, String path) {
 		File folder = new File(path);
-		folder.mkdir();
+		folder.mkdirs();
 		File destino = new File(path, arq.getFileName());
 		try {
 			IOUtils.copyLarge(arq.getFile(), new FileOutputStream(destino));
@@ -26,5 +26,14 @@ public class FileUtil {
 		}
 
 	}
+	//Redinmensionar imagem de capa
+//	
+//	private File resizer(int width, int height, File file) throws IOException{
+//		BufferedImage image = ImageIO.read(file);
+//		BufferedImage thumbnail = Scalr.resize(image, Scalr.Method.SPEED, Scalr.Mode.FIT_TO_WIDTH, width, height , Scalr.OP_ANTIALIAS);
+//		ImageIO.write(thumbnail, "jpg", file);
+//		return file;
+//	}
+
 
 }

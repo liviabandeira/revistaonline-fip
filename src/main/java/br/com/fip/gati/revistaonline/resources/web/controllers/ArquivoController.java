@@ -1,7 +1,5 @@
 package br.com.fip.gati.revistaonline.resources.web.controllers;
 
-import java.util.ResourceBundle;
-
 import javax.servlet.ServletContext;
 
 import br.com.caelum.vraptor.Get;

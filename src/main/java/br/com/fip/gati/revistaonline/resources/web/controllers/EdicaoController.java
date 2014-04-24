@@ -8,24 +8,35 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.fip.gati.revistaonline.domain.model.Edicao;
+import br.com.fip.gati.revistaonline.domain.model.Revista;
 import br.com.fip.gati.revistaonline.domain.repositorio.EdicaoRepositorio;
+import br.com.fip.gati.revistaonline.domain.repositorio.RevistaRepositorio;
 
 @Resource
 public class EdicaoController {
 
 	private final Result result;
-	private final EdicaoRepositorio repository;
+	private final EdicaoRepositorio edicaoRepositorio;
+	private final RevistaRepositorio revistaRepositorio;
 	private final Validator validator;
 	
-	public EdicaoController(EdicaoRepositorio repository, Validator validator, Result result) {
-		this.repository = repository;
+	public EdicaoController(EdicaoRepositorio repository, Validator validator, Result result, RevistaRepositorio revistaRepositorio) {
+		this.edicaoRepositorio = repository;
 		this.validator = validator;
 		this.result = result;
+		this.revistaRepositorio = revistaRepositorio;
 	}
 	
 	@Get("/edicoes")
 	public void index() {
-		result.include("edicaoList", repository.listAll());
+		result.include("edicaoList", edicaoRepositorio.listAll());
+	}
+	
+	@Get("/revistas/{revista.id}/edicoes")
+	public void edicoes(Revista revista){
+		Revista rev = revistaRepositorio.load(revista.getId());
+		result.include("revista", rev.getIssn());
+		result.include("edicaoList", edicaoRepositorio.listByRevista(revista));		
 	}
 	
 	@Get("/office/edicao/new")
@@ -41,38 +52,38 @@ public class EdicaoController {
 		validator.validate(edicao);
 		validator.onErrorUsePageOf(this).newEdicao();
 		
-		repository.save(edicao);
+		edicaoRepositorio.save(edicao);
 		result.redirectTo(this).index();
 	}
 
 	
 	@Put("/edicao")
 	public void update(Edicao edicao) {
-		Edicao dbEdicao = repository.load(edicao.getId());
+		Edicao dbEdicao = edicaoRepositorio.load(edicao.getId());
 		
 		dbEdicao.setNumero(edicao.getNumero());
 		dbEdicao.setVolume(edicao.getVolume());
 		
 		validator.validate(dbEdicao);
 		validator.onErrorUsePageOf(this).edit(edicao);
-		repository.update(dbEdicao);
+		edicaoRepositorio.update(dbEdicao);
 		result.redirectTo(this).index();
 	}
 	
 	@Get("/edicao/{edicao.id}/edit")
 	public Edicao edit(Edicao edicao) {
 		result.include("action", "edit");
-		return repository.load(edicao.getId());
+		return edicaoRepositorio.load(edicao.getId());
 	}
 
 	@Get("/edicao/{edicao.id}")
 	public Edicao show(Edicao edicao) {
-		return repository.load(edicao.getId());
+		return edicaoRepositorio.load(edicao.getId());
 	}
 
 	@Delete("/edicao/{edicao.id}")
 	public void destroy(Edicao edicao) {
-		repository.delete(repository.load(edicao.getId()));
+		edicaoRepositorio.delete(edicaoRepositorio.load(edicao.getId()));
 		result.redirectTo(this).index();
 	}
 	

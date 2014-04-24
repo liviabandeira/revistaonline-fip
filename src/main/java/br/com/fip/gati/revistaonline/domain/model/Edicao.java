@@ -26,6 +26,8 @@ public class Edicao extends Entity {
 	//private List<Artigo> artigos = null;
 	
 	public Edicao() {	}
+	
+	
 
 	public Integer getVolume() {
 		return volume;

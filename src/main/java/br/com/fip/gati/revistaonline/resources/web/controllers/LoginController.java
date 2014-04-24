@@ -49,7 +49,6 @@ public class LoginController {
 					|| usuario.getSenha() == null || usuario.getSenha().trim().isEmpty()) {
 				validator.add(new ValidationMessage(localization.getMessage("autenticacao.credencial.vazio"), localization.getMessage("autenticacao.credencial")));
 			}
-
 			validator.onErrorRedirectTo(IndexController.class).index();
 			usuario.setSenha(ShaEncrypt.hash(usuario.getSenha(), this.environment.get("encryption.salt")));
 			UsuarioInfo credencial = autenticador.autenticar(usuario);

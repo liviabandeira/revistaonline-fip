@@ -113,7 +113,7 @@ public class UsuarioController {
 		confirmacao.trim();
 		if (senhaAtual.equals("") || novaSenha.equals("") || confirmacao.equals("")) {
 			this.valitador.add(new ValidationMessage("Todos os campos devem ser preenchidos", "Error"));
-		} else if (!senhaAtual.equals(senhaAnterior)) {
+		} else if (!ShaEncrypt.hash(senhaAtual, this.environment.get("encryption.salt")).equals(senhaAnterior)) {
 
 			this.valitador.add(new ValidationMessage("A senha atual e a anterior não conferem!", "Error"));
 
