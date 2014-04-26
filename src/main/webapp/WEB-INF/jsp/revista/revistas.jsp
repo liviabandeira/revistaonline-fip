@@ -25,7 +25,7 @@
 
 			<div class="col-md-5">
 				<h3>${revista.issn}</h3>
-				<h4>Edições: 1</h4>
+				<h4>Edições: ${fn:length(revista.edicoes)}</h4>
 				<p>${revista.descricao}</p>
 				<a class="btn btn-primary" href="${linkTo[EdicaoController].edicoes[revista]}">Ver Revista   
 					<i class="fa fa-angle-right"></i>
