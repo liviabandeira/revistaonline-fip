@@ -34,8 +34,8 @@ public class RevistaController {
 	private final Validator validator;
 	private UsuarioLogado usuarioLogado;
 	
-	public RevistaController(RevistaRepositorio repositorio, AutorRepositorio autorRepo, AvaliadorRepositorio avaliadores, NewsLetterRepositorio repositorioNewsletter, 
-			UsuarioLogado usuarioLogado, Validator validator, Result result) {
+	public RevistaController(RevistaRepositorio repositorio, AutorRepositorio autorRepo, AvaliadorRepositorio avaliadores, 
+			NewsLetterRepositorio repositorioNewsletter, UsuarioLogado usuarioLogado, Validator validator, Result result) {
 		this.revistas = repositorio;
 		this.autores = autorRepo;
 		this.validator = validator;

@@ -31,12 +31,12 @@
 										<a class="btn btn-default btn-sm" href="${linkTo[EdicaoController].newEdicao[revista]}" title="Nova Edição">
 											<span class="glyphicon glyphicon-file"></span>
 										</a>
-										<a class="btn btn-default btn-sm" href="${linkTo[RevistaController].avaliadores[revista]}" title="Gerenciar Revisores">
+										<a class="btn btn-default btn-sm" href="${linkTo[RevistaController].avaliadores[revista]}" title="Gerenciar Avaliadores">
 											<span class="glyphicon glyphicon-user"></span>
 										</a>
-										<button type="button" class="btn btn-default btn-sm" title="Distribuir Artigos para Avaliação">
+										<a class="btn btn-default btn-sm" href="${linkTo[OfficeController].artigosDisponiveisParaAvaliacao[revista]}" title="Distribuir Artigos para Avaliação">
 											<span class="glyphicon glyphicon-share"></span>
-										</button>
+										</a>
 									</td>
 								</tr>
 							</c:forEach>

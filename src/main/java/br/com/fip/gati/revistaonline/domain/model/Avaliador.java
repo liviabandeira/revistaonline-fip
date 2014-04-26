@@ -41,5 +41,9 @@ public class Avaliador extends Entity {
 		this.autor = autor;
 	}
 	
+	public String getNome() {
+		return autor.getPrenome() + " " + autor.getNome() + " " + autor.getSobrenome();
+	}
+	
 
 }
