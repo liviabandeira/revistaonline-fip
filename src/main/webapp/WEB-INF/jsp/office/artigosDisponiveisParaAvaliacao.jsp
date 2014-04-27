@@ -76,14 +76,25 @@
       </div>
       <div class="modal-body">
       
+      	<c:if test="${not empty modalError}">
+		  	<div class="alert alert-danger alert-dismissable">
+		  		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<div id="errosModal">
+						<c:forEach items="${modalError}" var="error">
+							<h5>${error.message}</h5>
+						</c:forEach>
+				</div>
+			</div>
+		</c:if>
+      
       	<form action="${linkTo[OfficeController].associarAvaliadores}" method="POST">
       		<input type="hidden" id="revista.id" name="revista.id" value="${revista.id}" />
 			<fieldset>
 				<div class="row">
 		        <div class="form-group col-lg-9">
 					<label>Artigo:</label>
-					<input type="text" class="form-control"	id="titulo_selecionado" value="" readonly />
-					<input type="hidden" id="artigo.id" name="artigo.id" value="" />
+					<input type="text" class="form-control"	id="titulo_selecionado" name="tituloSelecionado" value="${tituloSelecionado}" readonly />
+					<input type="hidden" id="artigo.id" name="artigo.id" value="${artigo.id}" />
 				</div>
 			</div>
 			
@@ -122,17 +133,22 @@
 </div>
 
 <script type="text/javascript">
-	$(document).on("click", ".openModal", function (e) {
-	    e.preventDefault();
-	    var _self = $(this);
-	
-	    var artigoId = _self.data('id');
-	    var artigoSelecionado = $("#titulo_" + artigoId).val();
-	    $("#titulo_selecionado").val(artigoSelecionado);
-	    $("#artigo\\.id").val(artigoId);
-	
-	    $("#avaliadores\\[0\\]\\.id").val('-1');
-	    $("#avaliadores\\[1\\]\\.id").val('-1');
-	});
+	var errosModal = $("#errosModal");
+	if(errosModal.length > 0) {
+		$("#avaliadores").modal("show");
+	} else {
+		$(document).on("click", ".openModal", function (e) {
+		    e.preventDefault();
+		    var _self = $(this);
+		
+		    var artigoId = _self.data('id');
+		    var artigoSelecionado = $("#titulo_" + artigoId).val();
+		    $("#titulo_selecionado").val(artigoSelecionado);
+		    $("#artigo\\.id").val(artigoId);
+		
+		    $("#avaliadores\\[0\\]\\.id").val('-1');
+		    $("#avaliadores\\[1\\]\\.id").val('-1');
+		});
+	}
 </script>
 
