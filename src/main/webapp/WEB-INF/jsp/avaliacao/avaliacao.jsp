@@ -8,16 +8,16 @@
 			relevante para a área, em especial levando-se em conta a trilha/revista do
 			artigo? O problema e os resultados obtidos são relevantes para a área?):
 			<br>
-			 <INPUT TYPE="radio" NAME="irrelevante" VALUE="radio1">
+			 <INPUT TYPE="radio" NAME="criterio1" VALUE="1">
 			 Irrelevante
 			 <br>
-			 <INPUT TYPE="radio" NAME="ModeradamenteRelevante" VALUE="radio2">
+			 <INPUT TYPE="radio" NAME="criterio1" VALUE="2">
 			 Moderadamente relevante
 			 <br>
-			 <INPUT TYPE="radio" NAME="Relevante" VALUE="radio3">
+			 <INPUT TYPE="radio" NAME="criterio1" VALUE="3">
 			 Relevante
 			 <br>
-			 <INPUT TYPE="radio" NAME="MuitoRelevante" VALUE="radio4">
+			 <INPUT TYPE="radio" NAME="criterio1" VALUE="4">
 			 Muito Relevante
 			 <br>              
             Critério 2) Fundamentação teórica/metodológica (O artigo apresenta
@@ -25,16 +25,16 @@
 			apresentados são comparados com resultados de trabalhos anteriores na
 			área?:
 			<br>
-			 <INPUT TYPE="radio" NAME="inadequada" VALUE="radio1">
+			 <INPUT TYPE="radio" NAME="criterio2" VALUE="1">
 			 Inadequada ou ausente
 			 <br>
-			 <INPUT TYPE="radio" NAME="fraca" VALUE="radio2">
+			 <INPUT TYPE="radio" NAME="criterio2" VALUE="2">
 			 Fraca
 			 <br>
-			 <INPUT TYPE="radio" NAME="boa" VALUE="radio3">
+			 <INPUT TYPE="radio" NAME="criterio3" VALUE="3">
 			 Boa
 			 <br>
-			 <INPUT TYPE="radio" NAME="muitoBoa" VALUE="radio4">
+			 <INPUT TYPE="radio" NAME="criterio4" VALUE="4">
 			 Muito Boa
 			 <br>
 			 
@@ -43,16 +43,16 @@
 			metodologia empregada é coerente com o problema e objetivo da pesquisa?
 			Os dados são analisados e os resultados discutidos?): 
 			<br>
-			 <INPUT TYPE="radio" NAME="insuficiente" VALUE="radio1">
+			 <INPUT TYPE="radio" NAME="criterio3" VALUE="1">
 			 Insuficiente
 			 <br>
-			 <INPUT TYPE="radio" NAME="baixa" VALUE="radio2">
+			 <INPUT TYPE="radio" NAME="criterio3" VALUE="2">
 			 Baixa
 			 <br>
-			 <INPUT TYPE="radio" NAME="moderada" VALUE="radio3">
+			 <INPUT TYPE="radio" NAME="criterio3" VALUE="3">
 			 Moderada
 			 <br>
-			 <INPUT TYPE="radio" NAME="alta" VALUE="radio4">
+			 <INPUT TYPE="radio" NAME="criterio3" VALUE="4">
 			 Alta
 			 <br>
 			 
@@ -61,32 +61,32 @@
 			 organização foi rigorosamente seguido (incluindo tamanho de fontes,
 			 espaçamentos e formato de citações bibliográficas)? 
 			 <br>
-			 <INPUT TYPE="radio" NAME="insuficiente1" VALUE="radio1">
+			 <INPUT TYPE="radio" NAME="criterio4" VALUE="1">
 			 Insuficiente
 			 <br>
-			 <INPUT TYPE="radio" NAME="baixa1" VALUE="radio2">
+			 <INPUT TYPE="radio" NAME="criterio4" VALUE="2">
 			 Baixa
 			 <br>
-			 <INPUT TYPE="radio" NAME="moderada1" VALUE="radio3">
+			 <INPUT TYPE="radio" NAME="criterio4" VALUE="3">
 			 Moderada
 			 <br>
-			 <INPUT TYPE="radio" NAME="alta1" VALUE="radio4">
+			 <INPUT TYPE="radio" NAME="criterio4" VALUE="4">
 			 Alta
 			 <br>
 			 
 			 Critério 5) Familiaridade do Revisor (Qual a sua familiaridade com o assunto do
 			 artigo?): 
 			<br>
-			 <INPUT TYPE="radio" NAME="poucoFamiliar" VALUE="radio1">
+			 <INPUT TYPE="radio" NAME="criterio5" VALUE="1">
 			 Pouco Familiar
 			 <br>
-			 <INPUT TYPE="radio" NAME="moderadameteFamiliar" VALUE="radio2">
+			 <INPUT TYPE="radio" NAME="criterio5" VALUE="2">
 			 Moderadamente Familiar
 			 <br>
-			 <INPUT TYPE="radio" NAME="bomConhecimento" VALUE="radio3">
+			 <INPUT TYPE="radio" NAME="criterio5" VALUE="3">
 			 Bom Conhecimento
 			 <br>
-			 <INPUT TYPE="radio" NAME="muitoFamiliar" VALUE="radio4">
+			 <INPUT TYPE="radio" NAME="criterio5" VALUE="4">
 			 Muito Familiar
 			 <br>
 			 Comentários: 

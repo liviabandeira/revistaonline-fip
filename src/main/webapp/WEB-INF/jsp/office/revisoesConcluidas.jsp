@@ -16,40 +16,26 @@
 								<th></th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody>						
+						<c:forEach items="${artigoList}" var="artigo">
 							<tr>
-								<td>1</td>
-								<td>Mark</td>
+								<td>${artigo.id}</td>
+								<td>${artigo.titulo}</td>
 								<td>Otto</td>
-								<td>10/01/2014</td>
+								<td><fmt:formatDate pattern="dd/MM/yyyy" value="${artigo.dataSubmissao.time}"/></td>
 								<td>
 									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
 										<span class="glyphicon glyphicon-cloud-download"></span>
 									</a>
 								</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>10/01/2014</td>
 								<td>
-									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
+									<a class="btn btn-default btn-sm" href="#" title="avaliar">
 										<span class="glyphicon glyphicon-cloud-download"></span>
 									</a>
 								</td>
 							</tr>
-							<tr>
-								<td>3</td>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>10/01/2014</td>
-								<td>
-									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
-										<span class="glyphicon glyphicon-cloud-download"></span>
-									</a>
-								</td>
-							</tr>
+							
+						</c:forEach>
 						</tbody>
 					</table>
 				</div>

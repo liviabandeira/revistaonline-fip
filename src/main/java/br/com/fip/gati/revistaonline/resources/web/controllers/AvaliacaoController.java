@@ -25,12 +25,7 @@ public class AvaliacaoController {
 	@Get("/avaliacao")
 	public void avaliacao() {
 	}
-	
-	@Get("/avaliacoes/new")
-	public void link(){
 		
-	}
-	
 	@Get("/avaliacao/new")
 	public AvaliacaoArtigo newAvalicao() {
 		result.include("action", "new");

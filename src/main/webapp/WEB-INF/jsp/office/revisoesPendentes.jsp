@@ -17,11 +17,13 @@
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach items="${artigoList}" var="artigo">
 							<tr>
-								<td>1</td>
-								<td>Mark</td>
+								<tr>
+								<td>${artigo.id}</td>
+								<td>${artigo.titulo}</td>
 								<td>Otto</td>
-								<td>10/01/2014 (5 dias atrás)</td>
+								<td><fmt:formatDate pattern="dd/MM/yyyy" value="${artigo.dataSubmissao.time}"/></td>
 								<td>
 									<a class="btn btn-default btn-sm" href="#" title="Avaliar">
 										<span class="glyphicon glyphicon-pencil"></span>
@@ -30,35 +32,7 @@
 										<span class="glyphicon glyphicon-cloud-download"></span>
 									</a>
 								</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>10/01/2014 (1 mês atrás)</td>
-								<td>
-									<a class="btn btn-default btn-sm" href="#" title="Avaliar">
-										<span class="glyphicon glyphicon-pencil"></span>
-									</a>
-									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
-										<span class="glyphicon glyphicon-cloud-download"></span>
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>10/01/2014 (1 hora atrás)</td>
-								<td>
-									<a class="btn btn-default btn-sm" href="#" title="Avaliar">
-										<span class="glyphicon glyphicon-pencil"></span>
-									</a>
-									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
-										<span class="glyphicon glyphicon-cloud-download"></span>
-									</a>
-								</td>
-							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 				</div>

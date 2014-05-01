@@ -5,6 +5,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.ioc.Component;
+import br.com.fip.gati.revistaonline.domain.model.Autor;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
@@ -46,6 +47,15 @@ public class UsuarioDAO extends GenericDAO<Usuario> implements UsuarioRepositori
 		}
 		return (Usuario) getCurrentSession().createCriteria(Usuario.class)
 				.add(Restrictions.eq("email", email))
+				.uniqueResult();
+	}
+	
+	public Usuario getUsuario(Long id) {
+		if (id == null) {
+			return null;
+		}
+		return (Usuario) getCurrentSession().createCriteria(Usuario.class)
+				.add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
 }
