@@ -40,6 +40,7 @@ public class OfficeController {
 		this.usuarioLogado = usuarioLogado;
 		this.avaliacoes = avaliacoes; 
 		this.usuario = usuario;
+		this.avaliadores = avaliadores;
 	}
 	
 	public void index() {
@@ -59,7 +60,8 @@ public class OfficeController {
 		Usuario usu = usuario.getUsuario(idLogado);
 		Autor autor = usu.getAutor();
 		Avaliador avaliadorbd = avaliadores.getAvaliador(autor);
-		result.include("artigoList", avaliacoes .getAvaliacoesPendentes(avaliadorbd));
+		List<Artigo> artigos = avaliacoes.getArtigosDeAvaliacoesPendente(avaliadorbd);
+		result.include("artigoList", artigos);
 	}
 	
 	public void revisoesConcluidas() {
@@ -67,7 +69,8 @@ public class OfficeController {
 		Usuario usu = usuario.getUsuario(idLogado);
 		Autor autor = usu.getAutor();
 		Avaliador avaliadorbd = avaliadores.getAvaliador(autor);
-		result.include("artigoList", avaliacoes .getAvaliacoesConcluidas(avaliadorbd));
+		List<Artigo> artigos = avaliacoes.getArtigosDeAvaliacoesConcluidas(avaliadorbd);
+		result.include("artigoList", artigos);
 	}
 	
 	@Get("/office/revista/{revista.id}/artigos/pendentes")

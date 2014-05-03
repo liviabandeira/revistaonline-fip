@@ -30,22 +30,22 @@ public class AvaliacaoArtigo extends Entity {
 	@Enumerated(EnumType.STRING)
 	private AvaliacaoStatusEnum status;
 	
-	@Null
+	
 	private String criterio1;
 	
-	@Null
+	
 	private String criterio2;
 	
-	@Null
+	
 	private String criterio3;
 	
-	@Null
+	
 	private String criterio4;
 	
-	@Null
+	
 	private String criterio5;
 	
-	@Null
+	
 	@Size(max=255)
 	private String comentario;
 

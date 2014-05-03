@@ -7,6 +7,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.fip.gati.revistaonline.domain.model.Artigo;
 import br.com.fip.gati.revistaonline.domain.model.AvaliacaoArtigo;
 import br.com.fip.gati.revistaonline.domain.model.Revista;
+import br.com.fip.gati.revistaonline.domain.model.enums.AvaliacaoStatusEnum;
 import br.com.fip.gati.revistaonline.domain.repositorio.ArtigoRepositorio;
 import br.com.fip.gati.revistaonline.domain.repositorio.AvaliacaoRepositorio;
 
@@ -22,26 +23,24 @@ public class AvaliacaoController {
 		this.avaliacaoRepositorio = avaliacao;
 	}
 	
-	@Get("/avaliacao")
-	public void avaliacao() {
+	@Get("/avaliacao/{avaliacao.id}")
+	public void formAvaliacao(AvaliacaoArtigo avaliacao) {
+		
+		
+		result.include("avaliacao",this.avaliacaoRepositorio.load(avaliacao.getId()));
 	}
 		
-	@Get("/avaliacao/new")
-	public AvaliacaoArtigo newAvalicao() {
-		result.include("action", "new");
-		return new AvaliacaoArtigo();
-	}
-
-	@Post("/criaravaliacao")
-	public void salvar (AvaliacaoArtigo avaliacaoArtigo, Artigo artigo, String radio1, String radio2, String radio3, String radio4, String radio5 ) {
-		result.include("action", "new");
-		avaliacaoRepositorio.save(avaliacaoArtigo);
-		/*avaliacaoArtigo.setCriterio1(radio1);
-		avaliacaoArtigo.setCriterio2(radio2);
-		avaliacaoArtigo.setCriterio3(radio3);
-		avaliacaoArtigo.setCriterio4(radio4);
-		avaliacaoArtigo.setCriterio5(radio5);
-		*/
-		result.redirectTo(this).avaliacao();
+	@Post("/avaliacao/{avaliacao.id}/criaravaliacao")
+	public void salvar (AvaliacaoArtigo avaliacao, String criterio1, String criterio2, String criterio3, String criterio4, String criterio5, String comentarios) {
+		AvaliacaoArtigo avalia = this.avaliacaoRepositorio.load(avaliacao.getId()); 
+		avalia.setCriterio1(criterio1);
+		avalia.setCriterio2(criterio2);
+		avalia.setCriterio3(criterio3);
+		avalia.setCriterio4(criterio4);
+		avalia.setCriterio5(criterio5);
+		avalia.setComentario(comentarios); 
+		avalia.setStatus(AvaliacaoStatusEnum.A); 
+		avaliacaoRepositorio.update(avalia);
+		result.redirectTo(OfficeController.class).revisoesConcluidas(); 
 	}
 }

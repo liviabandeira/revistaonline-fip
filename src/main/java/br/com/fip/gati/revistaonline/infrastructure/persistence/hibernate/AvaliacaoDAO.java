@@ -10,6 +10,7 @@ import br.com.fip.gati.revistaonline.domain.model.Artigo;
 import br.com.fip.gati.revistaonline.domain.model.AvaliacaoArtigo;
 import br.com.fip.gati.revistaonline.domain.model.Avaliador;
 import br.com.fip.gati.revistaonline.domain.model.Revista;
+import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.model.enums.ArtigoStatusEnum;
 import br.com.fip.gati.revistaonline.domain.model.enums.AvaliacaoStatusEnum;
 import br.com.fip.gati.revistaonline.domain.repositorio.AvaliacaoRepositorio;
@@ -27,36 +28,32 @@ public class AvaliacaoDAO extends GenericDAO<AvaliacaoArtigo> implements Avaliac
 				.uniqueResult();
 	}
 	
-	public List<AvaliacaoArtigo> getAvaliacoes(Avaliador avaliador) {
+	public List<Artigo> getArtigosDeAvaliacoesPendente(Avaliador avaliador) {
 		if(avaliador == null) {
 			throw new IllegalArgumentException("avaliador == null");
 		}
 		
-		return (List<AvaliacaoArtigo>) getCurrentSession().createCriteria(AvaliacaoArtigo.class)
-			.add(Restrictions.eq("avaliador_id", avaliador.getId()))
+		return (List<Artigo>) getCurrentSession().createCriteria(AvaliacaoArtigo.class)
+			.add(Restrictions.eq("avaliador.id", avaliador.getId())).add(Restrictions.eq("status", AvaliacaoStatusEnum.P))
 			.list();
 	}
 	
+	public AvaliacaoArtigo getAutor(Artigo artigo) {
+		if (artigo == null) {
+			return null;
+		}
+		return (AvaliacaoArtigo) getCurrentSession().createCriteria(AvaliacaoArtigo.class)
+				.add(Restrictions.eq("artigo.id", artigo.getId()))
+				.uniqueResult();
+	}
 	
-	public List<AvaliacaoArtigo> getAvaliacoesPendentes(Avaliador avaliador) {
+	public List<Artigo> getArtigosDeAvaliacoesConcluidas(Avaliador avaliador) {
 		if(avaliador == null) {
 			throw new IllegalArgumentException("avaliador == null");
 		}
 		
-		return (List<AvaliacaoArtigo>) getCurrentSession().createCriteria(AvaliacaoArtigo.class)
-			.add(Restrictions.eq("avaliador_id", avaliador.getId())).add(Restrictions.eq("status", AvaliacaoStatusEnum.P))
+		return (List<Artigo>) getCurrentSession().createCriteria(AvaliacaoArtigo.class)
+			.add(Restrictions.eq("avaliador.id", avaliador.getId())).add(Restrictions.eq("status", AvaliacaoStatusEnum.A))
 			.list();
 	}
-	
-	public List<AvaliacaoArtigo> getAvaliacoesConcluidas(Avaliador avaliador) {
-		if(avaliador == null) {
-			throw new IllegalArgumentException("avaliador == null");
-		}
-		
-		return (List<AvaliacaoArtigo>) getCurrentSession().createCriteria(AvaliacaoArtigo.class)
-			.add(Restrictions.eq("avaliador_id", avaliador.getId())).add(Restrictions.eq("status", AvaliacaoStatusEnum.A))
-			.list();
-	}
-	
-	
 }

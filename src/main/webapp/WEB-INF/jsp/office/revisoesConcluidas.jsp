@@ -12,27 +12,23 @@
 								<th>#</th>
 								<th>Artigo</th>
 								<th>Revista</th>
-								<th>Data da Revisão</th>
+								<th>Data de submissao</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>						
-						<c:forEach items="${artigoList}" var="artigo">
+						<c:forEach items="${artigoList}" var="avaliacao">
 							<tr>
-								<td>${artigo.id}</td>
-								<td>${artigo.titulo}</td>
-								<td>Otto</td>
-								<td><fmt:formatDate pattern="dd/MM/yyyy" value="${artigo.dataSubmissao.time}"/></td>
+								<td>${avaliacao.id}</td>
+								<td>${avaliacao.artigo.titulo}</td>
+								<td>revista</td>
+								<td><fmt:formatDate pattern="dd/MM/yyyy" value="${avaliacao.artigo.dataSubmissao.time}"/></td>
 								<td>
 									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
 										<span class="glyphicon glyphicon-cloud-download"></span>
 									</a>
 								</td>
-								<td>
-									<a class="btn btn-default btn-sm" href="#" title="avaliar">
-										<span class="glyphicon glyphicon-cloud-download"></span>
-									</a>
-								</td>
+								
 							</tr>
 							
 						</c:forEach>
