@@ -11,7 +11,7 @@
 			 <INPUT TYPE="radio" NAME="criterio1" VALUE="irrelevante">
 			 Irrelevante
 			 <br>
-			 <INPUT TYPE="radio" NAME="criterio1" VALUE="moderadamente">
+			 <INPUT TYPE="radio" NAME="criterio1" VALUE="moderadamente relevante">
 			 Moderadamente relevante
 			 <br>
 			 <INPUT TYPE="radio" NAME="criterio1" VALUE="relevante">

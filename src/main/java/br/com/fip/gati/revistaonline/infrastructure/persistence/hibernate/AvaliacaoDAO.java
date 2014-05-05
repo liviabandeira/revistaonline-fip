@@ -28,12 +28,12 @@ public class AvaliacaoDAO extends GenericDAO<AvaliacaoArtigo> implements Avaliac
 				.uniqueResult();
 	}
 	
-	public List<Artigo> getArtigosDeAvaliacoesPendente(Avaliador avaliador) {
+	public List<AvaliacaoArtigo> getArtigosDeAvaliacoesPendente(Avaliador avaliador) {
 		if(avaliador == null) {
 			throw new IllegalArgumentException("avaliador == null");
 		}
 		
-		return (List<Artigo>) getCurrentSession().createCriteria(AvaliacaoArtigo.class)
+		return (List<AvaliacaoArtigo>) getCurrentSession().createCriteria(AvaliacaoArtigo.class)
 			.add(Restrictions.eq("avaliador.id", avaliador.getId())).add(Restrictions.eq("status", AvaliacaoStatusEnum.P))
 			.list();
 	}
@@ -47,12 +47,12 @@ public class AvaliacaoDAO extends GenericDAO<AvaliacaoArtigo> implements Avaliac
 				.uniqueResult();
 	}
 	
-	public List<Artigo> getArtigosDeAvaliacoesConcluidas(Avaliador avaliador) {
+	public List<AvaliacaoArtigo> getArtigosDeAvaliacoesConcluidas(Avaliador avaliador) {
 		if(avaliador == null) {
 			throw new IllegalArgumentException("avaliador == null");
 		}
 		
-		return (List<Artigo>) getCurrentSession().createCriteria(AvaliacaoArtigo.class)
+		return (List<AvaliacaoArtigo>) getCurrentSession().createCriteria(AvaliacaoArtigo.class)
 			.add(Restrictions.eq("avaliador.id", avaliador.getId())).add(Restrictions.eq("status", AvaliacaoStatusEnum.A))
 			.list();
 	}

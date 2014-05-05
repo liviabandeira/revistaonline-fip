@@ -16,7 +16,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="${artigoList}" var="av">
+						<c:forEach items="${avaliacaoList}" var="av">
 							<tr>
 								<tr>
 								<td>${av.id}</td>

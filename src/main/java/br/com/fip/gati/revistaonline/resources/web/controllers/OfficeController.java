@@ -60,8 +60,8 @@ public class OfficeController {
 		Usuario usu = usuario.getUsuario(idLogado);
 		Autor autor = usu.getAutor();
 		Avaliador avaliadorbd = avaliadores.getAvaliador(autor);
-		List<Artigo> artigos = avaliacoes.getArtigosDeAvaliacoesPendente(avaliadorbd);
-		result.include("artigoList", artigos);
+		List<AvaliacaoArtigo> avaliacoesPendentes = avaliacoes.getArtigosDeAvaliacoesPendente(avaliadorbd);
+		result.include("avaliacaoList", avaliacoesPendentes);
 	}
 	
 	public void revisoesConcluidas() {
@@ -69,8 +69,8 @@ public class OfficeController {
 		Usuario usu = usuario.getUsuario(idLogado);
 		Autor autor = usu.getAutor();
 		Avaliador avaliadorbd = avaliadores.getAvaliador(autor);
-		List<Artigo> artigos = avaliacoes.getArtigosDeAvaliacoesConcluidas(avaliadorbd);
-		result.include("artigoList", artigos);
+		List<AvaliacaoArtigo> avaliacoesConcluidas = avaliacoes.getArtigosDeAvaliacoesConcluidas(avaliadorbd);
+		result.include("avaliacaoList", avaliacoesConcluidas);
 	}
 	
 	@Get("/office/revista/{revista.id}/artigos/pendentes")
