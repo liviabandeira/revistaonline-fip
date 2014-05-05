@@ -59,7 +59,7 @@ public class ArtigoController {
 		return arti;
 	}
 	
-	@Delete("/artigo/{artigo.id}")
+	@Delete("/office/artigo/{artigo.id}")
 	public void excluir(Artigo artigo) {
 		Artigo arti = this.artigoRepositorio.load(artigo.getId());
 		this.artigoRepositorio.delete(arti);
