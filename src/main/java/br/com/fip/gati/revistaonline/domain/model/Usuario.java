@@ -1,17 +1,19 @@
 package br.com.fip.gati.revistaonline.domain.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
 
 import br.com.fip.gati.revistaonline.domain.service.autenticacao.UsuarioInfo;
 
@@ -31,6 +33,11 @@ public class Usuario extends Entity {
 	private Date dtaCadastro;
 	
 	private Date dtaUltimoAcesso;
+	
+	private String token; 
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar dataHora; 
 	
 	@NotNull(message="{usuario.email.nulo}")
 	@Email(message="{usuario.email.invalido}")
@@ -183,5 +190,21 @@ public class Usuario extends Entity {
 	
 	public boolean isSenhaConfirmada() {
 		return senha.equals(confirmacaoSenha);
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public Calendar getDataHora() {
+		return dataHora;
+	}
+
+	public void setDataHora(Calendar dataHora) {
+		this.dataHora = dataHora;
 	}
 }
