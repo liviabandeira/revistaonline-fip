@@ -43,6 +43,7 @@ public class RevistaController {
 			AutorRepositorio autorRepo, AvaliadorRepositorio avaliadores,
 			NewsLetterRepositorio repositorioNewsletter,
 			UsuarioLogado usuarioLogado, Validator validator, Result result) {
+
 		this.revistas = repositorio;
 		this.autores = autorRepo;
 		this.validator = validator;
@@ -90,12 +91,15 @@ public class RevistaController {
 
 		revistas.save(revista);
 		//result.redirectTo(this).revistas();
+
 		result.redirectTo(OfficeController.class).revistas();
 	}
 
 	@Put("/office/revista")
 	public void update(Revista revista) {
 		Revista dbRevista = this.revistas.load(revista.getId());
+		dbRevista.setTitulo(revista.getTitulo());
+		dbRevista.setDescricao(revista.getDescricao());
 		dbRevista.setIssn(revista.getIssn());
 
 		validator.validate(dbRevista);
@@ -103,6 +107,7 @@ public class RevistaController {
 
 		revistas.update(dbRevista);
 		//result.redirectTo(this).revistas();
+
 		result.redirectTo(OfficeController.class).revistas();
 	}
 
@@ -111,7 +116,7 @@ public class RevistaController {
 		result.include("action", "edit");
 		return revistas.load(revista.getId());
 	}
-
+	
 	//@Get("/revista/{revista.id}")
 	@Get("/office/revista/{revista.id}")
 	public Revista show(Revista revista) {
@@ -222,6 +227,7 @@ public class RevistaController {
 	public void buscarAvaliador(Revista revista, String nome) {
 		//result.include("autorList", autores.getPorNome(nome)).redirectTo(this).newAvaliador(revista);
 		
+
 		result.include("nome", nome);
 		result.include("revista", revista);
 		result.include("autorList", autores.getPorPreNome(nome)).redirectTo(this).newAvaliador(revista);

@@ -32,6 +32,7 @@ public class EdicaoController {
 		result.include("edicaoList", edicaoRepositorio.listAll());
 	}
 	
+
 	@Get("/revistas/{revista.id}/edicoes")
 	public void edicoes(Revista revista){
 		Revista rev = revistaRepositorio.load(revista.getId());
@@ -39,6 +40,7 @@ public class EdicaoController {
 		result.include("edicaoList", edicaoRepositorio.listByRevista(revista));		
 	}
 	
+
 	@Get("/office/revista/{revista.id}/edicao/new")
 	public Edicao newEdicao(Revista revista) {
 		result.include("action", "new");

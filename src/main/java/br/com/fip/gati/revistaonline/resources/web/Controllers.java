@@ -17,6 +17,13 @@ public class Controllers {
 		result.include("errors", Arrays.asList(new ValidationMessage(msg, "erro")));
 		return result;
 	}
+
+
+
+	public static Result includeParameterError(Result result, String key, String msg) {
+		result.include(key, Arrays.asList(new ValidationMessage(msg, "erro")));
+		return result;
+	}
 	
 	public static Result includeSucess(Result result, String msg) {
 		result.include("success", Arrays.asList(new ValidationMessage(msg, "ok")));

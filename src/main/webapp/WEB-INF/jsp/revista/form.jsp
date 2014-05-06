@@ -1,4 +1,4 @@
-<fieldset <c:if test="${action == 'show'}">disabled</c:if> >
+<fieldset >
 	<input type="hidden" name="revista.id" value="${revista.id}" />
 
 	<div class="row">
