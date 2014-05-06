@@ -1,5 +1,9 @@
 package br.com.fip.gati.revistaonline.infrastructure.persistence.hibernate;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -32,6 +36,14 @@ public class UsuarioDAO extends GenericDAO<Usuario> implements UsuarioRepositori
 		return (Usuario) getCurrentSession().createCriteria(Usuario.class)
 				.add(Restrictions.eq("login", login))
 				.uniqueResult();
+	}
+	
+	public Usuario getUsuarioPorToken(String token) {
+		
+		return (Usuario) getCurrentSession().createCriteria(Usuario.class)
+				.add(Restrictions.eq("token", token))
+				.uniqueResult();
+		
 	}
 
 	public long getTotalUsuariosAdministradores() {

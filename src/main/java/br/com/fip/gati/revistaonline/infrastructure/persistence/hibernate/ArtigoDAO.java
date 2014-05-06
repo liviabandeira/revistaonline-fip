@@ -36,6 +36,7 @@ public class ArtigoDAO extends GenericDAO<Artigo> implements ArtigoRepositorio {
 		}
 		
 		return (List<Artigo>) getCurrentSession().createCriteria(Artigo.class)
+			.add(Restrictions.eq("revista.id", revista.getId()))
 			.add(Restrictions.eq("status", ArtigoStatusEnum.P))
 			.list();
 	}
