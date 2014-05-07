@@ -97,7 +97,7 @@
 					<input type="hidden" id="artigo.id" name="artigo.id" value="${artigo.id}" />
 				</div>
 			</div>
-			
+
 	        <div class="row">
 		        <div class="form-group col-lg-8">
 					<label>Avaliador 1: *</label> 
@@ -109,7 +109,7 @@
 					</select>
 				</div>
 			</div>
-	        
+
 	        <div class="row">
 		        <div class="form-group col-lg-8">
 					<label>Avaliador 2: *</label> 
@@ -140,15 +140,14 @@
 		$(document).on("click", ".openModal", function (e) {
 		    e.preventDefault();
 		    var _self = $(this);
-		
+
 		    var artigoId = _self.data('id');
 		    var artigoSelecionado = $("#titulo_" + artigoId).val();
 		    $("#titulo_selecionado").val(artigoSelecionado);
 		    $("#artigo\\.id").val(artigoId);
-		
+
 		    $("#avaliadores\\[0\\]\\.id").val('-1');
 		    $("#avaliadores\\[1\\]\\.id").val('-1');
 		});
 	}
 </script>
-

@@ -1,5 +1,6 @@
 package br.com.fip.gati.revistaonline.resources.web.controllers;
 
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,6 +24,9 @@ public class OfficeController {
 	private Result result;
 	private RevistaRepositorio revistas;
 	private ArtigoRepositorio artigos;
+
+	private AvaliadorRepositorio avaliadores;
+
 	private AvaliacaoArtigoService avaliacaoService;
 	
 	public OfficeController(Result result, RevistaRepositorio revistas, ArtigoRepositorio artigos, AvaliadorRepositorio avaliadores, AvaliacaoArtigoService avaliacaoService) {
@@ -61,6 +65,7 @@ public class OfficeController {
 	}
 	
 	@Post("/office/artigo/avaliadores")
+
 	public void associarAvaliadores(Revista revista, Artigo artigo, String tituloSelecionado, List<Avaliador> avaliadores) {
 		result.include("tituloSelecionado", tituloSelecionado);
 		result.include("artigo", artigo);

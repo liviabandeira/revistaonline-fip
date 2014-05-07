@@ -15,12 +15,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @javax.persistence.Entity
-@Table(name="revista")
+@Table(name = "revista")
 public class Revista extends Entity {
 
 	@NotNull
-	@Size(max=15)
-	@Column(unique=true)
+	@Size(max = 15)
+	@Column(unique = true)
 	private String issn;
 	
 	@NotNull
@@ -92,19 +92,19 @@ public class Revista extends Entity {
 	public void setNewsletters(List<Newsletter> newsletters) {
 		this.newsletters = newsletters;
 	}
-	
+
 	public void addAvaliador(Avaliador avaliador) {
 		this.avaliadores.add(avaliador);
 	}
-	
+
 	public void removeAvaliador(Avaliador avaliador) {
 		this.avaliadores.remove(avaliador);
 	}
-	
+
 	public boolean hasAvaliador(Avaliador avaliador) {
 		return this.avaliadores.contains(avaliador);
 	}
-	
+
 	public void addNewsletter(Newsletter newsletter) {
 		this.newsletters.add(newsletter);
 	}

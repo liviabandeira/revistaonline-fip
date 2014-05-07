@@ -8,27 +8,28 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @javax.persistence.Entity
-@Table(name="edicao")
+@Table(name = "edicao")
 public class Edicao extends Entity {
 
 	@NotNull
-	@Min(value=1)
+	@Min(value = 1)
 	private String volume;
-	
+
 	@NotNull
-	@Min(value=1)
+	@Min(value = 1)
 	private String numero;
-	
+
 	@NotNull
 	private Integer ano;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="revista_id", nullable=false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "revista_id", nullable = false)
 	private Revista revista;
-	
-	//private List<Artigo> artigos = null;
-	
-	public Edicao() {}
+
+	// private List<Artigo> artigos = null;
+
+	public Edicao() {
+	}
 
 	public Revista getRevista() {
 		return revista;
@@ -61,5 +62,5 @@ public class Edicao extends Entity {
 	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
-	
+
 }

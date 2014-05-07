@@ -8,7 +8,6 @@ import org.hibernate.criterion.Restrictions;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.fip.gati.revistaonline.domain.model.Artigo;
 import br.com.fip.gati.revistaonline.domain.model.Revista;
-import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.model.enums.ArtigoStatusEnum;
 import br.com.fip.gati.revistaonline.domain.repositorio.ArtigoRepositorio;
 
@@ -36,6 +35,7 @@ public class ArtigoDAO extends GenericDAO<Artigo> implements ArtigoRepositorio {
 		}
 		
 		return (List<Artigo>) getCurrentSession().createCriteria(Artigo.class)
+
 			.add(Restrictions.eq("revista.id", revista.getId()))
 			.add(Restrictions.eq("status", ArtigoStatusEnum.P))
 			.list();

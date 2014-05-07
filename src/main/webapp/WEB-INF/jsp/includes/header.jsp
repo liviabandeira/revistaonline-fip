@@ -17,7 +17,7 @@
             
                 <ul class="nav navbar-nav">
                 
-                    <li><a href="#">Sobre</a></li>
+                    <li><a href="${pageContext.request.contextPath}/revistas">Revistas</a></li>
                     <li><a href="#">Services</a>
                     </li>
                     <li><a href="#">Contact</a>

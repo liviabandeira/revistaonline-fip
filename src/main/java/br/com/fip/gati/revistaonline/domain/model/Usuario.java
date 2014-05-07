@@ -192,6 +192,7 @@ public class Usuario extends Entity {
 		return senha.equals(confirmacaoSenha);
 	}
 
+
 	public String getToken() {
 		return token;
 	}
