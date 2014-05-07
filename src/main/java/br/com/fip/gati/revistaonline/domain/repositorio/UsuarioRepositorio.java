@@ -10,5 +10,4 @@ public interface UsuarioRepositorio extends Repositorio<Usuario> {
 	public Usuario getUsuarioPorEmail(String email);
 	public Usuario getUsuarioPorToken(String token);
 	public long getTotalUsuariosAdministradores();
-	public Usuario getUsuario(Long id);
 }

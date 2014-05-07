@@ -61,13 +61,4 @@ public class UsuarioDAO extends GenericDAO<Usuario> implements UsuarioRepositori
 				.add(Restrictions.eq("email", email))
 				.uniqueResult();
 	}
-	
-	public Usuario getUsuario(Long id) {
-		if (id == null) {
-			return null;
-		}
-		return (Usuario) getCurrentSession().createCriteria(Usuario.class)
-				.add(Restrictions.eq("id", id))
-				.uniqueResult();
-	}
 }

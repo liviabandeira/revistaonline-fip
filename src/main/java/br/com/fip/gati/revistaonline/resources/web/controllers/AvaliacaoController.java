@@ -24,9 +24,7 @@ public class AvaliacaoController {
 	}
 	
 	@Get("/avaliacao/{avaliacao.id}")
-	public void formAvaliacao(AvaliacaoArtigo avaliacao) {
-		
-		
+	public void formAvaliacao(AvaliacaoArtigo avaliacao){
 		result.include("avaliacao",this.avaliacaoRepositorio.load(avaliacao.getId()));
 	}
 		

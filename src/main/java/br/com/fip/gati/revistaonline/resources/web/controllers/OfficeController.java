@@ -61,19 +61,19 @@ public class OfficeController {
 	
 	public void revisoesPendentes() {
 		Long idLogado = usuarioLogado.getUsuarioInfo().getID();
-		Usuario usu = usuario.getUsuario(idLogado);
+		Usuario usu = usuario.load(idLogado);
 		Autor autor = usu.getAutor();
 		Avaliador avaliadorbd = avaliadores.getAvaliador(autor);
-		List<AvaliacaoArtigo> avaliacoesPendentes = avaliacoes.getArtigosDeAvaliacoesPendente(avaliadorbd);
+		List<AvaliacaoArtigo> avaliacoesPendentes = avaliacoes.getAvaliacoesPendente(avaliadorbd);
 		result.include("avaliacaoList", avaliacoesPendentes);
 	}
 	
 	public void revisoesConcluidas() {
 		Long idLogado = usuarioLogado.getUsuarioInfo().getID();
-		Usuario usu = usuario.getUsuario(idLogado);
+		Usuario usu = usuario.load(idLogado);
 		Autor autor = usu.getAutor();
 		Avaliador avaliadorbd = avaliadores.getAvaliador(autor);
-		List<AvaliacaoArtigo> avaliacoesConcluidas = avaliacoes.getArtigosDeAvaliacoesConcluidas(avaliadorbd);
+		List<AvaliacaoArtigo> avaliacoesConcluidas = avaliacoes.getAvaliacoesConcluidas(avaliadorbd);
 		result.include("avaliacaoList", avaliacoesConcluidas);
 	}
 	

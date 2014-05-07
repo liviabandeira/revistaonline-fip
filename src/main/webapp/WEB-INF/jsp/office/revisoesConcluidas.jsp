@@ -12,7 +12,7 @@
 								<th>#</th>
 								<th>Artigo</th>
 								<th>Revista</th>
-								<th>Data de submissao</th>
+								<th>Data de Submissão</th>
 								<th></th>
 							</tr>
 						</thead>

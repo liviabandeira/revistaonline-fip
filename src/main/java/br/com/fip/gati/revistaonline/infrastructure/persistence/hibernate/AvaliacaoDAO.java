@@ -28,7 +28,7 @@ public class AvaliacaoDAO extends GenericDAO<AvaliacaoArtigo> implements Avaliac
 				.uniqueResult();
 	}
 	
-	public List<AvaliacaoArtigo> getArtigosDeAvaliacoesPendente(Avaliador avaliador) {
+	public List<AvaliacaoArtigo> getAvaliacoesPendente(Avaliador avaliador) {
 		if(avaliador == null) {
 			throw new IllegalArgumentException("avaliador == null");
 		}
@@ -38,7 +38,7 @@ public class AvaliacaoDAO extends GenericDAO<AvaliacaoArtigo> implements Avaliac
 			.list();
 	}
 	
-	public AvaliacaoArtigo getAutor(Artigo artigo) {
+	public AvaliacaoArtigo getAvaliacaoPorAutor(Artigo artigo) {
 		if (artigo == null) {
 			return null;
 		}
@@ -47,7 +47,7 @@ public class AvaliacaoDAO extends GenericDAO<AvaliacaoArtigo> implements Avaliac
 				.uniqueResult();
 	}
 	
-	public List<AvaliacaoArtigo> getArtigosDeAvaliacoesConcluidas(Avaliador avaliador) {
+	public List<AvaliacaoArtigo> getAvaliacoesConcluidas(Avaliador avaliador) {
 		if(avaliador == null) {
 			throw new IllegalArgumentException("avaliador == null");
 		}
