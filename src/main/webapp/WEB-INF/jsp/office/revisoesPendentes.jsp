@@ -22,9 +22,9 @@
 								<td>${avaliacao.id}</td>
 								<td>${avaliacao.artigo.titulo}</td>
 								<td>${avaliacao.artigo.revista.titulo}</td>				
-								<td><fmt:formatDate pattern="dd/MM/yyyy" value="${av.artigo.dataSubmissao.time}"/></td>
+								<td><fmt:formatDate pattern="dd/MM/yyyy" value="${avaliacao.artigo.dataSubmissao.time}"/></td>
 								<td>
-									<a class="btn btn-default btn-sm" href="${linkTo[AvaliacaoController].formAvaliacao[av]}" title="Avaliar">
+									<a class="btn btn-default btn-sm" href="${linkTo[AvaliacaoController].formAvaliacao[avaliacao]}" title="Avaliar">
 										<span class="glyphicon glyphicon-pencil"></span>
 									</a>
 									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
