@@ -21,7 +21,7 @@
 							<tr>
 								<td>${avaliacao.id}</td>
 								<td>${avaliacao.artigo.titulo}</td>
-								<td>revista</td>
+								<td>${avaliacao.artigo.revista.titulo}</td>
 								<td><fmt:formatDate pattern="dd/MM/yyyy" value="${avaliacao.artigo.dataSubmissao.time}"/></td>
 								<td>
 									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">

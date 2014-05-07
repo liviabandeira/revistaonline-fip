@@ -16,12 +16,12 @@
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="${avaliacaoList}" var="av">
+						<c:forEach items="${avaliacaoList}" var="avaliacao">
 							<tr>
 								<tr>
-								<td>${av.id}</td>
-								<td>${av.artigo.titulo}</td>
-								<td>revista</td>				
+								<td>${avaliacao.id}</td>
+								<td>${avaliacao.artigo.titulo}</td>
+								<td>${avaliacao.artigo.revista.titulo}</td>				
 								<td><fmt:formatDate pattern="dd/MM/yyyy" value="${av.artigo.dataSubmissao.time}"/></td>
 								<td>
 									<a class="btn btn-default btn-sm" href="${linkTo[AvaliacaoController].formAvaliacao[av]}" title="Avaliar">
