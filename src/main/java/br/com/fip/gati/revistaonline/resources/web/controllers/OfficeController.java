@@ -31,9 +31,6 @@ public class OfficeController {
 	private Result result;
 	private RevistaRepositorio revistas;
 	private ArtigoRepositorio artigos;
-
-	private AvaliadorRepositorio avaliadores;
-
 	private AvaliacaoArtigoService avaliacaoService;
 	private AvaliacaoRepositorio avaliacoes; 
 	private AvaliadorRepositorio avaliadores; 
