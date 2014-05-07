@@ -12,53 +12,26 @@
 								<th>#</th>
 								<th>Artigo</th>
 								<th>Revista</th>
-								<th>Data de Recebimento</th>
-								<th></th>
+								<th>Data de Submissão</th>
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach items="${avaliacaoList}" var="avaliacao">
 							<tr>
-								<td>1</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>10/01/2014 (5 dias atrás)</td>
+								<tr>
+								<td>${avaliacao.id}</td>
+								<td>${avaliacao.artigo.titulo}</td>
+								<td>${avaliacao.artigo.revista.titulo}</td>				
+								<td><fmt:formatDate pattern="dd/MM/yyyy" value="${avaliacao.artigo.dataSubmissao.time}"/></td>
 								<td>
-									<a class="btn btn-default btn-sm" href="#" title="Avaliar">
+									<a class="btn btn-default btn-sm" href="${linkTo[AvaliacaoController].formAvaliacao[avaliacao]}" title="Avaliar">
 										<span class="glyphicon glyphicon-pencil"></span>
 									</a>
 									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
 										<span class="glyphicon glyphicon-cloud-download"></span>
 									</a>
 								</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>10/01/2014 (1 mês atrás)</td>
-								<td>
-									<a class="btn btn-default btn-sm" href="#" title="Avaliar">
-										<span class="glyphicon glyphicon-pencil"></span>
-									</a>
-									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
-										<span class="glyphicon glyphicon-cloud-download"></span>
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>10/01/2014 (1 hora atrás)</td>
-								<td>
-									<a class="btn btn-default btn-sm" href="#" title="Avaliar">
-										<span class="glyphicon glyphicon-pencil"></span>
-									</a>
-									<a class="btn btn-default btn-sm" href="#" title="Baixar o Artigo">
-										<span class="glyphicon glyphicon-cloud-download"></span>
-									</a>
-								</td>
-							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 				</div>

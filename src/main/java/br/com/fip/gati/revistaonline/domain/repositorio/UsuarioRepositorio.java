@@ -1,5 +1,6 @@
 package br.com.fip.gati.revistaonline.domain.repositorio;
 
+import br.com.fip.gati.revistaonline.domain.model.Autor;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
 
 public interface UsuarioRepositorio extends Repositorio<Usuario> {
@@ -10,5 +11,4 @@ public interface UsuarioRepositorio extends Repositorio<Usuario> {
 
 	public Usuario getUsuarioPorToken(String token);
 	public long getTotalUsuariosAdministradores();
-	
 }

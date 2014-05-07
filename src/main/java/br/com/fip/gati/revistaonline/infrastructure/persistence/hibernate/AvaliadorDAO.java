@@ -5,6 +5,7 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.fip.gati.revistaonline.domain.model.Autor;
+import br.com.fip.gati.revistaonline.domain.model.AvaliacaoArtigo;
 import br.com.fip.gati.revistaonline.domain.model.Avaliador;
 import br.com.fip.gati.revistaonline.domain.repositorio.AvaliadorRepositorio;
 
@@ -17,7 +18,7 @@ public class AvaliadorDAO extends GenericDAO<Avaliador> implements AvaliadorRepo
 
 	public Avaliador getAvaliador(Autor autor) {
 		return (Avaliador) getCurrentSession().createCriteria(Avaliador.class)
-			.add(Restrictions.eq("autor_id", autor.getId()))
+			.add(Restrictions.eq("autor.id", autor.getId()))
 			.uniqueResult();
 	}
 	

@@ -9,6 +9,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.ioc.Component;
+import br.com.fip.gati.revistaonline.domain.model.Autor;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
