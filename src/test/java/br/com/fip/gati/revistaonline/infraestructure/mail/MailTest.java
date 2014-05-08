@@ -5,23 +5,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.caelum.vraptor.environment.Environment;
+import br.com.caelum.vraptor.simplemail.AsyncMailer;
 import br.com.caelum.vraptor.simplemail.Mailer;
 import br.com.caelum.vraptor.simplemail.aws.MockMailer;
 import br.com.fip.gati.revistaonline.infrastructure.mail.EmailException;
 import br.com.fip.gati.revistaonline.infrastructure.mail.RevistaMailer;
-
 import static org.mockito.Mockito.*;
 
 public class MailTest {
 	private Environment env;
 	private Mailer vraptorMailer;
+	private AsyncMailer aMailer;
 	private RevistaMailer mailer;
 	
 	@Before
 	public void setup() {
 		env = mock(Environment.class);
 		vraptorMailer = mock(MockMailer.class);
-		mailer = new RevistaMailer(env, vraptorMailer);
+		aMailer = mock(AsyncMailer.class);
+		mailer = new RevistaMailer(env, vraptorMailer, aMailer);
 	}
 	
 	@Test
