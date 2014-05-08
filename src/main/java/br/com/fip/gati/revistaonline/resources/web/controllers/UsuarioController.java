@@ -116,7 +116,7 @@ public class UsuarioController {
 	public void atualizar(Usuario usuario, Autor autor) {
 		Usuario usuariodb = usuarioRepositorio.load(usuarioLogado.getID());
 		usuario.setId(usuariodb.getId());
-		usuario.setSenha("aaaaaaaaaaaaaaaaaaaa");
+		usuario.setSenha(usuariodb.getSenha());
 
 		this.valitador.validate(usuario);
 		this.valitador.validate(autor);
