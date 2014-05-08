@@ -18,11 +18,7 @@
                 <ul class="nav navbar-nav">
                 
                     <li><a href="${pageContext.request.contextPath}/revistas">Revistas</a></li>
-                    <li><a href="#">Services</a>
-                    </li>
-                    <li><a href="#">Contact</a>
-                    </li>
-                    <li class="dropdown">
+<!--                <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">1 Column Portfolio</a>
@@ -37,39 +33,14 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Blog Home 1</a>
-                            </li>
-                            <li><a href="#">Blog Home 2</a>
-                            </li>
-                            <li><a href="#">Blog Post</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Full Width Page</a>
-                            </li>
-                            <li><a href="#">Sidebar Page</a>
-                            </li>
-                            <li><a href="#">FAQ</a>
-                            </li>
-                            <li><a href="#">404</a>
-                            </li>
-                            <li><a href="#">Pricing Table</a>
-                            </li>
-                        </ul>
-                    </li>
+-->
+				</ul>
+				<ul class="nav navbar-nav pull-right">
                     <c:if test="${!usuarioLogado.logado}">
-	                    <li><a href="${linkTo[UsuarioController].formulario}">Sign Up</a></li>
 			          	<li class="dropdown">
-			            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+			            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Entrar <strong class="caret"></strong></a>
 			            <div class="dropdown-menu" style="padding: 15px; width: 200px; padding-bottom: 0px;">
 			            	<form action="${linkTo[LoginController].auth}" method="post">
-			            		
 			            		<div class="form-group">
 								  	<input id="user_username" class="form-control" 
 								  	type="text" placeholder="<fmt:message key="app.login" />" name="usuario.login" />
@@ -86,6 +57,7 @@
 							</form> 
 			            </div>
 			          </li>
+			          <li><a href="${linkTo[UsuarioController].formulario}">Crie sua conta!</a></li>
 		          </c:if>
                 </ul>
                 
