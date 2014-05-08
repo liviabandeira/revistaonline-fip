@@ -53,6 +53,7 @@
 			            		
 							 	<div class="form-group">
 									<input class="btn btn-primary" style="width: 100%;" type="submit" name="commit" value="Entrar" />
+									<a href="${linkTo[LoginController].username}" style="width: 100%;">Esqueceu sua senha?</a>
 							 	</div>
 							</form> 
 			            </div>
