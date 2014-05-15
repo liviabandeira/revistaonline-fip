@@ -31,19 +31,19 @@ public class AvaliacaoArtigo extends Entity {
 	private AvaliacaoStatusEnum status;
 	
 	
-	private String criterio1;
+	private Integer criterio1;
 	
 	
-	private String criterio2;
+	private Integer criterio2;
 	
 	
-	private String criterio3;
+	private Integer criterio3;
 	
 	
-	private String criterio4;
+	private Integer criterio4;
 	
 	
-	private String criterio5;
+	private Integer criterio5;
 	
 	
 	@Size(max=255)
@@ -65,43 +65,43 @@ public class AvaliacaoArtigo extends Entity {
 		this.avaliador = avaliador;
 	}
 
-	public String getCriterio1() {
+	public Integer getCriterio1() {
 		return criterio1;
 	}
 
-	public void setCriterio1(String criterio1) {
+	public void setCriterio1(Integer criterio1) {
 		this.criterio1 = criterio1;
 	}
 
-	public String getCriterio2() {
+	public Integer getCriterio2() {
 		return criterio2;
 	}
 
-	public void setCriterio2(String criterio2) {
+	public void setCriterio2(Integer criterio2) {
 		this.criterio2 = criterio2;
 	}
 
-	public String getCriterio3() {
+	public Integer getCriterio3() {
 		return criterio3;
 	}
 
-	public void setCriterio3(String criterio3) {
+	public void setCriterio3(Integer criterio3) {
 		this.criterio3 = criterio3;
 	}
 
-	public String getCriterio4() {
+	public Integer getCriterio4() {
 		return criterio4;
 	}
 
-	public void setCriterio4(String criterio4) {
+	public void setCriterio4(Integer criterio4) {
 		this.criterio4 = criterio4;
 	}
 
-	public String getCriterio5() {
+	public Integer getCriterio5() {
 		return criterio5;
 	}
 
-	public void setCriterio5(String criterio5) {
+	public void setCriterio5(Integer criterio5) {
 		this.criterio5 = criterio5;
 	}
 
