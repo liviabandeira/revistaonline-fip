@@ -5,11 +5,11 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
-import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.fip.gati.revistaonline.domain.model.AvaliacaoArtigo;
 import br.com.fip.gati.revistaonline.domain.model.enums.AvaliacaoStatusEnum;
 import br.com.fip.gati.revistaonline.domain.repositorio.ArtigoRepositorio;
 import br.com.fip.gati.revistaonline.domain.repositorio.AvaliacaoRepositorio;
+import br.com.fip.gati.revistaonline.resources.web.Controllers;
 
 @Resource
 public class AvaliacaoController {
@@ -33,9 +33,9 @@ public class AvaliacaoController {
 	@Post("/avaliacao/{avaliacao.id}/criaravaliacao")
 	public void salvar (AvaliacaoArtigo avaliacao, Integer criterio1, Integer criterio2, Integer criterio3, Integer criterio4, Integer criterio5, String comentarios) {
 		if(criterio1 == null || criterio2 == null || criterio3 == null || criterio4 == null || criterio5 == null){
-			this.validator.add(new ValidationMessage("Todos os campos devem ser preenchidos!", "Error"));
-		}
-		this.validator.onErrorRedirectTo(this).formAvaliacao(avaliacao);
+			Controllers.includeError(result, "Todos os campos devem ser preenchidos!"); 
+			result.redirectTo(this).formAvaliacao(avaliacao);
+		}else {
 			AvaliacaoArtigo avalia = this.avaliacaoRepositorio.load(avaliacao.getId());
 			avalia.setCriterio1(criterio1);
 			avalia.setCriterio2(criterio2);
@@ -46,7 +46,7 @@ public class AvaliacaoController {
 			avalia.setStatus(AvaliacaoStatusEnum.A); 
 			avaliacaoRepositorio.update(avalia);
 			result.redirectTo(OfficeController.class).revisoesConcluidas(); 
-		
+		}	
 		
 	}
 }
