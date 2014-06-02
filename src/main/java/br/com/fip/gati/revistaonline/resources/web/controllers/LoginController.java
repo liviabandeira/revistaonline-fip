@@ -1,17 +1,12 @@
 package br.com.fip.gati.revistaonline.resources.web.controllers;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.verify;
-
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.UUID;
 
-import org.apache.commons.mail.Email;
-import org.hibernate.type.descriptor.java.CalendarTypeDescriptor.CalendarMutabilityPlan;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
@@ -30,7 +25,9 @@ import br.com.fip.gati.revistaonline.domain.util.GeraToken;
 import br.com.fip.gati.revistaonline.domain.util.ShaEncrypt;
 import br.com.fip.gati.revistaonline.infrastructure.mail.EmailException;
 import br.com.fip.gati.revistaonline.infrastructure.mail.RevistaMailer;
+import br.com.fip.gati.revistaonline.resources.web.Controllers;
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
+
 
 
 @Resource
@@ -44,8 +41,10 @@ public class LoginController {
 	private UsuarioRepositorio usuarioRepositorio; 
 	private RevistaMailer mailer;
 	private Mailer vraptorMailer;
+	private ServletContext context; 
+	private final HttpServletRequest request;
 	
-	public LoginController(Autenticador autenticador,Environment environment, UsuarioLogado usuarioLogado, Validator validator, Localization localization, Result result, UsuarioRepositorio usuarioRepositorio, RevistaMailer mailer) {
+	public LoginController(Autenticador autenticador,Environment environment, UsuarioLogado usuarioLogado, Validator validator, Localization localization, Result result, UsuarioRepositorio usuarioRepositorio, RevistaMailer mailer, ServletContext context, HttpServletRequest request) {
 		this.result = result;
 		this.usuarioLogado = usuarioLogado;
 		this.autenticador = autenticador;
@@ -54,6 +53,8 @@ public class LoginController {
 		this.environment = environment;
 		this.usuarioRepositorio = usuarioRepositorio;
 		this.mailer = mailer;
+		this.context = context; 
+		this.request = request; 
 	}
 	
 	@Get("/login")
@@ -63,14 +64,14 @@ public class LoginController {
 	
 	@Get("/login/username")
 	public void username() {
-		
+			
 	}
 	
-	@Get("/login/resetarSenha")
+	@Get("/login/formulario")
 	public void resetarSenha() {
 	}
 	
-	@Get("/login/erroaoResetarSenha")
+	@Get("/login/error")
 	public void erroaoResetarSenha(){
 		
 	}
@@ -83,21 +84,26 @@ public class LoginController {
 	public void enviarEmail(String username) throws EmailException{
 		Usuario usuario = usuarioRepositorio.getUsuario(username);
 		String token = GeraToken.gerarToken();
-		System.out.println(token);
 		usuario.setToken(token);
 		usuario.setDataHora(Calendar.getInstance());
 		usuarioRepositorio.update(usuario);
-		String link = "http://localhost:8080/revistaonline/login/esqueciMinhasenha/" + token;
-		mailer.send("Esqueci minha senha", link , usuario.getEmail());
+		StringBuilder stringbuilder = new StringBuilder();
+		stringbuilder.append(request.getScheme()).append("://")
+				.append(request.getServerName()).append(":")
+				.append(request.getServerPort())
+				.append(request.getContextPath())
+				.append("/esqueciMinhaSenha/").append(token);
+		String link = stringbuilder.toString();
+		System.out.println(link);
+		mailer.send("Revista Online - Alteração de senha", link,
+				usuario.getEmail());
 		result.redirectTo(this).confirmacaoEmail();
 	}
 	
-	@Get("/login/validacao/{token}")
-	public Usuario validarTempo(String token) {
-		System.out.println(token);
+	@Get("/esqueciMinhaSenha/{token}")
+	public Usuario validarTempoToken(String token) {
 		Usuario user = this.usuarioRepositorio.getUsuarioPorToken(token);
-		Calendar time = user.getDataHora();
-		if((time.getTimeInMillis() - Calendar.getInstance().getTimeInMillis()) > -900000 ){
+		if(usuarioRepositorio.validarToken(user, token)){
 			result.include("token", token);
 			result.redirectTo(this).resetarSenha();
 			return user;	
@@ -107,15 +113,14 @@ public class LoginController {
 		}
 	}
 	
-	@Post("/login/resetarSenha/{token}")
+	@Post("/novaSenha/{token}")
 	public void esqueciminhaSenha(String token, String novaSenha, String confirmacao) {
 		Usuario usuariodb = usuarioRepositorio.getUsuarioPorToken(token);
 		if (novaSenha.length() < 8) {
-			this.validator.add(new ValidationMessage("A senha precisa ter no mínimo 8 caracteres", "Error"));
+			Controllers.includeError(result, "A senha precisa ter no mínimo 8 caracteres"); 
 		} else if (!novaSenha.equals(confirmacao)) {
-			this.validator.add(new ValidationMessage("Os valores da nova senha e da confirmação da nova senha precisam ser iguais.", "Error"));
+			Controllers.includeError(result, "Os valores da nova senha e da confirmação da nova senha precisam ser iguais.");
 		}
-		this.validator.onErrorRedirectTo(this).validarTempo(token);
 		usuariodb.setSenha(ShaEncrypt.hash(novaSenha, this.environment.get("encryption.salt")));
 		this.usuarioRepositorio.update(usuariodb);
 		result.redirectTo(this).login();

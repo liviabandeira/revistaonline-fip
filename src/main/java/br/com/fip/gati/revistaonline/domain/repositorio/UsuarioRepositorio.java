@@ -11,4 +11,5 @@ public interface UsuarioRepositorio extends Repositorio<Usuario> {
 
 	public Usuario getUsuarioPorToken(String token);
 	public long getTotalUsuariosAdministradores();
+	public boolean validarToken(Usuario usuario, String token);
 }
