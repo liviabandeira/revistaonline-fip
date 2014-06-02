@@ -1,6 +1,6 @@
 Alguém solicitou recentemente para redefinir sua senha do Revista Online.
-Caso essa pessoa tenha sido voce, clique no link a seguir:
+Caso essa pessoa tenha sido você, clique no link a seguir:
 ${link}
-Caso contrario, ignore essa mensagem.
+Caso contrário, ignore essa mensagem.
 
 Equipe GATI - FIPSI.
