@@ -1,15 +1,12 @@
 package br.com.fip.gati.revistaonline.infrastructure.persistence.hibernate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.Calendar;
 
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.ioc.Component;
-import br.com.fip.gati.revistaonline.domain.model.Autor;
 import br.com.fip.gati.revistaonline.domain.model.Usuario;
 import br.com.fip.gati.revistaonline.domain.repositorio.UsuarioRepositorio;
 
@@ -60,5 +57,13 @@ public class UsuarioDAO extends GenericDAO<Usuario> implements UsuarioRepositori
 		return (Usuario) getCurrentSession().createCriteria(Usuario.class)
 				.add(Restrictions.eq("email", email))
 				.uniqueResult();
+	}
+	
+	public boolean validarToken(Usuario usuario, String token) {
+		Calendar time = usuario.getDataHora();
+		if((time.getTimeInMillis() - Calendar.getInstance().getTimeInMillis()) > -900000 ){
+			return true; 
+		}
+		return false; 
 	}
 }
