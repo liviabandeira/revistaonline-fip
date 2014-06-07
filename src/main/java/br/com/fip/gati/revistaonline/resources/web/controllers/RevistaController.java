@@ -242,8 +242,6 @@ public class RevistaController {
 		nw.setNome(nome);
 		nw.setEmail(email);
 		nw.setAssinante(true);
-		/*this.validator.validate(nw);
-		this.validator.onErrorRedirectTo(this).revistas();*/
 		idRevista.addNewsletter(nw);
 		repositorioNewsletter.save(nw);
 		revistas.update(idRevista);
