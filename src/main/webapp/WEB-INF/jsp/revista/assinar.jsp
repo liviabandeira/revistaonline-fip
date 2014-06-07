@@ -8,20 +8,16 @@
 		<label>Confirmação de email: </label>
 		<input type="text" class="form-control" name="usuarioLogado.usuarioInfo.email" value="${usuarioLogado.usuarioInfo.email}" />
 			<button type="submit" class="btn btn-default">Salvar</button>
-			<a href="${linkTo[RevistaController].index}">Cancelar</a>
+			<a href="${linkTo[RevistaController].revistas}">Cancelar</a>
 		</form>
-		<%-- <% 
-	String id = request.getParameter("revista.id");
-	response.sendRedirect("/revistaonline/revista/assinarlogado/" + id); 
-	%> --%>
 	</c:if>
 
 	<c:if test="${!usuarioLogado.logado}">
 	<form action="${linkTo[RevistaController].assinarRevista[revista]}"method="POST">
 		
 			<fieldset>
-				<legend>Adicionar email</legend>
-				<p>Informe seu email para receber informações da revista.</p>
+				<legend>Newsletter</legend>
+				<p>Receba novidades por email</p>
 				Email: <input type="text" name="email" /><br> Nome: <input
 					type="text" name="nome" /><br>
 				<button type="submit" class="btn btn-default">Salvar</button>

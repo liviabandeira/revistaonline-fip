@@ -30,6 +30,9 @@
 				<a class="btn btn-primary" href="${linkTo[EdicaoController].edicoes[revista]}">Ver Revista   
 					<i class="fa fa-angle-right"></i>
 				</a>
+				<a class="btn btn-primary" href="${linkTo[RevistaController].assinar[revista]}">Newsletter   
+					<i class="fa fa-angle-right"></i>
+				</a>
 			</div>
 
 		</div>

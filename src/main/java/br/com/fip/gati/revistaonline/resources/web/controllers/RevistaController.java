@@ -24,6 +24,7 @@ import br.com.fip.gati.revistaonline.domain.repositorio.AutorRepositorio;
 import br.com.fip.gati.revistaonline.domain.repositorio.AvaliadorRepositorio;
 import br.com.fip.gati.revistaonline.domain.repositorio.NewsLetterRepositorio;
 import br.com.fip.gati.revistaonline.domain.repositorio.RevistaRepositorio;
+import br.com.fip.gati.revistaonline.resources.web.Controllers;
 import br.com.fip.gati.revistaonline.resources.web.UsuarioLogado;
 
 @Resource
@@ -39,8 +40,9 @@ public class RevistaController {
 	private Environment environment;
 	private ServletContext context;
 
-	public RevistaController(ServletContext context, Environment environment, RevistaRepositorio repositorio,
-			AutorRepositorio autorRepo, AvaliadorRepositorio avaliadores,
+	public RevistaController(ServletContext context, Environment environment,
+			RevistaRepositorio repositorio, AutorRepositorio autorRepo,
+			AvaliadorRepositorio avaliadores,
 			NewsLetterRepositorio repositorioNewsletter,
 			UsuarioLogado usuarioLogado, Validator validator, Result result) {
 
@@ -58,7 +60,8 @@ public class RevistaController {
 	@Get("/revistas")
 	public void revistas() {
 		result.include("revistaList", revistas.listAll());
-		result.include("pathToFrontPage", context.getRealPath(this.environment.get("upload.frontpag.dir")));
+		result.include("pathToFrontPage", context.getRealPath(this.environment
+				.get("upload.frontpag.dir")));
 	}
 
 	@Get("/revistasindex")
@@ -76,7 +79,12 @@ public class RevistaController {
 	public void deletarAssinatura() {
 
 	}
-
+	
+	@Get("/deletarAssinatura/error") 
+	public void deletarAssinaturaError(){
+		
+	}
+	
 	@Get("/assinantedestarevista")
 	public void errorAssinatura() {
 
@@ -90,7 +98,7 @@ public class RevistaController {
 		validator.onErrorUsePageOf(this).newRevista();
 
 		revistas.save(revista);
-		//result.redirectTo(this).revistas();
+		// result.redirectTo(this).revistas();
 
 		result.redirectTo(OfficeController.class).revistas();
 	}
@@ -106,7 +114,7 @@ public class RevistaController {
 		validator.onErrorUsePageOf(this).edit(revista);
 
 		revistas.update(dbRevista);
-		//result.redirectTo(this).revistas();
+		// result.redirectTo(this).revistas();
 
 		result.redirectTo(OfficeController.class).revistas();
 	}
@@ -116,8 +124,8 @@ public class RevistaController {
 		result.include("action", "edit");
 		return revistas.load(revista.getId());
 	}
-	
-	//@Get("/revista/{revista.id}")
+
+	// @Get("/revista/{revista.id}")
 	@Get("/office/revista/{revista.id}")
 	public Revista show(Revista revista) {
 		result.include("action", "show");
@@ -130,13 +138,13 @@ public class RevistaController {
 		result.redirectTo(this).revistas();
 	}
 
-	@Get("/revista/assinar/{revista.id}")
+	@Get("/revista/newsletter/{revista.id}")
 	public Revista assinar(Revista revista) {
 		Revista rev = this.revistas.load(revista.getId());
 		return rev;
 	}
 
-	@Post("/revista/assinarlogado/{revista.id}")
+	@Post("/newsletter/Usuariologado/{revista.id}")
 	public void assinarLogado(Revista revista) {
 		Revista idRevista = this.revistas.load(revista.getId());
 		Newsletter nw = new Newsletter();
@@ -145,24 +153,10 @@ public class RevistaController {
 		String mailLogado = usuarioLogado.getUsuarioInfo().getEmail();
 		String nomeLogado = usuarioLogado.getUsuarioInfo().getNome();
 
-		for (int i = 0; i < idRevista.getNewsletters().size(); i++) {
-			Newsletter n = idRevista.getNewsletters().get(i);
-			if (n.getEmail().equals(mailLogado)) {
-				result.redirectTo(this).errorAssinatura();
-				return;
-			}
-		}
-
-		List<Newsletter> listaAssinantes = repositorioNewsletter.listAll();
-		for (int i = 0; i < listaAssinantes.size(); i++) {
-			Newsletter n = listaAssinantes.get(i);
-			if (n.getEmail().equals(mailLogado)) {
-				nw = n;
-				idRevista.addNewsletter(nw);
-				this.revistas.update(idRevista);
-				result.redirectTo(this).revistas();
-				return;
-			}
+		if (repositorioNewsletter.verificaNewsletterExistente(idRevista,
+				mailLogado)) {
+			result.redirectTo(this).errorAssinatura();
+			return;
 		}
 
 		nw.setNome(nomeLogado);
@@ -225,45 +219,31 @@ public class RevistaController {
 
 	@Get("/office/revista/{revista.id}/avaliador/buscar")
 	public void buscarAvaliador(Revista revista, String nome) {
-		//result.include("autorList", autores.getPorNome(nome)).redirectTo(this).newAvaliador(revista);
-		
+		// result.include("autorList",
+		// autores.getPorNome(nome)).redirectTo(this).newAvaliador(revista);
 
 		result.include("nome", nome);
 		result.include("revista", revista);
-		result.include("autorList", autores.getPorPreNome(nome)).redirectTo(this).newAvaliador(revista);
+		result.include("autorList", autores.getPorPreNome(nome))
+				.redirectTo(this).newAvaliador(revista);
 	}
 
-	@Post("/revista/assinatura/{revista.id}")
+	@Post("/newsletter/{revista.id}")
 	public void assinarRevista(Revista revista, String email, String nome) {
 		Revista idRevista = revistas.load(revista.getId());
 		Newsletter nw = new Newsletter();
 		Hibernate.initialize(idRevista.getNewsletters());
 
-		for (int i = 0; i < idRevista.getNewsletters().size(); i++) {
-			Newsletter n = idRevista.getNewsletters().get(i);
-			if (n.getEmail().equals(email)) {
-				result.redirectTo(this).errorAssinatura();
-				return;
-			}
+		if (repositorioNewsletter
+				.verificaNewsletterExistente(idRevista, email)) {
+			result.redirectTo(this).errorAssinatura();
+			return;
 		}
-
-		List<Newsletter> listaAssinantes = repositorioNewsletter.listAll();
-		for (int i = 0; i < listaAssinantes.size(); i++) {
-			Newsletter n = listaAssinantes.get(i);
-			if (n.getEmail().equals(email)) {
-				nw = n;
-				idRevista.addNewsletter(nw);
-				revistas.update(idRevista);
-				result.redirectTo(this).revistas();
-				return;
-			}
-		}
-
 		nw.setNome(nome);
 		nw.setEmail(email);
 		nw.setAssinante(true);
-		this.validator.validate(nw);
-		this.validator.onErrorRedirectTo(this).revistas();
+		/*this.validator.validate(nw);
+		this.validator.onErrorRedirectTo(this).revistas();*/
 		idRevista.addNewsletter(nw);
 		repositorioNewsletter.save(nw);
 		revistas.update(idRevista);
@@ -278,18 +258,17 @@ public class RevistaController {
 	}
 
 	@Post
-	public void deleteNewsletter(Revista revista, String email) {
+	public void deleteNewsletter(Revista revista, String email, String nome) {
 		Revista idRevista = revistas.load(revista.getId());
 		Hibernate.initialize(idRevista.getNewsletters());
 		Newsletter nw = new Newsletter();
-		for (int i = 0; i < idRevista.getNewsletters().size(); i++) {
-			Newsletter n = idRevista.getNewsletters().get(i);
-			if (n.getEmail().equals(email)) {
-				nw = n;
-			}
+		Newsletter newsletter = repositorioNewsletter.getNewsletter(email);
+		if(newsletter != null){
+			nw = newsletter; 
 		}
 		idRevista.getNewsletters().remove(nw);
 		revistas.update(idRevista);
+		repositorioNewsletter.delete(nw);
 		result.redirectTo(this).revistas();
 	}
 }
